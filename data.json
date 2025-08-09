@@ -2,12 +2,12 @@
     {
       "id": 1,
       "name": "Presale Contract",
-      "value": "0x7C43bd05EE5E9E08Db39E9d5f34E29F1Bad370A3"
+      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be
     },
     {
       "id": 2,
       "name": "Price in USDX",
-      "value": "0.15"
+      "value": "0.0009"
     },
     {
       "id": 3,
@@ -22,17 +22,17 @@
     {
       "id": 5,
       "name": "Token Name",
-      "value": "ZeroX Factory"
+      "value": "Shibacoin"
     },
     {
       "id": 6,
       "name": "Token Contract",
-      "value": "0x53a3bE470d8B8255c9Ed5015C5b953F574b2Ce86"
+      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be
     },
     {
       "id": 7,
       "name": "Token Symbol",
-      "value": "ZXF"
+      "value": "SHic 
     },
     {
       "id": 8,
@@ -42,12 +42,12 @@
     {
       "id": 9,
       "name": "Token Supply",
-      "value": "1000000000"
+      "value": "2000000000"
     },
     {
       "id": 10,
       "name": "Tokens For Presale",
-      "value": "60000000"
+      "value": "1000000000
     },
     {
       "id": 11,
@@ -57,7 +57,7 @@
     {
       "id": 12,
       "name": "Presale End Time",
-      "value": "2024-12-31T23:59:59"
+      "value": "2025-10-10T23:59:59"
     },
     {
       "id": 13,
@@ -67,7 +67,7 @@
     {
       "id": 14,
       "name": "Owner Wallet",
-      "value": "0xB61a6DF7A2d95d3870193aa859E26AE5Cc1a89Fd"
+      "value": "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23
     },
     {
       "id": 15,
@@ -82,7 +82,7 @@
     {
       "id": 17,
       "name": "Listing Price",
-      "value": "0.50"
+      "value": "1.50"
     },
     {
       "id": 18,
@@ -102,12 +102,12 @@
     {
       "id": 21,
       "name": "Minimum Buy in USDX",
-      "value": "2"
+      "value": "50"
     },
     {
       "id": 22,
       "name": "Maximum Buy in USDX",
-      "value": "5000"
+      "value": "20000000"
     }
 
   ]
