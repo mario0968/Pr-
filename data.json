@@ -2,7 +2,7 @@
     {
       "id": 1,
       "name": "Presale Contract",
-      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be
+      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
     },
     {
       "id": 2,
@@ -27,12 +27,12 @@
     {
       "id": 6,
       "name": "Token Contract",
-      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be
+      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
     },
     {
       "id": 7,
       "name": "Token Symbol",
-      "value": "SHic 
+      "value": "SHic"
     },
     {
       "id": 8,
@@ -47,7 +47,7 @@
     {
       "id": 10,
       "name": "Tokens For Presale",
-      "value": "1000000000
+      "value": "1000000000"
     },
     {
       "id": 11,
@@ -67,7 +67,7 @@
     {
       "id": 14,
       "name": "Owner Wallet",
-      "value": "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23
+      "value": "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23"
     },
     {
       "id": 15,
