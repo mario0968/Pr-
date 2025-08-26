@@ -1,187 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shiba Presale</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f9f9f9;
-      color: #222;
-      text-align: center;
-    }
-    h1 {
-      color: #ff5722;
-    }
-    #countdown {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #4caf50;
-    }
-    #progress {
-      max-width: 500px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    #progress-bar {
-      background-color: #4caf50;
-      height: 100%;
-      border-radius: 10px;
-      width: 0%;
-      transition: width 0.5s ease-in-out;
-    }
-    .bar-container {
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      height: 25px;
-      width: 100%;
-    }
-    section {
-      margin: 25px 0;
-      padding: 15px;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    button {
-      padding: 10px 20px;
-      background: #ff5722;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #e64a19;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      max-width: 400px;
-      margin: auto;
-    }
-    li {
-      margin: 8px 0;
-    }
-    .logos img {
-      margin: 10px;
-      width: 100px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 Shibacoin Presale</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0f111a;
+    color: #fff;
+    padding: 20px;
+  }
+
+  h1 { color: #f4511e; display: flex; align-items: center; }
+  .emoji { font-size: 28px; margin-right: 10px; }
+
+  .section {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* Countdown */
+  #timer { color: #4caf50; font-size: 18px; }
+
+  /* Progress Bar */
+  .progress-bar { background: #2e2e4d; border-radius: 10px; height: 25px; width: 100%; margin-top: 10px; }
+  .progress-fill { background: #4caf50; height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-in-out; }
+
+  /* Typewriter */
+  #typewriter { font-family: 'Courier New', monospace; font-size: 18px; white-space: pre; border-right: 2px solid #fff; display: inline-block; animation: blink 0.7s infinite; }
+  @keyframes blink { 0% {border-color:#fff;} 50% {border-color:transparent;} 100% {border-color:#fff;} }
+
+  /* Token Distribution Chart */
+  .token-distribution canvas { max-width: 200px; margin: auto; display: block; }
+
+  /* Trade logos */
+  .trade-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+  .trade-item { background: #2e2e4d; border-radius: 10px; padding: 10px; text-align: center; }
+  .trade-item img { width: 40px; height: 40px; margin-bottom: 8px; }
+  .trade-item p { margin: 0; font-size: 14px; }
+
+  /* Buttons */
+  .btn { display: inline-block; padding: 10px 20px; margin: 5px; border-radius: 8px; background: #4caf50; color: #fff; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; }
+  .btn:hover { background: #45a049; }
+</style>
 </head>
 <body>
-  <h1>🚀 Shiba Presale</h1>
 
-  <!-- Revèy -->
-  <section>
-    <h2>Presale Countdown (15-day cycle)</h2>
-    <div id="countdown"></div>
-  </section>
+<h1><span class="emoji">🚀</span>Shibacoin Presale</h1>
 
-  <!-- Ba Pwogrè -->
-  <section id="progress">
-    <h2>Raised USDX Progress</h2>
-    <div class="bar-container">
-      <div id="progress-bar"></div>
-    </div>
-    <p id="progress-text"></p>
-  </section>
+<!-- Countdown -->
+<div class="section">
+  <h2>Presale Countdown (15-day cycle)</h2>
+  <p id="timer"></p>
+</div>
 
-  <!-- Tokenomics -->
-  <section id="tokenomics">
-    <h2>📊 Tokenomics</h2>
-    <ul>
-      <li><strong>Token Name:</strong> Shibacoin</li>
-      <li><strong>Symbol:</strong> SHic</li>
-      <li><strong>Total Supply:</strong> 2,000,000,000</li>
-      <li><strong>Presale Supply:</strong> 1,000,000,000</li>
-      <li><strong>Presale Price:</strong> 0.0009</li>
-      <li><strong>Listing Price:</strong> 1.50</li>
-      <li><strong>Affiliate Commission:</strong> 7%</li>
-      <li><strong>Min Buy:</strong> 50 USDX</li>
-      <li><strong>Max Buy:</strong> 20,000,000 USDX</li>
-    </ul>
-  </section>
+<!-- Progress Bar -->
+<div class="section">
+  <h2>Raised USDX Progress</h2>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressBar"></div>
+  </div>
+  <p id="raisedText"></p>
+</div>
 
-  <!-- Listings -->
-  <section id="listings">
-    <h2>🔗 Listing Platforms</h2>
-    <div class="logos">
-      <img src="images/binance.png" alt="Binance">
-      <img src="images/mexc.png" alt="MEXC">
-      <img src="images/lbank.png" alt="LBank">
-      <img src="images/gateio.png" alt="Gate.io">
-    </div>
-  </section>
+<!-- Tokenomics -->
+<div class="section">
+  <h2>📊 Tokenomics</h2>
+  <h3 id="typewriter"></h3>
+</div>
 
-  <!-- Bouton konekte -->
-  <section>
-    <h2>💳 Join Presale</h2>
-    <button onclick="connectWallet()">Connect Wallet</button>
-  </section>
+<!-- Token Distribution -->
+<div class="section token-distribution">
+  <h2 style="text-align:center;">Token Distribution</h2>
+  <canvas id="distributionChart" width="200" height="200"></canvas>
+  <ul style="color:white; list-style: none; padding: 0; margin-top:15px; text-align:center;">
+    <li>Presale: 1,000,000,000 (50%)</li>
+    <li>Liquidity: 500,000,000 (25%)</li>
+    <li>Marketing: 300,000,000 (15%)</li>
+    <li>Team: 200,000,000 (10%)</li>
+  </ul>
+</div>
 
-  <script>
-    /* -------------------------
-       REVÈY 15 JOU
-    --------------------------*/
-    function getNextResetDate() {
-      const now = new Date();
-      const base = new Date('2025-01-01T00:00:00Z');
-      const diff = now - base;
-      const cycle = 15 * 24 * 60 * 60 * 1000;
-      return new Date(base.getTime() + Math.ceil(diff / cycle) * cycle);
+<!-- Where to Trade -->
+<div class="section trade-section">
+  <h2>Where to Trade</h2>
+  <div class="trade-grid">
+    <div class="trade-item"><img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="Binance"><p>Binance</p></div>
+    <div class="trade-item"><img src="https://cryptologos.cc/logos/mexc-mexc-logo.png" alt="MEXC"><p>MEXC</p></div>
+    <div class="trade-item"><img src="https://cryptologos.cc/logos/lbank-lbank-logo.png" alt="LBank"><p>LBank</p></div>
+    <div class="trade-item"><img src="https://cryptologos.cc/logos/gateio-gateio-logo.png" alt="Gate.io"><p>Gate.io</p></div>
+    <div class="trade-item"><img src="https://cryptologos.cc/logos/pancakeswap-pancakeswap-logo.png" alt="PancakeSwap"><p>PancakeSwap</p></div>
+    <div class="trade-item"><img src="https://img.icons8.com/ios-filled/50/plus.png" alt="More Soon"><p>More Soon</p></div>
+  </div>
+</div>
+
+<!-- Connect Wallet + Buy Buttons -->
+<div class="section" style="text-align:center;">
+  <h2>Actions</h2>
+  <a href="#" class="btn" onclick="alert('Connect Wallet function coming soon!')">Connect Wallet</a>
+  <a href="#" class="btn" onclick="alert('Buy BNB function coming soon!')">Buy BNB</a>
+  <a href="#" class="btn" onclick="alert('Buy USDT function coming soon!')">Buy USDT</a>
+</div>
+
+<script>
+  // Countdown 15 days
+  const startDate = new Date();
+  const endDate = new Date(startDate.getTime() + 15*24*60*60*1000);
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if(distance < 0) { clearInterval(interval); document.getElementById("timer").innerHTML = "Presale Ended"; }
+  }
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Progress bar
+  const raised = 600000;
+  const target = 2000000;
+  const percent = (raised/target)*100;
+  document.getElementById("progressBar").style.width = percent+"%";
+  document.getElementById("raisedText").innerText = `Raised: ${raised.toLocaleString()} / ${target.toLocaleString()} (${percent.toFixed(1)}%)`;
+
+  // Typewriter effect
+  const text = "Token Name: Shibacoin | Symbol: SHic | Total Supply: 2,000,000,000 | Presale Supply: 1,000,000,000";
+  let i=0;
+  function typeWriter(){
+    if(i<text.length){
+      document.getElementById("typewriter").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 50);
     }
-    function updateCountdown() {
-      const now = new Date();
-      const target = getNextResetDate();
-      const diff = target - now;
+  }
+  window.onload = typeWriter;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+  // Chart.js Doughnut
+  const ctx = document.getElementById('distributionChart').getContext('2d');
+  new Chart(ctx, {
+    type:'doughnut',
+    data:{
+      labels:['Presale','Liquidity','Marketing','Team'],
+      datasets:[{
+        data:[50,25,15,10],
+        backgroundColor:['#4caf50','#2196f3','#ff9800','#e91e63'],
+        borderWidth:0
+      }]
+    },
+    options:{ plugins:{ legend:{ display:false } }, cutout:'70%' }
+  });
+</script>
 
-      document.getElementById('countdown').innerHTML =
-        days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
-    }
-    setInterval(updateCountdown, 1000);
-
-    /* -------------------------
-       BA PWOGRÈ
-    --------------------------*/
-    const raised = 600000; // egz: kantite ranmase
-    const target = 2000000; // objektif
-    function updateProgress() {
-      const percent = (raised / target) * 100;
-      document.getElementById('progress-bar').style.width = percent + '%';
-      document.getElementById('progress-text').innerText =
-        "Raised: " + raised.toLocaleString() + " / " + target.toLocaleString() +
-        " (" + percent.toFixed(1) + "%)";
-    }
-    updateProgress();
-
-    /* -------------------------
-       WALLET CONNECT
-    --------------------------*/
-    async function connectWallet() {
-      if (window.ethereum) {
-        try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          alert("✅ Wallet connected successfully!");
-        } catch (error) {
-          console.error(error);
-          alert("❌ Connection failed.");
-        }
-      } else {
-        alert("Please install MetaMask or use Trust Wallet Browser.");
-      }
-    }
-  </script>
 </body>
 </html>
