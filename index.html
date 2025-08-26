@@ -1,316 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shibacoin Presale</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    /* Body & smartphone frame */
-    body {
-      background: linear-gradient(-45deg, #0f0f1a, #1a1a2e, #2d0f3a, #141e30);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shibacoin Presale</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0e0e2c;
+  color: white;
+}
+a { text-decoration: none; color: inherit; }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #0b0b25;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.site-header .logo img { height: 50px; }
+.site-header .main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.site-header .main-nav a {
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.site-header .main-nav a:hover { color: #ff9900; }
 
-    .phone-frame {
-      width: 380px;
-      max-width: 95%;
-      height: 700px;
-      background: #111428;
-      border-radius: 35px;
-      box-shadow: 0 0 25px #00ffcc;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* TOKEN DISTRIBUTION */
+.tokenomics {
+  padding: 50px 20px;
+  text-align: center;
+}
+.circle-supply {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  background: radial-gradient(circle at center, #225777, #4a3b07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  flex-direction: column;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.circle-supply span { font-size: 14px; font-weight: normal; opacity: 0.8; }
+.distribution-details h3 { margin-bottom: 15px; font-size: 20px; }
+.distribution-details ul { list-style: none; padding: 0; margin: 0 auto; max-width: 300px; text-align: left; }
+.distribution-details li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #444; font-size: 16px; }
 
-    .phone-screen {
-      width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      color: white;
-      text-align: center;
-    }
+/* COUNTDOWN */
+.countdown-section {
+  background: #0e0e2c;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+.countdown-section h2 { font-size: 22px; margin-bottom: 30px; letter-spacing: 1px; min-height: 28px; }
+.countdown { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.time-box {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 20px 25px;
+  width: 80px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+.time-box span {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+  min-height: 30px;
+}
+.time-box small { font-size: 12px; color: #ccc; }
+/* Bounce effect */
+@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
-    /* Typing effect */
-    #typewriter {
-      font-family: "Courier New", monospace;
-      font-size: 22px;
-      color: #00ffcc;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #00ffcc;
-      width: 0;
-      margin: 15px auto;
-      animation: typing 4s steps(20, end) forwards, blink 0.8s infinite;
-    }
+.bounce { animation: bounce 0.5s; }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
+/* PRESALE INFO */
+.presale-info { background: #0b0b25; color: white; text-align: center; padding: 30px 20px; margin-top: -10px; }
+.presale-info h3 { font-size: 20px; margin-bottom: 15px; letter-spacing: 1px; }
+.presale-info ul { list-style: none; padding: 0; margin: 0 auto; max-width: 300px; text-align: left; font-size: 16px; }
+.presale-info li { padding: 8px 0; border-bottom: 1px solid #444; }
 
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
-    /* Buttons Neon Glow */
-    button {
-      background: linear-gradient(135deg, #ff9800, #ff5722);
-      color: #fff;
-      border: none;
-      padding: 14px 26px;
-      margin: 12px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      letter-spacing: 1px;
-      box-shadow: 0 0 12px rgba(255, 87, 34, 0.6),
-                  0 0 20px rgba(255, 152, 0, 0.6),
-                  0 0 40px rgba(255, 87, 34, 0.6);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      animation: neonPulse 2s infinite alternate;
-    }
-
-    button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 0 18px rgba(255, 87, 34, 0.9),
-                  0 0 30px rgba(255, 152, 0, 0.9),
-                  0 0 50px rgba(255, 87, 34, 1);
-    }
-
-    @keyframes neonPulse {
-      from { box-shadow: 0 0 12px rgba(255, 87, 34, 0.6),
-                     0 0 20px rgba(255, 152, 0, 0.6),
-                     0 0 40px rgba(255, 87, 34, 0.6);}
-      to { box-shadow: 0 0 18px rgba(255, 87, 34, 0.9),
-                   0 0 30px rgba(255, 152, 0, 0.9),
-                   0 0 60px rgba(255, 87, 34, 1);}
-    }
-
-    /* Exchanges Logos Neon */
-    .logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .logo-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      min-width: 130px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 12px rgba(0, 255, 180, 0.6),
-                  0 0 25px rgba(0, 255, 255, 0.6),
-                  0 0 50px rgba(0, 200, 255, 0.7);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: logoPulse 3s infinite alternate;
-    }
-
-    .logo-box:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 18px rgba(0, 255, 180, 0.9),
-                  0 0 35px rgba(0, 255, 255, 0.9),
-                  0 0 65px rgba(0, 200, 255, 1);
-    }
-
-    .logo-box img {
-      max-width: 90px;
-      max-height: 45px;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
-    }
-
-    @keyframes logoPulse {
-      from { box-shadow: 0 0 12px rgba(0, 255, 180, 0.6),
-                     0 0 25px rgba(0, 255, 255, 0.6),
-                     0 0 50px rgba(0, 200, 255, 0.7);}
-      to { box-shadow: 0 0 18px rgba(0, 255, 180, 0.9),
-                   0 0 35px rgba(0, 255, 255, 0.9),
-                   0 0 70px rgba(0, 200, 255, 1);}
-    }
-
-    /* Tokenomics */
-    .tokenomics {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .circle-supply {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1e2a78, #5679b4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 20px auto;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-    }
-
-    #tokenChart {
-      max-width: 280px;
-      margin: 20px auto;
-      display: block;
-    }
-
-    .distribution-details ul {
-      list-style: none;
-      padding: 0;
-      font-size: 16px;
-    }
-
-    .distribution-details li {
-      margin: 10px 0;
-      font-weight: 500;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .phone-frame {
-        width: 95%;
-        height: 90%;
-      }
-      .logo-box img {
-        max-width: 70px;
-        max-height: 35px;
-      }
-    }
-  </style>
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .circle-supply { width: 150px; height: 150px; font-size: 18px; }
+  .distribution-details ul { max-width: 100%; }
+  .time-box { width: 60px; padding: 15px 10px; }
+  .site-header { flex-direction: column; gap: 10px; }
+}
+</style>
 </head>
 <body>
-  <div class="phone-frame">
-    <div class="phone-screen">
-      <h1 id="typewriter"></h1>
 
-      <p class="price">Presale Price: <strong>$0.0009 USDT</strong></p>
-      <p class="listing">Listing Price: <strong>$1.50 USDT</strong></p>
-      
-      <div class="timer">
-        ⏳ Presale Ends In:
-        <div id="countdown"></div>
-      </div>
-      
-      <div class="wallet">
-        <p>🔗 Connect Your Wallet</p>
-        <button>Connect MetaMask</button>
-        <button>Connect TrustWallet</button>
-      </div>
+<header class="site-header">
+  <div class="logo"><img src="https://via.placeholder.com/150x50?text=SHIBACOIN" alt="Shibacoin Logo"></div>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#tokenomics">Tokenomics</a></li>
+      <li><a href="#countdown">Presale</a></li>
+      <li><a href="#presale-info">Presale Info</a></li>
+    </ul>
+  </nav>
+</header>
 
-      <div class="exchanges">
-        <p>📈 Listing Exchanges</p>
-        <div class="logos">
-          <div class="logo-box">
-            <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="Binance">
-          </div>
-          <div class="logo-box">
-            <img src="https://cryptologos.cc/logos/mexc-logo.png" alt="MEXC">
-          </div>
-          <div class="logo-box">
-            <img src="https://cryptologos.cc/logos/lbank-logo.png" alt="LBank">
-          </div>
-          <div class="logo-box">
-            <img src="https://cryptologos.cc/logos/gateio-logo.png" alt="Gate.io">
-          </div>
-        </div>
-      </div>
-
-      <section class="tokenomics">
-        <h2>📊 Token Distribution</h2>
-        <div class="circle-supply">
-          <p><strong>2.0B</strong><br>Total Supply</p>
-        </div>
-        <canvas id="tokenChart" width="250" height="250"></canvas>
-        <div class="distribution-details">
-          <h3>Distribution Details</h3>
-          <ul>
-            <li><span style="color:#ff9800;">⬤</span> Presale: 1,000,000,000 (50%)</li>
-            <li><span style="color:#4caf50;">⬤</span> Liquidity: 500,000,000 (25%)</li>
-            <li><span style="color:#2196f3;">⬤</span> Marketing: 300,000,000 (15%)</li>
-            <li><span style="color:#e91e63;">⬤</span> Team: 200,000,000 (10%)</li>
-          </ul>
-        </div>
-      </section>
-    </div>
+<section id="tokenomics" class="tokenomics">
+  <div class="circle-supply"><p id="supply-text"><strong></strong><br><span>Total Supply</span></p></div>
+  <div class="distribution-details">
+    <h3>Distribution Details</h3>
+    <ul>
+      <li><span>Presale</span><span>1,000,000,000 — 50%</span></li>
+      <li><span>Liquidity</span><span>500,000,000 — 25%</span></li>
+      <li><span>Marketing</span><span>300,000,000 — 15%</span></li>
+      <li><span>Team</span><span>200,000,000 — 10%</span></li>
+    </ul>
   </div>
-  
-  <script>
-    // Typing effect
-    const text = "🔥 Shibacoin Presale";
-    let index = 0;
-    function typeWriter() {
-      if (index < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 100);
-      }
+</section>
+
+<section id="countdown" class="countdown-section">
+  <h2 id="countdown-title"></h2>
+  <div class="countdown">
+    <div class="time-box"><span id="days"></span><small>DAYS</small></div>
+    <div class="time-box"><span id="hours"></span><small>HOURS</small></div>
+    <div class="time-box"><span id="minutes"></span><small>MINUTES</small></div>
+    <div class="time-box"><span id="seconds"></span><small>SECONDS</small></div>
+  </div>
+</section>
+
+<section id="presale-info" class="presale-info">
+  <h3>Presale & Listing</h3>
+  <ul>
+    <li><strong>Presale Live Price:</strong> 0.0009 USDT</li>
+    <li><strong>Listing Price:</strong> 1.50 USDT</li>
+  </ul>
+</section>
+
+<script>
+// Typing Effect
+function typeEffect(elementId, text, speed=100){
+  const el = document.getElementById(elementId);
+  let i=0; el.innerHTML='';
+  const timer = setInterval(()=>{
+    el.innerHTML += text.charAt(i);
+    i++; if(i>=text.length) clearInterval(timer);
+  }, speed);
+}
+typeEffect('countdown-title','Presale Ends In');
+typeEffect('supply-text','2.0B');
+
+// Countdown with typing + bounce
+const endDate = new Date("Sep 5, 2025 00:00:00").getTime();
+const ids = ['days','hours','minutes','seconds'];
+
+function updateCountdown(){
+  const now = new Date().getTime();
+  let distance = endDate - now;
+  if(distance<0){ document.querySelector(".countdown").innerHTML="Presale Ended"; return; }
+
+  const values = [
+    Math.floor(distance / (1000*60*60*24)),
+    Math.floor((distance % (1000*60*60*24)) / (1000*60*60)),
+    Math.floor((distance % (1000*60*60)) / (1000*60)),
+    Math.floor((distance % (1000*60)) / 1000)
+  ];
+
+  ids.forEach((id,i)=>{
+    const el = document.getElementById(id);
+    const str = values[i].toString().padStart(2,'0');
+    if(el.innerHTML !== str){
+      el.innerHTML=''; // reset
+      [...str].forEach((char,j)=>{
+        setTimeout(()=> el.innerHTML+=char, j*50);
+      });
+      el.classList.remove('bounce');
+      void el.offsetWidth; // trigger reflow
+      el.classList.add('bounce');
     }
-    window.onload = typeWriter;
+  });
+}
 
-    // Countdown Presale
-    const countdown = document.getElementById('countdown');
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 15);
+updateCountdown();
+setInterval(updateCountdown,1000);
+</script>
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        countdown.innerHTML = "⏳ Presale Ended!";
-        return;
-      }
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-      countdown.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Donut chart Tokenomics
-    const ctx = document.getElementById('tokenChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Presale', 'Liquidity', 'Marketing', 'Team'],
-        datasets: [{
-          data: [1000000000, 500000000, 300000000, 200000000],
-          backgroundColor: ['#ff9800', '#4caf50', '#2196f3', '#e91e63'],
-          borderColor: '#111428',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        plugins: { legend: { display: false } }
-      }
-    });
-  </script>
 </body>
 </html>
