@@ -1,202 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shiba Presale Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  padding:10px; margin:0; box-sizing:border-box; background:#f9f9f9; color:#333;
-}
-.box-container { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; }
-@keyframes fadeSlideUp { 0%{opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
-.info-box, .wallet {
-  flex:1 1 250px; max-width:100%; padding:15px; border:1px solid #ccc; border-radius:8px;
-  background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.05); transition:transform 0.2s;
-  animation:fadeSlideUp 0.6s ease forwards; min-height:120px; word-wrap:break-word;
-}
-.info-box:hover, .wallet:hover { transform:translateY(-2px); }
-img { max-width:100%; height:auto; display:block; margin:10px auto; border-radius:10px; }
-button, .connect-btn, input[type="submit"] { width:100%; padding:12px; margin-top:10px; font-size:1em; border-radius:6px; border:none; cursor:pointer; background:#007bff; color:#fff; transition:0.3s; }
-button:hover, .connect-btn:hover { background:#0056b3; transform:scale(1.03); }
-.countdown { font-size:1.5em; text-align:center; margin:15px 0; color:#ff4d4f; font-weight:bold; }
-.progress-bar-container { width:100%; background:#eee; border-radius:10px; height:25px; overflow:hidden; margin-top:10px; }
-.progress-bar { height:100%; width:0%; background:#28a745; text-align:center; color:#fff; line-height:25px; font-weight:bold; }
-.platform-box { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
-.platform-box div { flex:1 1 100px; text-align:center; }
-@media(max-width:768px){ .box-container{flex-direction:column; align-items:center;} }
-@media(max-width:600px){
-  h1,h2{font-size:1.3em;}
-  .info-box,.wallet{padding:10px;}
-  .countdown{font-size:1.2em;}
-  button,.connect-btn,input[type="submit"]{font-size:0.95em; padding:10px;}
-}
-@media(max-width:400px){
-  .info-box,.wallet{padding:8px; font-size:0.95em;}
-  .countdown{font-size:1em;}
-  button,.connect-btn,input[type="submit"]{font-size:0.9em; padding:8px;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiba Presale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #222;
+      text-align: center;
+    }
+    h1 {
+      color: #ff5722;
+    }
+    #countdown {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #4caf50;
+    }
+    #progress {
+      max-width: 500px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    #progress-bar {
+      background-color: #4caf50;
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+    .bar-container {
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      height: 25px;
+      width: 100%;
+    }
+    section {
+      margin: 25px 0;
+      padding: 15px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      background: #ff5722;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #e64a19;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      max-width: 400px;
+      margin: auto;
+    }
+    li {
+      margin: 8px 0;
+    }
+    .logos img {
+      margin: 10px;
+      width: 100px;
+    }
+  </style>
 </head>
 <body>
+  <h1>🚀 Shiba Presale</h1>
 
-<div class="countdown" id="digital-clock">--:--:--:--</div>
+  <!-- Revèy -->
+  <section>
+    <h2>Presale Countdown (15-day cycle)</h2>
+    <div id="countdown"></div>
+  </section>
 
-<div class="box-container">
-  <div class="info-box">
-    <h3 id="title"></h3>
-    <p id="description"></p>
-    <p>Presale Price: $<span id="presale-price"></span></p>
-    <p>Listing Price: $<span id="listing-price"></span></p>
-    <p>Token Name: <span id="token-name"></span></p>
-    <p>Total Supply: <span id="token-supply"></span></p>
-    <p>Tokens for Presale: <span id="tokens-presale"></span></p>
-    <div class="progress-bar-container"><div class="progress-bar" id="raised-bar">30%</div></div>
-    <p>Raised: $<span id="raised-amount">600,000</span> / $2,006,000</p>
-    <p>Telegram: <a id="telegram-link" href="" target="_blank">Join Telegram</a></p>
-    <p>Twitter: <a id="twitter-link" href="" target="_blank">Follow Twitter</a></p>
-  </div>
-
-  <div class="wallet">
-    <h3>Owner Wallets</h3>
-    <p>Wallet 1: <span id="wallet-1">0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23</span></p>
-    <p>Wallet 2: <span id="wallet-2">0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656</span></p>
-    <p>Wallet 3: <span id="wallet-3">0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be</span></p>
-    <button class="connect-btn" onclick="connect()">Connect Wallet</button>
-  </div>
-
-  <div class="wallet">
-    <h3>Buy Tokens</h3>
-    <select id="currency"><option value="USDT">USDT</option><option value="BNB">BNB</option></select>
-    <input type="number" id="amount" placeholder="50" min="50">
-    <button onclick="buyTokens()">Buy</button>
-    <p id="purchase-result"></p>
-  </div>
-
-  <div class="info-box">
-    <h3>Listing Platforms</h3>
-    <div class="platform-box">
-      <div><img src="https://raw.githubusercontent.com/<username>/<repo>/main/Images/IMG-20250825-WA0086[1].jpg" alt="Binance"><p>Binance</p></div>
-      <div><img src="https://raw.githubusercontent.com/<username>/<repo>/main/Images/IMG-20250825-WA0087[1].jpg" alt="MEXC"><p>MEXC</p></div>
-      <div><img src="https://raw.githubusercontent.com/<username>/<repo>/main/Images/IMG-20250825-WA0088[1].jpg" alt="LBank"><p>LBank</p></div>
-      <div><img src="https://raw.githubusercontent.com/<username>/<repo>/main/Images/IMG-20250825-WA0090[1].jpg" alt="Gate.io"><p>Gate.io</p></div>
+  <!-- Ba Pwogrè -->
+  <section id="progress">
+    <h2>Raised USDX Progress</h2>
+    <div class="bar-container">
+      <div id="progress-bar"></div>
     </div>
-  </div>
-</div>
+    <p id="progress-text"></p>
+  </section>
 
-<script>
-// Data JS
-const data = [
-  { "id": 3, "name": "Title", "value": "Shiba Presale" },
-  { "id": 4, "name": "Description", "value": "This is the official presale of Shibacoin, the next-generation meme token built on the BNB Smart Chain. Join early and be part of the future" },
-  { "id": 2, "name": "Price in USDX", "value": "0.0009" },
-  { "id": 17, "name": "Listing Price", "value": "1.50" },
-  { "id": 5, "name": "Token Name", "value": "Shibacoin" },
-  { "id": 9, "name": "Token Supply", "value": "2000000000" },
-  { "id": 10, "name": "Tokens For Presale", "value": "1000000000" },
-  { "id": 15, "name": "Telegram Link", "value": "https://t.me/shibacoin5" },
-  { "id": 16, "name": "Twitter Link", "value": "https://twitter.com/shibacoin120" }
-];
+  <!-- Tokenomics -->
+  <section id="tokenomics">
+    <h2>📊 Tokenomics</h2>
+    <ul>
+      <li><strong>Token Name:</strong> Shibacoin</li>
+      <li><strong>Symbol:</strong> SHic</li>
+      <li><strong>Total Supply:</strong> 2,000,000,000</li>
+      <li><strong>Presale Supply:</strong> 1,000,000,000</li>
+      <li><strong>Presale Price:</strong> 0.0009</li>
+      <li><strong>Listing Price:</strong> 1.50</li>
+      <li><strong>Affiliate Commission:</strong> 7%</li>
+      <li><strong>Min Buy:</strong> 50 USDX</li>
+      <li><strong>Max Buy:</strong> 20,000,000 USDX</li>
+    </ul>
+  </section>
 
-data.forEach(item => {
-  switch(item.name){
-    case "Title": document.getElementById("title").innerText = item.value; break;
-    case "Description": document.getElementById("description").innerText = item.value; break;
-    case "Price in USDX": document.getElementById("presale-price").innerText = item.value; break;
-    case "Listing Price": document.getElementById("listing-price").innerText = item.value; break;
-    case "Token Name": document.getElementById("token-name").innerText = item.value; break;
-    case "Token Supply": document.getElementById("token-supply").innerText = item.value; break;
-    case "Tokens For Presale": document.getElementById("tokens-presale").innerText = item.value; break;
-    case "Telegram Link": document.getElementById("telegram-link").href = item.value; break;
-    case "Twitter Link": document.getElementById("twitter-link").href = item.value; break;
-  }
-});
+  <!-- Listings -->
+  <section id="listings">
+    <h2>🔗 Listing Platforms</h2>
+    <div class="logos">
+      <img src="images/binance.png" alt="Binance">
+      <img src="images/mexc.png" alt="MEXC">
+      <img src="images/lbank.png" alt="LBank">
+      <img src="images/gateio.png" alt="Gate.io">
+    </div>
+  </section>
 
-// Wallet connect
-async function connect(){
-  if(window.ethereum){
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-    const address = await signer.getAddress();
-    alert("Connected: "+address);
-  }
-}
+  <!-- Bouton konekte -->
+  <section>
+    <h2>💳 Join Presale</h2>
+    <button onclick="connectWallet()">Connect Wallet</button>
+  </section>
 
-// Raised bar
-let tokenPrice = parseFloat(document.getElementById("presale-price").innerText);
-const priceIncrement = 0.00008;
-let raisedAmount = 600000;
-const totalGoal = 2006000;
-const raisedBar = document.getElementById("raised-bar");
-const raisedAmountEl = document.getElementById("raised-amount");
-const tokenPriceEl = document.getElementById("presale-price");
-let targetRaised = raisedAmount;
-
-function updateRaisedBarSmooth() {
-    const currentWidth = parseFloat(raisedBar.style.width) || 30;
-    const targetPercent = (targetRaised / totalGoal) * 100;
-    const diff = targetPercent - currentWidth;
-    if(Math.abs(diff) > 0.1){
-        raisedBar.style.width = (currentWidth + diff*0.05) + "%";
-        raisedBar.textContent = Math.floor(currentWidth + diff*0.05) + "%";
+  <script>
+    /* -------------------------
+       REVÈY 15 JOU
+    --------------------------*/
+    function getNextResetDate() {
+      const now = new Date();
+      const base = new Date('2025-01-01T00:00:00Z');
+      const diff = now - base;
+      const cycle = 15 * 24 * 60 * 60 * 1000;
+      return new Date(base.getTime() + Math.ceil(diff / cycle) * cycle);
     }
-    requestAnimationFrame(updateRaisedBarSmooth);
-}
-updateRaisedBarSmooth();
+    function updateCountdown() {
+      const now = new Date();
+      const target = getNextResetDate();
+      const diff = target - now;
 
-setInterval(()=>{
-    targetRaised += 5000;
-    if(targetRaised >= totalGoal){
-        targetRaised = 0;
-        tokenPrice += priceIncrement;
-        tokenPriceEl.textContent = tokenPrice.toFixed(5);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('countdown').innerHTML =
+        days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
     }
-    raisedAmountEl.textContent = Math.floor(targetRaised).toLocaleString();
-},15000);
+    setInterval(updateCountdown, 1000);
 
-// Countdown 15 jou
-function startDigitalCountdown() {
-  const clockEl = document.getElementById("digital-clock");
-  const startDate = new Date("2025-08-15T00:00:00Z").getTime();
-  function updateClock() {
-    const now = new Date().getTime();
-    const cycleTime = 15*24*60*60*1000;
-    const remaining = cycleTime - ((now - startDate) % cycleTime);
-    const d = String(Math.floor(remaining/(1000*60*60*24))).padStart(2,'0');
-    const h = String(Math.floor((remaining%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-    const m = String(Math.floor((remaining%(1000*60*60))/(1000*60))).padStart(2,'0');
-    const s = String(Math.floor((remaining%60000)/1000)).padStart(2,'0');
-    clockEl.textContent = `${d}:${h}:${m}:${s}`;
-  }
-  setInterval(updateClock,1000);
-  updateClock();
-}
-startDigitalCountdown();
+    /* -------------------------
+       BA PWOGRÈ
+    --------------------------*/
+    const raised = 600000; // egz: kantite ranmase
+    const target = 2000000; // objektif
+    function updateProgress() {
+      const percent = (raised / target) * 100;
+      document.getElementById('progress-bar').style.width = percent + '%';
+      document.getElementById('progress-text').innerText =
+        "Raised: " + raised.toLocaleString() + " / " + target.toLocaleString() +
+        " (" + percent.toFixed(1) + "%)";
+    }
+    updateProgress();
 
-// Buy tokens
-let bnbPrice = 300;
-function buyTokens(){
-  const currency = document.getElementById("currency").value;
-  let amount = parseFloat(document.getElementById("amount").value);
-  if(isNaN(amount) || amount<50){ alert("Enter valid amount (min $50)"); return; }
-  let usdValue = (currency==="BNB") ? amount*bnbPrice : amount;
-  const tokensBought = usdValue/tokenPrice;
-  targetRaised += usdValue;
-  if(targetRaised>=totalGoal){
-    targetRaised = 0;
-    tokenPrice += priceIncrement;
-    tokenPriceEl.textContent = tokenPrice.toFixed(5);
-  }
-  const percent = (targetRaised/totalGoal)*100;
-  raisedBar.style.width = percent+"%";
-  raisedBar.textContent = Math.floor(percent)+"%";
-  raisedAmountEl.textContent = targetRaised.toLocaleString();
-  document.getElementById("purchase-result").innerText =
-    `You bought ${tokensBought.toFixed(2)} SHic for $${usdValue.toFixed(2)} (${currency})`;
-}
-</script>
+    /* -------------------------
+       WALLET CONNECT
+    --------------------------*/
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          alert("✅ Wallet connected successfully!");
+        } catch (error) {
+          console.error(error);
+          alert("❌ Connection failed.");
+        }
+      } else {
+        alert("Please install MetaMask or use Trust Wallet Browser.");
+      }
+    }
+  </script>
 </body>
 </html>
