@@ -2,145 +2,151 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shiba Presale</title>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-<script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.1/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
 <style>
-body { font-family: Arial, sans-serif; background:#111; color:#fff; text-align:center; margin:0; padding:10px; }
-h1,h2 { color:#ffeb3b; margin:10px 0; text-shadow: 2px 2px #000; }
-h1 { font-size:2.5rem; }
-h2 { font-size:2rem; margin-top:30px; }
-#listingPrice, #presalePrice { color:#4caf50; font-size:1.3rem; margin-bottom:15px; font-weight:bold; }
-.progress { width:90%; background:#333; border-radius:25px; margin:20px auto; height:40px; overflow:hidden; box-shadow: 0 0 10px #4caf50; }
-.bar { height:100%; background: linear-gradient(90deg, #ffeb3b, #4caf50); border-radius:25px; text-align:center; color:#000; font-weight:bold; width:0%; font-size:1.2rem; line-height:40px; }
-#countdown { margin:20px 0; font-size:1.5rem; color:#ffeb3b; text-shadow:1px 1px #000; }
-button { padding:12px 25px; margin:8px 5px; background:#ffeb3b; border:none; border-radius:12px; cursor:pointer; font-weight:bold; font-size:1.1rem; color:#000; display:flex; align-items:center; justify-content:center; gap:10px; transition: transform 0.2s, box-shadow 0.2s; }
-button:hover { transform: scale(1.05); box-shadow: 0 0 10px #4caf50; }
-input { padding:10px; margin:5px; width:150px; border-radius:10px; border:none; text-align:center; font-size:1rem; }
-#tokensReceived { margin-top:15px; color:#4caf50; font-weight:bold; font-size:1.1rem; text-shadow:1px 1px #000; }
-#tokenomics, #exchanges { text-align:center; margin-top:30px; }
-#tokenomics img, #exchanges img { max-width:100%; height:auto; box-shadow:0 0 15px #4caf50; border-radius:20px; }
-#exchanges div { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:15px; }
+body { font-family: Arial, sans-serif; text-align: center; margin:0; padding:0; }
+h1,h2,h3 { margin-top:20px; }
+.listing-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin:30px 0; }
+.platform { width:180px; }
+.platform img { width:100%; height:auto; border-radius:10px; }
+.platform-name { margin-top:8px; font-weight:bold; }
+button { padding:12px 20px; font-size:16px; border-radius:8px; border:none; cursor:pointer; background:#007bff; color:#fff; }
+button:hover { background:#0056b3; }
+#wallet-address { margin-top:15px; font-size:14px; font-weight:bold; color:green; }
+.data-box { margin:20px auto; padding:15px; max-width:600px; border:1px solid #ccc; border-radius:10px; text-align:left; }
+.data-box h3 { text-align:center; margin-bottom:15px; }
+.progress-bar-container { width: 80%; margin:20px auto; background-color:#eee; border-radius:10px; overflow:hidden; height:25px; }
+.progress-bar { height:100%; width:0%; background-color:#28a745; text-align:center; color:#fff; line-height:25px; font-weight:bold; }
+#digital-clock { font-size:48px; font-family: 'Courier New', monospace; letter-spacing:2px; color:#007bff; margin:20px 0; }
 </style>
 </head>
 <body>
 
 <h1>Shiba Presale</h1>
-<p id="listingPrice">Listing Price: $1.50 per SHIC</p>
-<p>Presale Price: <span id="presalePrice">0.00090</span> USDT per SHIC</p>
+<div id="digital-clock">--:--:--:--</div>
 
-<div class="progress">
-  <div id="progressBar" class="bar">0%</div>
-</div>
-<p><span id="raised">$0</span> / <span id="target">$2,006,000</span></p>
-
-<div id="countdown"></div>
-
-<!-- Total Supply & Tokenomics -->
-<div id="tokenomics">
-  <h2>Tokenomics</h2>
-  <img src="shiba_tokenomics.png" alt="Shiba Coin Tokenomics" style="width:300px; height:auto; margin:20px auto;">
-  <p>Total Supply: 2,000,000,000 SHIC</p>
-  <p>Presale: 1,000,000,000 SHIC (50%)</p>
-  <p>Liquidity/Dex: 600,000,000 SHIC (30%)</p>
-  <p>Team/Marketing: 400,000,000 SHIC (20%)</p>
+<h2>Listing Binance, MEXC, LBank, Gate.io</h2>
+<div class="listing-container">
+  <div class="platform"><img src="Images/IMG-20250825-WA0086[1].jpg" alt="Binance"><div class="platform-name">Binance</div></div>
+  <div class="platform"><img src="Images/IMG-20250825-WA0087[1].jpg" alt="MEXC"><div class="platform-name">MEXC</div></div>
+  <div class="platform"><img src="Images/IMG-20250825-WA0088[1].jpg" alt="LBank"><div class="platform-name">LBank</div></div>
+  <div class="platform"><img src="Images/IMG-20250825-WA0090[1].jpg" alt="Gate.io"><div class="platform-name">Gate.io</div></div>
 </div>
 
-<div style="margin:20px 0;">
-  <button id="connectTrustBtn">
-    <img src="https://cryptologos.cc/logos/trust-wallet-twt-logo.png" style="width:24px;height:24px;">
-    Connect Trust Wallet
-  </button>
-  <button id="connectMetaMaskBtn">
-    <img src="https://cryptologos.cc/logos/metamask-fox-logo.png" style="width:24px;height:24px;">
-    Connect MetaMask
-  </button>
+<h2>Connect Wallet</h2>
+<button onclick="connect()">Connect MetaMask / Trust Wallet</button>
+<p id="wallet-address"></p>
+
+<div class="data-box">
+  <h3>Presale Information</h3>
+  <p>Description: Official presale of Shibacoin, BNB Smart Chain</p>
+  <p>Presale Price: $<span id="presale-price">0.0009</span></p>
+  <p>Listing Price: $<span id="listing-price">1.50</span></p>
 </div>
 
-<div>
-  <input type="number" id="bnbAmount" placeholder="BNB Amount" min="0" step="0.0001"/>
-  <input type="number" id="usdtAmount" placeholder="USDT Amount" min="0" step="0.01"/>
+<div class="data-box">
+  <h3>Wallet Addresses</h3>
+  <p>Presale Contract: 0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656</p>
+  <p>Token Contract: 0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be</p>
+  <p>Owner Wallet: 0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23</p>
 </div>
 
-<button id="buyBtn">Buy Tokens</button>
-<p id="tokensReceived"></p>
-
-<!-- Listing & Exchanges -->
-<div id="exchanges">
-  <h2>Exchanges Listing</h2>
-  <div>
-    <a href="https://www.binance.com" target="_blank">
-      <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="Binance" style="width:80px; height:80px;">
-    </a>
-    <a href="https://www.mexc.com" target="_blank">
-      <img src="https://cryptologos.cc/logos/mexc-logo.png" alt="MEXC" style="width:80px; height:80px;">
-    </a>
-    <a href="https://www.lbank.info" target="_blank">
-      <img src="https://cryptologos.cc/logos/lbank-logo.png" alt="LBank" style="width:80px; height:80px;">
-    </a>
-    <a href="https://www.gate.io" target="_blank">
-      <img src="https://cryptologos.cc/logos/gate-io-logo.png" alt="Gate.io" style="width:80px; height:80px;">
-    </a>
-  </div>
+<div class="data-box">
+  <h3>Raised USDX Progress</h3>
+  <div class="progress-bar-container"><div class="progress-bar" id="raised-bar">30%</div></div>
+  <p>Raised: $<span id="raised-amount">600,000</span> / $2,000,000</p>
 </div>
 
-<div class="socials">
-  <a href="https://t.me/shibacoin5" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"></a>
-  <a href="https://twitter.com/shibacoin120" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" alt="Twitter"></a>
+<div class="data-box">
+  <h3>Buy Tokens</h3>
+  <label>Select currency: </label>
+  <select id="currency"><option value="USDT">USDT</option><option value="BNB">BNB</option></select>
+  <br><br>
+  <label>Enter amount: </label>
+  <input type="number" id="amount" placeholder="50" min="50">
+  <br><br>
+  <button onclick="buyTokens()">Buy</button>
+  <p id="purchase-result"></p>
 </div>
 
 <script>
-// ----- Presale Data -----
-const presaleData = { presaleGoal: 2006000, tokenSymbol: "SHIC" };
-const recipientAddress = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23"; // sèl wallet
+const ownerWallet = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23";
 
-// ----- Progress Bar & Presale Price -----
-let startingRaised = 600000; // 30.6% start
-let displayedRaised = startingRaised;
-let targetRaised = displayedRaised;
-let presalePrice = 0.00090;
-const priceIncrement = 0.00008;
+let tokenPrice = 0.0009;
+const priceIncrement = 0.0008;
+const listingPrice = 1.50;
+let raisedAmount = 600000;
+const totalGoal = 2000000;
+const raisedBar = document.getElementById("raised-bar");
+const raisedAmountEl = document.getElementById("raised-amount");
+const tokenPriceEl = document.getElementById("presale-price");
 
-// ----- Revèy 15 Jou -----
-let startDate = new Date();
-startDate.setHours(0,0,0,0);
-function getNextReset(now){
-    let nextReset = new Date(startDate);
-    while(nextReset <= now){
-        nextReset.setDate(nextReset.getDate() + 15);
-    }
-    return nextReset;
+// --- Countdown digital ---
+function startDigitalCountdown() {
+  const clockEl = document.getElementById("digital-clock");
+  const startDate = new Date("2025-08-15T00:00:00Z").getTime();
+  function updateClock() {
+    const now = new Date().getTime();
+    const cycleTime = 15*24*60*60*1000;
+    const remaining = cycleTime - ((now - startDate) % cycleTime);
+    const d = String(Math.floor(remaining/(1000*60*60*24))).padStart(2,'0');
+    const h = String(Math.floor((remaining%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    const m = String(Math.floor((remaining%(1000*60*60))/(1000*60))).padStart(2,'0');
+    const s = String(Math.floor((remaining%60000)/1000)).padStart(2,'0');
+    clockEl.textContent = `${d}:${h}:${m}:${s}`;
+  }
+  setInterval(updateClock,1000);
+  updateClock();
 }
-function updateCountdown(){
-    const now = new Date();
-    const nextReset = getNextReset(now);
-    let distance = nextReset - now;
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-    document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+startDigitalCountdown();
+
+// --- Wallet connect ---
+async function connect(){
+  if(window.ethereum){
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    const address = await signer.getAddress();
+    document.getElementById("wallet-address").innerText = "Connected: " + address;
+  }
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
 
-// ----- Total Supply -----
-const data = [{ name:"Token Supply", value:2000000000 }];
-document.getElementById("totalSupply").innerText = data.find(x=>x.name==="Token Supply").value.toLocaleString();
+// --- Raised USDX bar + price increment ---
+setInterval(() => {
+  raisedAmount += 5000;
+  if(raisedAmount >= totalGoal){
+    raisedAmount = 0;
+    tokenPrice += priceIncrement;
+    tokenPriceEl.textContent = tokenPrice.toFixed(5);
+  }
+  const percent = (raisedAmount/totalGoal)*100;
+  raisedBar.style.width = percent + "%";
+  raisedBar.textContent = Math.floor(percent) + "%";
+  raisedAmountEl.textContent = raisedAmount.toLocaleString();
+},15000);
 
-// ----- Token Calculation -----
-const bnbInput = document.getElementById("bnbAmount");
-const usdtInput = document.getElementById("usdtAmount");
-const tokensReceived = document.getElementById("tokensReceived");
-function calculateTokens(amountUSD){
-  const tokens = amountUSD / presalePrice;
-  tokensReceived.innerText = `You will receive: ${tokens.toFixed(2)} ${presaleData.tokenSymbol}`;
+// --- Buy tokens ---
+let bnbPrice = 300;
+function buyTokens(){
+  const currency = document.getElementById("currency").value;
+  let amount = parseFloat(document.getElementById("amount").value);
+  if(isNaN(amount) || amount<50){ alert("Enter valid amount (min $50)"); return; }
+  let usdValue = (currency==="BNB") ? amount*bnbPrice : amount;
+  const tokensBought = usdValue/tokenPrice;
+  raisedAmount += usdValue;
+  if(raisedAmount>=totalGoal){
+    raisedAmount = 0;
+    tokenPrice += priceIncrement;
+    tokenPriceEl.textContent = tokenPrice.toFixed(5);
+  }
+  const percent = (raisedAmount/totalGoal)*100;
+  raisedBar.style.width = percent+"%";
+  raisedBar.textContent = Math.floor(percent)+"%";
+  raisedAmountEl.textContent = raisedAmount.toLocaleString();
+  document.getElementById("purchase-result").innerText =
+    `You bought ${tokensBought.toFixed(2)} SHic for $${usdValue.toFixed(2)} (${currency})`;
 }
-bnbInput.addEventListener("input", ()=> calculateTokens(bnbInput.value*200));
-usdtInput.addEventListener("input", ()=> calculateTokens(usdtInput.value));
-
-// ----- Progress Bar Animation -----
-const animationSpeed = 0.2;
-function animateProgress(){
-  if(Math.abs(targetRaised - displayedRaised) > 1){
+</script>
+</body>
+</html>
