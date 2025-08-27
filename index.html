@@ -5,157 +5,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shibacoin Presale</title>
 <style>
-body {margin:0;font-family:Arial,sans-serif;background:#0e0e2c;color:white;text-align:center;}
-header .logo img{height:50px;max-width:100%;display:block;margin:20px auto;}
-.top-row{display:flex;justify-content:center;gap:20px;align-items:center;flex-wrap:wrap;margin:20px 0;}
-.circle{
-  width:100px;height:100px;border-radius:50%;background:#004466;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:bold;text-align:center;
-  box-shadow:0 0 15px rgba(0,0,0,0.5);transition:transform 0.3s,box-shadow 0.3s;
-}
-.circle:hover{transform:scale(1.1);box-shadow:0 0 25px rgba(0,0,0,0.7);}
-.circle span{font-size:22px;font-family:"Courier New",monospace;line-height:1;color:#000;text-shadow:0 0 2px rgba(0,0,0,0.5);}
-.circle small{font-size:12px;opacity:0.8;color:#000;}
-@keyframes pulse-light {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.circle.glow-price {animation:pulse-light 2s infinite;}
-.progress-section{width:100%;max-width:600px;margin:30px auto;text-align:center;}
-.progress-bar{width:100%;background:#222;border-radius:25px;overflow:hidden;height:25px;margin:10px 0;}
-#progress-fill{height:100%;width:30%;background:linear-gradient(90deg,#00ffea,#6a00ff);color:#fff;font-weight:bold;line-height:25px;text-align:center;transition:width 1s ease,box-shadow 0.5s ease;box-shadow:0 0 10px #00ffea;}
-#funds-label{font-weight:bold;color:#00f0ff;text-shadow:0 0 5px #00f0ff;transition:color 1s ease,text-shadow 1s ease;}
-.tokenomics{padding:50px 20px;text-align:center;}
-.circle-supply{width:200px;height:200px;border-radius:50%;margin:0 auto 30px;background:radial-gradient(circle at center,#225777,#4a3b07);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:white;flex-direction:column;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.distribution-details ul{list-style:none;padding:0;margin:0 auto;max-width:300px;text-align:left;}
-.distribution-details li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #444;font-size:16px;}
-.wallets-section{padding:30px 20px;text-align:center;}
-.wallets-container{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
-.wallet-logo{width:80px;height:40px;display:flex;justify-content:center;align-items:center;background:#1a1a3a;border-radius:8px;box-shadow:0 0 10px rgba(0,255,255,0.3);position:relative;font-size:12px;color:#00ffff;font-weight:bold;overflow:hidden;}
-.wallet-logo::after{content: attr(data-name);position:absolute;text-align:center;width:100%;font-size:12px;}
-.wallet-logo:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,255,255,0.5);}
-.listing-price {color:#00ffff;font-weight:bold;margin-bottom:5px;}
-.wallet-container {display:flex;flex-direction:column;align-items:center;}
-footer{padding:20px;text-align:center;background:#0b0b1a;color:white;}
-footer a{color:#00ffff;text-decoration:none;}
-@media(max-width:600px){
-  .top-row{flex-direction:row;flex-wrap:wrap;gap:15px;}
-  .circle{width:80px;height:80px;}
-  .circle span{font-size:18px;}
-  .circle small{font-size:10px;}
-  .circle-supply{width:150px;height:150px;font-size:18px;}
-  .distribution-details ul{max-width:100%;font-size:14px;}
-  .wallet-logo{width:60px;height:30px;font-size:10px;}
-}
+body { font-family: Arial, sans-serif; background:#0a0a1f; color:#fff; margin:0; padding:0; }
+h1 { text-align:center; margin-top:20px; color:#00BFFF; }
+.price-listing { text-align:center; font-size:20px; margin:15px 0; color:#FFD700; font-weight:bold; }
+.countdown { display:flex; justify-content:center; gap:15px; font-size:18px; margin:10px 0; }
+.wallet-connect { text-align:center; margin:15px 0; }
+.progress-bar { width:80%; background:#000; border-radius:8px; overflow:hidden; margin:10px auto; }
+.progress-fill { width:30%; height:20px; background:#1E90FF; transition: width 1s ease-in-out; }
+.tekonomics-details { margin-top:10px; text-align:left; max-width:400px; margin-left:auto; margin-right:auto; color:#fff; }
+.circle-supply { width:150px; height:150px; border-radius:50%; border:4px solid #1E90FF; display:flex; align-items:center; justify-content:center; font-size:18px; margin:20px auto; color:#fff; }
+.listing-platforms { display:flex; justify-content:center; gap:15px; margin:15px 0; font-weight:bold; flex-wrap:wrap; }
+.listing-platform { width:80px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:14px; font-weight:bold; color:#fff; cursor:pointer; transition: transform 0.2s; background:#000; color:#00BFFF; }
+.listing-platform:hover { transform: scale(1.1); }
+.telegram-link { text-align:center; margin:15px 0; font-size:18px; color:#00BFFF; }
+.buy-button { padding:10px 20px; margin:5px; border:none; border-radius:5px; cursor:pointer; transition: transform 0.1s; background:#000; color:#00BFFF; }
+.buy-button:active { transform: scale(0.95) translateY(2px); box-shadow:0 0 8px rgba(0,0,0,0.3); }
 </style>
 </head>
 <body>
 
-<header class="logo">
-<img src="https://via.placeholder.com/150x50?text=SHIBACOIN" alt="">
-</header>
+<h1>Shibacoin Presale</h1>
 
-<div class="top-row">
-  <div class="circle glow-price"><span id="presale-price">0.0009</span><small>Presale</small></div>
-  <div class="circle glow-price"><span id="listing-price">1.50</span><small>Listing</small></div>
-  <div class="circle"><span id="days">15</span><small>Days</small></div>
-  <div class="circle"><span id="hours">00</span><small>Hours</small></div>
-  <div class="circle"><span id="minutes">00</span><small>Minutes</small></div>
-  <div class="circle"><span id="seconds">00</span><small>Seconds</small></div>
+<div class="price-listing">
+  Price: 0.0009 USDT | Listing: 1.50 USDT
 </div>
 
-<section class="progress-section">
-<div id="funds-label">600,000 / 2,600,000</div>
-<div class="progress-bar"><div id="progress-fill">30%</div></div>
-<div id="current-price">0.0009 USDT</div>
-</section>
-
-<section class="tokenomics">
-<div class="circle-supply"><p id="supply-text"><strong>2B</strong></p></div>
-<div class="distribution-details">
-<ul>
-<li><span>Presale</span><span>1,000,000,000 — 50%</span></li>
-<li><span>Liquidity</span><span>500,000,000 — 25%</span></li>
-<li><span>Marketing</span><span>300,000,000 — 15%</span></li>
-<li><span>Team</span><span>200,000,000 — 10%</span></li>
-</ul>
+<div class="countdown">
+  <div><span id="days">15</span> Days</div>
+  <div><span id="hours">23</span> Hours</div>
+  <div><span id="minutes">59</span> Minutes</div>
+  <div><span id="seconds">35</span> Seconds</div>
 </div>
-</section>
 
-<section class="wallets-section">
-<div class="wallets-container">
-  <div class="wallet-container">
-    <div class="listing-price">Listing</div>
-    <div class="wallet-logo" data-name="Binance"></div>
-  </div>
-  <div class="wallet-container">
-    <div class="listing-price">Listing</div>
-    <div class="wallet-logo" data-name="MEXC"></div>
-  </div>
-  <div class="wallet-container">
-    <div class="listing-price">Listing</div>
-    <div class="wallet-logo" data-name="LBank"></div>
-  </div>
-  <div class="wallet-container">
-    <div class="listing-price">Listing</div>
-    <div class="wallet-logo" data-name="Gate.io"></div>
-  </div>
-  <div class="wallet-container">
-    <div class="listing-price">Listing</div>
-    <div class="wallet-logo" data-name="Dex/CEX"></div>
-  </div>
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
 </div>
-</section>
+<p style="text-align:center;" id="progressText">$600,000 collected (30%)</p>
 
-<footer>
-<p><a href="https://t.me/shibacoin5" target="_blank">@shibacoin5</a></p>
-</footer>
+<div class="wallet-connect">
+  <button id="connectWallet">Connect Wallet</button>
+</div>
 
+<div class="circle-supply">Total Supply 2B</div>
+<div class="tekonomics-details">
+  <p>Presale: 1B SHic</p>
+  <p>Liquidity: 400M SHic</p>
+  <p>Marketing: 300M SHic</p>
+  <p>Reserve: 200M SHic</p>
+  <p>Team: 100M SHic</p>
+</div>
+
+<div class="listing-platforms">
+  <div class="listing-platform">Binance</div>
+  <div class="listing-platform">MEXC</div>
+  <div class="listing-platform">LBank</div>
+  <div class="listing-platform">Gate.io</div>
+  <div class="listing-platform">Dex</div>
+  <div class="listing-platform">CEX</div>
+</div>
+
+<div class="telegram-link">
+  <a href="https://t.me/shibacoin5" target="_blank" style="color:#00BFFF; text-decoration:none;">Join our Telegram</a>
+</div>
+
+<div style="text-align:center;">
+  <button class="buy-button" data-coin="BNB">Buy BNB</button>
+  <button class="buy-button" data-coin="USDT">Buy USDT</button>
+  <button class="buy-button" data-coin="ETH">Buy ETH</button>
+</div>
+
+<script src="https://unpkg.com/@web3modal/html"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 <script>
 const presaleData = {
   presaleContract: "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
   tokenContract: "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be",
-  receivingWallet: "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
-  tokenName: "Shibacoin",
-  tokenSymbol: "SHic",
-  tokenDecimals: 18,
-  minBuy: 50,
-  maxBuy: 20000000
+  ownerWallet: "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
+  name: "Shibacoin",
+  symbol: "SHic",
+  decimals: 18,
+  minBuyUSDX: 50,
+  maxBuyUSDX: 20000000,
+  currentPrice: 0.0009,
+  progressUSD: 600000,
+  progressPercent: 30,
+  goalUSD: 2600000
 };
 
-let periodDays = 15;
-const countdownIds = ['days','hours','minutes','seconds'];
-const startDate = new Date().getTime();
-
 function updateCountdown() {
-    const now = new Date().getTime();
-    const msPeriod = periodDays * 24 * 60 * 60 * 1000;
-    let nextPeriodEnd = startDate + msPeriod;
-    let distance = nextPeriodEnd - now;
+  const now = new Date();
+  const future = new Date();
+  future.setDate(now.getDate() + 15);
+  let diff = future - now;
+  const days = Math.floor(diff / (1000*60*60*24));
+  diff -= days*1000*60*60*24;
+  const hours = Math.floor(diff / (1000*60*60));
+  diff -= hours*1000*60*60;
+  const minutes = Math.floor(diff / (1000*60));
+  diff -= minutes*1000*60;
+  const seconds = Math.floor(diff / 1000);
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+setInterval(updateCountdown, 1000);
 
-    if(distance <= 0){
-        countdownIds.forEach(id => document.getElementById(id).innerText = "00");
-        return;
-    }
+let progressUSD = presaleData.progressUSD;
+let progressPercent = presaleData.progressPercent;
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
 
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-    document.getElementById('days').innerText = days.toString().padStart(2,'0');
-    document.getElementById('hours').innerText = hours.toString().padStart(2,'0');
-    document.getElementById('minutes').innerText = minutes.toString().padStart(2,'0');
-    document.getElementById('seconds').innerText = seconds.toString().padStart(2,'0');
+function increaseProgress(amountUSD) {
+  progressUSD += amountUSD;
+  progressPercent = Math.min(progressUSD / presaleData.goalUSD * 100, 100);
+  progressFill.style.width = progressPercent + '%';
+  progressText.textContent = `$${progressUSD.toLocaleString()} collected (${progressPercent.toFixed(2)}%)`;
+  
+  if(progressUSD >= presaleData.goalUSD) {
+    presaleData.currentPrice += 0.0008;
+    progressUSD = 0;
+    console.log("Price increased! New price: " + presaleData.currentPrice.toFixed(6) + " USDT");
+  }
 }
 
-setInterval(updateCountdown,1000);
+document.querySelectorAll('.buy-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    increaseProgress(50000);
+    const coin = btn.getAttribute('data-coin');
+    alert(`You bought with ${coin} - New Progress: ${progressPercent.toFixed(2)}%`);
+  });
+});
 
-import { Web3Modal } from 'https://unpkg.com/@web3modal/html?module';
-const web3Modal = new Web3Modal({
+setInterval(() => {
+  const randomPurchase = Math.floor(Math.random() * 10000);
+  increaseProgress(randomPurchase);
+}, 5000);
+
+const web3Modal = new Web3Modal.default({
   projectId: 'a207a3f1767f2b982d28ccfffcae3c4f',
   theme: 'dark',
   accentColor: 'default'
 });
 </script>
-
 </body>
 </html>
