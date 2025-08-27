@@ -31,6 +31,12 @@ body {margin:0; font-family:Arial,sans-serif; background:#0f111a; color:#fff; te
 .exchanges .name{color:#00ccff; font-weight:bold; font-size:18px; text-shadow:0 0 6px #00ccff; margin:5px 0;}
 .telegram{margin:40px;}
 .telegram a{color:#00ccff; font-weight:bold; text-decoration:none; font-size:18px;}
+
+/* Selected colors */
+.circle.selected-bnb { background: #FFD700; color: #000; } /* Yellow */
+.circle.selected-usdt { background: #FF4500; color: #fff; } /* Red */
+.circle.selected-eth { background: #32CD32; color: #000; } /* Green */
+
 @media(max-width:600px){
   .countdown-row{flex-direction:row; flex-wrap:nowrap; gap:8px;}
   .circle{width:70px; height:70px; font-size:12px;}
@@ -106,6 +112,9 @@ let shibaPrice = 0.0009;
 let raised = 600000;
 const target = 2600000;
 const periodDays = 15;
+const bnbPriceUSDT = 250;
+const ethPriceUSDT = 1700;
+let selectedCurrency = 'bnb';
 
 // Countdown
 function updateCountdown(){
@@ -129,7 +138,7 @@ updateCountdown();
 
 // Update Progress ONLY on real buy
 function updateProgress(realPurchase=0){
-  raised += realPurchase; // Ajoute sèlman lè gen achte
+  raised += realPurchase;
   let percent = Math.min((raised/target)*100,100);
   document.getElementById("progress-bar").style.width = percent+'%';
   document.getElementById("progress-bar").innerText = Math.floor(percent)+'%';
@@ -140,11 +149,7 @@ function updateProgress(realPurchase=0){
   }
 }
 
-// Buy box with BNB/USDT/ETH
-const bnbPriceUSDT = 250; 
-const ethPriceUSDT = 1700;
-let selectedCurrency = 'bnb';
-
+// Calculate tokens
 function calculateTokens(){
   let amount = parseFloat(document.getElementById('amountInput').value)||0;
   let usdtEquivalent = 0;
@@ -155,11 +160,32 @@ function calculateTokens(){
   document.getElementById('shibaOutput').innerText = `You get: ${tokens} SHIBA`;
 }
 
-// Simulate real buy: call updateProgress(realPurchase) when someone buys
+// Highlight selected currency
+function updateSelectedCurrencyUI() {
+  document.getElementById('bnbCircle').classList.remove('selected-bnb','selected-usdt','selected-eth');
+  document.getElementById('usdtCircle').classList.remove('selected-bnb','selected-usdt','selected-eth');
+  document.getElementById('ethCircle').classList.remove('selected-bnb','selected-usdt','selected-eth');
+  if(selectedCurrency==='bnb') document.getElementById('bnbCircle').classList.add('selected-bnb');
+  else if(selectedCurrency==='usdt') document.getElementById('usdtCircle').classList.add('selected-usdt');
+  else if(selectedCurrency==='eth') document.getElementById('ethCircle').classList.add('selected-eth');
+}
+
 document.getElementById('amountInput').addEventListener('input', calculateTokens);
-document.getElementById('bnbCircle').addEventListener('click', ()=>{selectedCurrency='bnb'; calculateTokens();});
-document.getElementById('usdtCircle').addEventListener('click', ()=>{selectedCurrency='usdt'; calculateTokens();});
-document.getElementById('ethCircle').addEventListener('click', ()=>{selectedCurrency='eth'; calculateTokens();});
+document.getElementById('bnbCircle').addEventListener('click', ()=>{
+  selectedCurrency='bnb';
+  updateSelectedCurrencyUI();
+  calculateTokens();
+});
+document.getElementById('usdtCircle').addEventListener('click', ()=>{
+  selectedCurrency='usdt';
+  updateSelectedCurrencyUI();
+  calculateTokens();
+});
+document.getElementById('ethCircle').addEventListener('click', ()=>{
+  selectedCurrency='eth';
+  updateSelectedCurrencyUI();
+  calculateTokens();
+});
 </script>
 </body>
 </html>
