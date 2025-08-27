@@ -79,20 +79,13 @@ body {margin:0; font-family:Arial,sans-serif; background:#0f111a; color:#fff; te
 
 <div class="buy-box">
   <h3>Buy Shibacoin</h3>
-  <div style="display:flex; justify-content:center; gap:20px; flex-direction:column; align-items:center;">
-    <div>
-      <input type="number" id="usdtAmount" placeholder="USDT">
-      <p>USDT</p>
-    </div>
-    <div>
-      <input type="number" id="bnbAmount" placeholder="BNB">
-      <p>BNB</p>
-    </div>
+  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+    <div class="circle" id="bnbCircle" style="width:80px; height:80px; cursor:pointer;">BNB</div>
+    <div class="circle" id="usdtCircle" style="width:80px; height:80px; cursor:pointer;">USDT</div>
+    <div class="circle" id="ethCircle" style="width:80px; height:80px; cursor:pointer;">ETH</div>
   </div>
+  <input type="number" id="amountInput" placeholder="Enter amount">
   <p id="shibaOutput">You get: 0 SHIBA</p>
-  <button onclick="buyTokens('usdt')">Buy with USDT</button>
-  <button onclick="buyTokens('bnb')">Buy with BNB</button>
-  <br><br>
   <button>Connect Trust Wallet</button>
   <button>Connect MetaMask</button>
 </div>
@@ -114,6 +107,7 @@ let raised = 600000;
 const target = 2600000;
 const periodDays = 15;
 
+// Countdown
 function updateCountdown(){
   const now = new Date();
   const startPeriod = new Date(now.getFullYear(), now.getMonth(), now.getDate(),0,0,0).getTime();
@@ -133,7 +127,9 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-function updateProgress(){
+// Update Progress ONLY on real buy
+function updateProgress(realPurchase=0){
+  raised += realPurchase; // Ajoute sèlman lè gen achte
   let percent = Math.min((raised/target)*100,100);
   document.getElementById("progress-bar").style.width = percent+'%';
   document.getElementById("progress-bar").innerText = Math.floor(percent)+'%';
@@ -144,28 +140,26 @@ function updateProgress(){
   }
 }
 
-function calculateTokens(type){
-  let amount = type==='usdt'?parseFloat(document.getElementById('usdtAmount').value)||0
-                            :parseFloat(document.getElementById('bnbAmount').value)||0;
-  let tokens = (amount/shibaPrice).toFixed(0);
+// Buy box with BNB/USDT/ETH
+const bnbPriceUSDT = 250; 
+const ethPriceUSDT = 1700;
+let selectedCurrency = 'bnb';
+
+function calculateTokens(){
+  let amount = parseFloat(document.getElementById('amountInput').value)||0;
+  let usdtEquivalent = 0;
+  if(selectedCurrency==='bnb') usdtEquivalent = amount*bnbPriceUSDT;
+  else if(selectedCurrency==='eth') usdtEquivalent = amount*ethPriceUSDT;
+  else usdtEquivalent = amount;
+  let tokens = Math.floor(usdtEquivalent/shibaPrice);
   document.getElementById('shibaOutput').innerText = `You get: ${tokens} SHIBA`;
 }
 
-function buyTokens(type){
-  let amount = type==='usdt'?parseFloat(document.getElementById('usdtAmount').value)||0
-                            :parseFloat(document.getElementById('bnbAmount').value)||0;
-  if(amount>0){
-    raised += amount;
-    updateProgress();
-    calculateTokens(type);
-    alert(`You bought ${Math.floor(amount/shibaPrice)} SHIBA with ${amount} ${type.toUpperCase()}`);
-  }
-}
-
-document.getElementById('usdtAmount').addEventListener('input',()=>calculateTokens('usdt'));
-document.getElementById('bnbAmount').addEventListener('input',()=>calculateTokens('bnb'));
-updateProgress();
+// Simulate real buy: call updateProgress(realPurchase) when someone buys
+document.getElementById('amountInput').addEventListener('input', calculateTokens);
+document.getElementById('bnbCircle').addEventListener('click', ()=>{selectedCurrency='bnb'; calculateTokens();});
+document.getElementById('usdtCircle').addEventListener('click', ()=>{selectedCurrency='usdt'; calculateTokens();});
+document.getElementById('ethCircle').addEventListener('click', ()=>{selectedCurrency='eth'; calculateTokens();});
 </script>
-
 </body>
 </html>
