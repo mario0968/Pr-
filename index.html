@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shibacoin Presale</title>
 <style>
-body {font-family: Arial, sans-serif; background:#0f111a; color:#fff; text-align:center; margin:0; padding:0;}
+body {margin:0; font-family:Arial,sans-serif; background:#0f111a; color:#fff; text-align:center;}
 .price-box {margin-top:20px; font-size:22px; font-weight:bold; color:#fff; text-shadow:0 0 8px #00ccff,0 0 12px #00ccff;}
 .price-box span {color:#00ccff; font-size:24px;}
 .countdown-row {display:flex; justify-content:center; gap:15px; margin-top:25px;}
@@ -20,24 +20,16 @@ body {font-family: Arial, sans-serif; background:#0f111a; color:#fff; text-align
 .distribution-details li {display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #444; font-size:16px;}
 .buy-box {margin:30px auto; padding:25px; width:95%; max-width:520px; border-radius:15px; background:linear-gradient(135deg,#0f111a,#1a1c27); border:2px solid #00ccff; box-shadow:0 0 20px #00ccff;}
 .buy-box h3 {margin-bottom:15px; font-size:22px; color:#00ccff; text-shadow:0 0 6px #00ccff;}
-.buy-box input {
-  width:130px; padding:12px; margin:10px; border-radius:8px; border:1px solid rgba(0,204,255,0.5);
-  text-align:center; font-size:16px; background: rgba(0,0,0,0.3); color:#fff; backdrop-filter: blur(6px);
-  box-shadow: 0 0 8px rgba(0,204,255,0.2); transition: 0.3s;
-}
+.buy-box input {width:130px; padding:12px; margin:10px; border-radius:8px; border:1px solid rgba(0,204,255,0.5); text-align:center; font-size:16px; background: rgba(0,0,0,0.3); color:#fff; backdrop-filter: blur(6px); box-shadow:0 0 8px rgba(0,204,255,0.2); transition:0.3s;}
 .buy-box input:focus {outline:none; border-color:#00ccff; box-shadow:0 0 12px #00ccff;}
-.buy-box button {
-  background: linear-gradient(135deg,#00ccff,#0077ff); border:none; padding:12px 25px; margin:5px;
-  font-size:16px; font-weight:bold; border-radius:12px; cursor:pointer; color:#fff; box-shadow:0 0 8px #00ccff; transition:0.3s;
-}
+.buy-box button {background: linear-gradient(135deg,#00ccff,#0077ff); border:none; padding:12px 25px; margin:5px; font-size:16px; font-weight:bold; border-radius:12px; cursor:pointer; color:#fff; box-shadow:0 0 8px #00ccff; transition:0.3s;}
 .buy-box button:hover {background: linear-gradient(135deg,#0077ff,#00ccff); box-shadow:0 0 16px #00ccff;}
 #shibaOutput {margin-top:15px; font-weight:bold; font-size:18px; color:#00ccff; text-shadow:0 0 6px #00ccff;}
-.exchanges {margin:40px auto; display:flex; justify-content:center; gap:25px; flex-wrap:wrap;}
+.listing-header {margin-bottom:10px; font-weight:bold; color:#00ccff; font-size:18px; text-shadow:0 0 6px #00ccff;}
+.exchanges {margin:20px auto 40px; display:flex; justify-content:center; gap:25px; flex-wrap:wrap;}
 .exchanges div {color:#00ccff; font-weight:bold; font-size:18px; text-shadow:0 0 6px #00ccff;}
 .telegram {margin:40px;}
 .telegram a {color:#00ccff; font-weight:bold; text-decoration:none; font-size:18px;}
-
-/* Mobile responsive */
 @media(max-width:600px){
   .countdown-row {flex-direction:row; flex-wrap:wrap; gap:10px;}
   .circle {width:70px; height:70px; font-size:12px;}
@@ -52,8 +44,7 @@ body {font-family: Arial, sans-serif; background:#0f111a; color:#fff; text-align
 </head>
 <body>
 
-<div class="price-box">Presale Price: <span id="presalePrice">0.0009 USDT</span></div>
-<div class="price-box">Listing Price: <span>1.50 USDT</span></div>
+<div class="price-box">Shibacoin Price: <span id="shibaPrice">0.0009 USDT</span></div>
 
 <div class="countdown-row">
   <div class="circle"><span id="days">15</span><br>Days</div>
@@ -102,6 +93,7 @@ body {font-family: Arial, sans-serif; background:#0f111a; color:#fff; text-align
   <button>Connect MetaMask</button>
 </div>
 
+<div class="listing-header">Listing</div>
 <div class="exchanges">
   <div>Binance</div>
   <div>MEXC</div>
@@ -115,29 +107,33 @@ body {font-family: Arial, sans-serif; background:#0f111a; color:#fff; text-align
 <script>
 // Countdown
 const periodDays = 15;
-const startPeriod = new Date().getTime();
-function updateCountdown() {
+let startPeriod = new Date().getTime();
+function updateCountdown(){
   const now = new Date().getTime();
   const msPeriod = periodDays*24*60*60*1000;
-  const periodsPassed = Math.floor((now-startPeriod)/msPeriod);
-  const nextPeriodEnd = startPeriod+(periodsPassed+1)*msPeriod;
+  const nextPeriodEnd = startPeriod+msPeriod;
   let distance = nextPeriodEnd-now;
+  if(distance<0) distance=0;
   const days = Math.floor(distance/(1000*60*60*24));
   const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
   const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
   const seconds = Math.floor((distance%(1000*60))/1000);
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours.toString().padStart(2,"0");
-  document.getElementById("minutes").innerText = minutes.toString().padStart(2,"0");
-  document.getElementById("seconds").innerText = seconds.toString().padStart(2,"0");
+  document.getElementById("days").innerText = days.toString().padStart(2,'0');
+  document.getElementById("hours").innerText = hours.toString().padStart(2,'0');
+  document.getElementById("minutes").innerText = minutes.toString().padStart(2,'0');
+  document.getElementById("seconds").innerText = seconds.toString().padStart(2,'0');
 }
-updateCountdown();
 setInterval(updateCountdown,1000);
+updateCountdown();
 
-// Progress & Presale Price
+// Progress & Price
 let raised = 600000;
-let target = 2600000;
-let presalePriceUSDT = 0.0009;
-function updateProgress() {
+const target = 2600000;
+let shibaPrice = 0.0009;
+
+function updateProgress(){
   let percent = Math.min((raised/target)*100,100);
-  document.getElementById("progress-bar").style.width
+  document.getElementById("progress-bar").style.width = percent+'%';
+  document.getElementById("progress-bar").innerText = Math.floor(percent)+'%';
+  document.getElementById("raised").innerText = raised.toLocaleString();
+  if(raised >= target && shibaPrice === 0.0009){
