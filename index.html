@@ -8,7 +8,8 @@
 body { font-family: Arial, sans-serif; background:#0a0a1f; color:#fff; margin:0; padding:0; }
 h1 { text-align:center; margin-top:20px; color:#00BFFF; }
 .price-listing { text-align:center; font-size:20px; margin:15px 0; color:#FFD700; font-weight:bold; }
-.countdown { display:flex; justify-content:center; gap:15px; font-size:18px; margin:10px 0; }
+.countdown-circle { width:180px; height:180px; border:4px solid #1E90FF; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:15px auto; font-size:18px; color:#fff; }
+.countdown { display:flex; flex-direction:column; justify-content:center; align-items:center; font-size:18px; margin:10px 0; }
 .wallet-connect { text-align:center; margin:15px 0; }
 .progress-bar { width:80%; background:#000; border-radius:8px; overflow:hidden; margin:10px auto; }
 .progress-fill { width:30%; height:20px; background:#1E90FF; transition: width 1s ease-in-out; }
@@ -18,7 +19,10 @@ h1 { text-align:center; margin-top:20px; color:#00BFFF; }
 .listing-platform { width:80px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:14px; font-weight:bold; color:#fff; cursor:pointer; transition: transform 0.2s; background:#000; color:#00BFFF; }
 .listing-platform:hover { transform: scale(1.1); }
 .telegram-link { text-align:center; margin:15px 0; font-size:18px; color:#00BFFF; }
-.buy-button { padding:10px 20px; margin:5px; border:none; border-radius:5px; cursor:pointer; transition: transform 0.1s; background:#000; color:#00BFFF; }
+.buy-button { padding:10px 20px; margin:5px; border:none; border-radius:5px; cursor:pointer; transition: transform 0.1s; }
+.buy-button.bnb { background:#000; color:#00FF00; }
+.buy-button.usdt { background:#000; color:#FFD700; }
+.buy-button.eth { background:#000; color:#00BFFF; }
 .buy-button:active { transform: scale(0.95) translateY(2px); box-shadow:0 0 8px rgba(0,0,0,0.3); }
 </style>
 </head>
@@ -30,11 +34,17 @@ h1 { text-align:center; margin-top:20px; color:#00BFFF; }
   Price: 0.0009 USDT | Listing: 1.50 USDT
 </div>
 
-<div class="countdown">
-  <div><span id="days">15</span> Days</div>
-  <div><span id="hours">23</span> Hours</div>
-  <div><span id="minutes">59</span> Minutes</div>
-  <div><span id="seconds">35</span> Seconds</div>
+<div class="countdown-circle">
+  <div class="countdown">
+    <div><span id="days">15</span> Days</div>
+    <div><span id="hours">23</span> Hours</div>
+    <div><span id="minutes">59</span> Minutes</div>
+    <div><span id="seconds">35</span> Seconds</div>
+  </div>
+</div>
+
+<div class="wallet-connect">
+  <button id="connectWallet">Connect Wallet</button>
 </div>
 
 <div class="progress-bar">
@@ -42,11 +52,8 @@ h1 { text-align:center; margin-top:20px; color:#00BFFF; }
 </div>
 <p style="text-align:center;" id="progressText">$600,000 collected (30%)</p>
 
-<div class="wallet-connect">
-  <button id="connectWallet">Connect Wallet</button>
-</div>
-
 <div class="circle-supply">Total Supply 2B</div>
+
 <div class="tekonomics-details">
   <p>Presale: 1B SHic</p>
   <p>Liquidity: 400M SHic</p>
@@ -69,9 +76,9 @@ h1 { text-align:center; margin-top:20px; color:#00BFFF; }
 </div>
 
 <div style="text-align:center;">
-  <button class="buy-button" data-coin="BNB">Buy BNB</button>
-  <button class="buy-button" data-coin="USDT">Buy USDT</button>
-  <button class="buy-button" data-coin="ETH">Buy ETH</button>
+  <button class="buy-button bnb" data-coin="BNB">Buy BNB</button>
+  <button class="buy-button usdt" data-coin="USDT">Buy USDT</button>
+  <button class="buy-button eth" data-coin="ETH">Buy ETH</button>
 </div>
 
 <script src="https://unpkg.com/@web3modal/html"></script>
@@ -92,6 +99,7 @@ const presaleData = {
   goalUSD: 2600000
 };
 
+// Countdown
 function updateCountdown() {
   const now = new Date();
   const future = new Date();
@@ -111,6 +119,7 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
+// Progress
 let progressUSD = presaleData.progressUSD;
 let progressPercent = presaleData.progressPercent;
 const progressFill = document.getElementById('progressFill');
@@ -129,24 +138,8 @@ function increaseProgress(amountUSD) {
   }
 }
 
+// Buy Buttons
 document.querySelectorAll('.buy-button').forEach(btn => {
   btn.addEventListener('click', () => {
-    increaseProgress(50000);
-    const coin = btn.getAttribute('data-coin');
-    alert(`You bought with ${coin} - New Progress: ${progressPercent.toFixed(2)}%`);
-  });
-});
-
-setInterval(() => {
-  const randomPurchase = Math.floor(Math.random() * 10000);
-  increaseProgress(randomPurchase);
-}, 5000);
-
-const web3Modal = new Web3Modal.default({
-  projectId: 'a207a3f1767f2b982d28ccfffcae3c4f',
-  theme: 'dark',
-  accentColor: 'default'
-});
-</script>
-</body>
-</html>
+    // Real purchase simulation
+    increaseProgress(
