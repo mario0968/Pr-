@@ -1,201 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Shibacoin Presale</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg,#0a0a1f,#1a1a40,#0a0a1f,#1a1a40);
-  background-size: 400% 400%;
-  color:#fff; margin:0; padding:0;
-  animation: gradientBG 20s ease infinite;
-}
-@keyframes gradientBG {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-h1{text-align:center;margin-top:20px;color:#00BFFF;font-size:2rem;}
-.description{text-align:center;font-size:16px;color:#FFD700;max-width:600px;margin:0 auto 15px;}
-.price-listing{text-align:center;font-size:20px;margin:15px 0;color:#FFD700;font-weight:bold;}
-.countdown-circle{width:100%;max-width:300px;border-radius:50%;border:4px solid #1E90FF;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;margin:10px auto;padding:15px;box-shadow:0 0 20px #1E90FF;background: rgba(30,144,255,0.1);}
-.countdown-values{display:flex;gap:5px;font-size:18px;justify-content:center;align-items:center;}
-.countdown-values span{min-width:30px;text-align:center;}
-.progress-bar{width:80%;max-width:400px;background:#000;border-radius:8px;overflow:hidden;margin:10px auto;}
-.progress-fill{width:30%;height:20px;background:#1E90FF;transition: width 1s ease-in-out;}
-.progress-text{text-align:center;margin-bottom:10px;}
-.wallet-connect{text-align:center;margin:15px 0;}
-.wallet-connect div{margin-top:8px;}
-.buy-section{text-align:center;margin:15px 0;}
-.buy-button{padding:10px 20px;margin:5px;border:none;border-radius:5px;cursor:pointer;transition: transform 0.1s, box-shadow 0.2s;background:#000;color:#00BFFF;}
-.buy-button:hover{box-shadow:0 0 12px #00BFFF;}
-.buy-button:active{transform: scale(0.95) translateY(2px);box-shadow:0 0 8px rgba(0,0,0,0.3);}
-input.amount{width:80px;padding:5px;border-radius:4px;border:1px solid #fff;background:#0a0a1f;color:#fff;text-align:center;margin-right:5px;}
-.circle-supply{width:180px;height:180px;border-radius:50%;border:4px solid #1E90FF;display:flex;align-items:center;justify-content:center;font-size:22px;margin:20px auto;color:#fff;background: rgba(30,144,255,0.1);box-shadow: 0 0 25px #00BFFF;font-weight:bold;text-align:center;animation: glowSupply 2s ease-in-out infinite alternate;}
-@keyframes glowSupply{0%{box-shadow:0 0 15px #00BFFF;}100%{box-shadow:0 0 35px #00BFFF;}}
-.tekonomics-details{margin-top:10px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto;color:#fff;}
-.listing-platforms{display:flex;justify-content:center;gap:15px;margin:15px 0;font-weight:bold;flex-wrap:wrap;}
-.listing-platform{width:80px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer;transition: transform 0.2s;background:#000;color:#00BFFF;}
-.listing-platform:hover{transform: scale(1.1);}
-.telegram-link{text-align:center;margin:15px 0;font-size:18px;color:#00BFFF;}
-@media(max-width:480px){h1{font-size:1.5rem;}.countdown-circle{max-width:220px;font-size:16px;}.progress-bar{width:90%;}.circle-supply{width:150px;height:150px;font-size:18px;}.buy-button{padding:8px 15px;font-size:14px;}.input.amount{width:60px;}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shibacoin Presale</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0d1117; color:#e6edf3; text-align:center; padding:20px; }
+    .container { max-width:600px; margin:auto; }
+    .price-listing { margin:15px 0; font-size:18px; font-weight:bold; }
+    .countdown-circle { background:#161b22; border-radius:12px; padding:20px; margin-bottom:20px; }
+    .countdown-values { margin-top:10px; font-size:18px; }
+    .progress-bar { width:100%; height:24px; background:#30363d; border-radius:12px; overflow:hidden; margin:10px 0; }
+    .progress-fill { height:100%; background:#238636; width:0; transition:width .5s; }
+    .progress-text { font-size:14px; margin-bottom:20px; }
+    .wallet-connect button, .buy-section button { background:#238636; border:none; color:white; padding:10px 20px; border-radius:8px; cursor:pointer; margin:5px; }
+    .wallet-connect button:hover, .buy-section button:hover { background:#2ea043; }
+    .buy-section input { padding:10px; border-radius:8px; border:1px solid #30363d; margin-bottom:10px; width:80%; }
+    .circle-supply { background:#161b22; border-radius:50%; width:140px; height:140px; display:flex; align-items:center; justify-content:center; margin:20px auto; font-weight:bold; line-height:1.4; }
+    .rows { margin:15px 0; text-align:left; }
+    .listing-platforms { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:20px 0; }
+    .listing-platform { background:#161b22; padding:10px; border-radius:8px; text-align:center; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Shibacoin Presale</h1>
 
-<h1>Shibacoin Presale</h1>
-<p class="description">Shibacoin is the best presale opportunity – don’t miss this chance!</p>
+    <div class="price-listing">
+      Price: <span id="priceDisplay">0.0009</span> USDT | Listing: 1.50 USDT
+    </div>
 
-<div class="price-listing">Price: 0.0009 USDT | Listing: 1.50 USDT</div>
+    <div class="countdown-circle">
+      <div class="countdown-values">
+        <span id="days">00</span>d :
+        <span id="hours">00</span>h :
+        <span id="minutes">00</span>m :
+        <span id="seconds">00</span>s
+      </div>
+    </div>
 
-<div class="countdown-circle">
-  Countdown
-  <div class="countdown-values">
-    <span id="days">00</span> :
-    <span id="hours">00</span> :
-    <span id="minutes">00</span> :
-    <span id="seconds">00</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText"></div>
+
+    <div class="wallet-connect">
+      <button id="connectBtn">Connect Wallet</button>
+      <div id="walletAddress"></div>
+    </div>
+
+    <div class="buy-section">
+      <input id="amountInput" type="number" placeholder="Amount (USDT)" /><br/>
+      <button class="buy-button" data-coin="BNB">Buy with BNB</button>
+      <button class="buy-button" data-coin="USDT">Buy with USDT</button>
+      <button class="buy-button" data-coin="ETH">Buy with ETH</button>
+      <div id="shicReceived"></div>
+    </div>
+
+    <div class="circle-supply" id="supply">Total Supply<br>2B</div>
+
+    <div class="rows">
+      <div>Presale: 1B SHIC</div>
+      <div>Liquidity: 400M SHIC</div>
+      <div>Marketing: 300M SHIC</div>
+      <div>Reserve: 200M SHIC</div>
+      <div>Team: 100M SHIC</div>
+    </div>
+
+    <div class="rows listing-platforms">
+      <div class="listing-platform">Binance</div>
+      <div class="listing-platform">MEXC</div>
+      <div class="listing-platform">LBank</div>
+      <div class="listing-platform">Gate.io</div>
+      <div class="listing-platform">Dex</div>
+      <div class="listing-platform">CEX</div>
+    </div>
   </div>
-</div>
 
-<div class="progress-bar">
-  <div class="progress-fill" id="progressFill" style="width:30%;"></div>
-</div>
-<p class="progress-text" id="progressText">$600,000 collected (30%)</p>
+<script>
+// Addresses
+const RECEIVER_ADDRESS = "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be";
+const PRESALE_CONTRACT = "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656";
+const TOKEN_CONTRACT   = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23";
 
-<div class="wallet-connect">
-  <w3m-button></w3m-button>
-  <div id="walletAddress">Not connected</div>
-</div>
+const TOKEN_SYMBOL = "SHIC";
+const TOKEN_DECIMALS = 18;
+const MIN_PURCHASE = 50;
+const MAX_PURCHASE = 1000000;
 
-<div class="buy-section">
-  <input type="number" id="amountInput" class="amount" placeholder="Amount">
-  <button class="buy-button" data-coin="BNB">Buy BNB</button>
-  <button class="buy-button" data-coin="USDT">Buy USDT</button>
-  <button class="buy-button" data-coin="ETH">Buy ETH</button>
-  <p id="shicReceived"></p>
-</div>
+let collected = 600000;
+const target = 2600000;
+let price = 0.0009;
 
-<div class="circle-supply">Total Supply 2B</div>
+function updateProgress() {
+  let percent = (collected / target) * 100;
+  if (percent >= 100) {
+    percent = 0;
+    collected = 0;
+    price += 0.0008;
+    document.getElementById("priceDisplay").textContent = price.toFixed(5);
+  }
+  document.getElementById("progressFill").style.width = percent + "%";
+  document.getElementById("progressText").textContent =
+    `$${collected.toLocaleString()} (${percent.toFixed(2)}%)`;
+}
+updateProgress();
 
-<div class="tekonomics-details">
-  <p>Presale: 1B SHic</p>
-  <p>Liquidity: 400M SHic</p>
-  <p>Marketing: 300M SHic</p>
-  <p>Reserve: 200M SHic</p>
-  <p>Team: 100M SHic</p>
-</div>
-
-<div class="listing-platforms">
-  <div class="listing-platform">Binance</div>
-  <div class="listing-platform">MEXC</div>
-  <div class="listing-platform">LBank</div>
-  <div class="listing-platform">Gate.io</div>
-  <div class="listing-platform">Dex</div>
-  <div class="listing-platform">CEX</div>
-</div>
-
-<div class="telegram-link">
-  <a href="https://t.me/shibacoin5" target="_blank" style="color:#00BFFF; text-decoration:none;">Join our Telegram</a>
-</div>
-
-<script type="module">
-import { Web3Modal } from "https://unpkg.com/@web3modal/html@2.6.1/dist/index.js";
-import { EthereumClient, w3mConnectors, w3mProvider } from "https://unpkg.com/@web3modal/ethereum@2.6.1/dist/index.js";
-import { ethers } from "https://unpkg.com/ethers@6.6.2/dist/ethers.esm.min.js";
-
-const presaleData = {
-  presaleContract: "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
-  tokenContract: "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be",
-  ownerWallet: "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
-  name: "Shibacoin",
-  symbol: "SHic",
-  decimals: 18,
-  minBuyUSDX: 50,
-  maxBuyUSDX: 20000000,
-  currentPrice: 0.0009,
-  progressUSD: 600000,
-  progressPercent: 30,
-  goalUSD: 2600000
-};
-
-// --- Countdown 15 days automatic reset ---
+// Countdown (15 days reset)
+const cycle = 15 * 24 * 60 * 60 * 1000;
 function updateCountdown() {
-  const now = new Date();
-  let startDate = new Date("2025-09-01T00:00:00");
-  while(startDate <= now) startDate.setDate(startDate.getDate()+15);
-  let diff = startDate - now;
-  const days = Math.floor(diff / (1000*60*60*24));
-  diff -= days*1000*60*60*24;
-  const hours = Math.floor(diff / (1000*60*60));
-  diff -= hours*1000*60*60;
-  const minutes = Math.floor(diff / (1000*60));
-  diff -= minutes*1000*60;
-  const seconds = Math.floor(diff / 1000);
-  document.getElementById('days').textContent = String(days).padStart(2,"0");
-  document.getElementById('hours').textContent = String(hours).padStart(2,"0");
-  document.getElementById('minutes').textContent = String(minutes).padStart(2,"0");
-  document.getElementById('seconds').textContent = String(seconds).padStart(2,"0");
+  const now = new Date().getTime();
+  const timePassed = now % cycle;
+  let distance = cycle - timePassed;
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("days").textContent = String(days).padStart(2,"0");
+  document.getElementById("hours").textContent = String(hours).padStart(2,"0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
 }
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-// --- Progress bar ---
-let progressUSD = presaleData.progressUSD;
-let progressPercent = presaleData.progressPercent;
-const progressFill = document.getElementById('progressFill');
-const progressText = document.getElementById('progressText');
-function increaseProgress(amountUSD){
-  progressUSD += amountUSD;
-  if(progressUSD >= presaleData.goalUSD){
-    let excess = progressUSD - presaleData.goalUSD;
-    presaleData.currentPrice += 0.0008;
-    progressUSD = excess;
-    progressPercent = (progressUSD / presaleData.goalUSD)*100;
+// Wallet connect
+let userWallet = null;
+document.getElementById("connectBtn").onclick = async () => {
+  if (window.ethereum) {
+    try {
+      const accounts = await ethereum.request({ method:'eth_requestAccounts' });
+      userWallet = accounts[0];
+      document.getElementById("walletAddress").textContent = userWallet;
+    } catch(e){ console.error(e); }
   } else {
-    progressPercent = (progressUSD / presaleData.goalUSD)*100;
+    alert("Install MetaMask or TrustWallet!");
   }
-  progressFill.style.width = progressPercent+'%';
-  progressText.textContent = `$${progressUSD.toLocaleString()} collected (${progressPercent.toFixed(2)}%)`;
-}
+};
 
-// --- Buy Buttons ---
-const amountInput = document.getElementById('amountInput');
-const shicReceived = document.getElementById('shicReceived');
-document.querySelectorAll('.buy-button').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    let amount=parseFloat(amountInput.value);
-    if(isNaN(amount) || amount < presaleData.minBuyUSDX){
-      alert("Enter valid amount (min 50)");
+// Buy logic
+document.querySelectorAll(".buy-button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const amount = parseFloat(document.getElementById("amountInput").value);
+    if (isNaN(amount) || amount < MIN_PURCHASE || amount > MAX_PURCHASE) {
+      alert(`Amount must be between ${MIN_PURCHASE} and ${MAX_PURCHASE} USD`);
       return;
     }
-    let coinsBought = amount / presaleData.currentPrice;
-    shicReceived.textContent = `You will receive ${coinsBought.toLocaleString()} ${presaleData.symbol}`;
-    increaseProgress(amount);
+    const received = (amount / price).toFixed(2);
+    document.getElementById("shicReceived").textContent = `${received} ${TOKEN_SYMBOL}`;
+    // Call presale contract (PRESALE_CONTRACT) and transfer to RECEIVER_ADDRESS
   });
-});
-
-// --- WalletConnect v2 ---
-const projectId="a207a3f1767f2b982d28ccfffcae3c4f";
-const provider = w3mProvider({projectId});
-const connectors = w3mConnectors({projectId,version:2});
-const ethereumClient = new EthereumClient(connectors,provider);
-const web3Modal = new Web3Modal({projectId,ethereum:{appName:"Shibacoin Presale"}});
-const walletAddressDiv=document.getElementById("walletAddress");
-const w3mButton=document.querySelector("w3m-button");
-w3mButton.addEventListener("click",async()=>{
-  try{
-    const instance = await web3Modal.connect();
-    const ethersProvider = new ethers.BrowserProvider(instance);
-    const signer = await ethersProvider.getSigner();
-    const address = await signer.getAddress();
-    walletAddressDiv.textContent=`Connected: ${address}`;
-  }catch(e){
-    walletAddressDiv.textContent="Connection failed";
-    console.error(e);
-  }
 });
 </script>
 </body>
