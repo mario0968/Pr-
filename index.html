@@ -1,156 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shibacoin Presale</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#0d1117; color:#e6edf3; text-align:center; padding:20px; }
-    .container { max-width:600px; margin:auto; }
-    .price-listing { margin:15px 0; font-size:18px; font-weight:bold; }
-    .countdown-circle { background:#161b22; border-radius:12px; padding:20px; margin-bottom:20px; }
-    .countdown-values { margin-top:10px; font-size:18px; }
-    .progress-bar { width:100%; height:24px; background:#30363d; border-radius:12px; overflow:hidden; margin:10px 0; }
-    .progress-fill { height:100%; background:#238636; width:0; transition:width .5s; }
-    .progress-text { font-size:14px; margin-bottom:20px; }
-    .wallet-connect button, .buy-section button { background:#238636; border:none; color:white; padding:10px 20px; border-radius:8px; cursor:pointer; margin:5px; }
-    .wallet-connect button:hover, .buy-section button:hover { background:#2ea043; }
-    .buy-section input { padding:10px; border-radius:8px; border:1px solid #30363d; margin-bottom:10px; width:80%; }
-    .circle-supply { background:#161b22; border-radius:50%; width:140px; height:140px; display:flex; align-items:center; justify-content:center; margin:20px auto; font-weight:bold; line-height:1.4; }
-    .rows { margin:15px 0; text-align:left; }
-    .listing-platforms { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:20px 0; }
-    .listing-platform { background:#161b22; padding:10px; border-radius:8px; text-align:center; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Shibacoin Presale</h1>
-
-    <div class="price-listing">
-      Price: <span id="priceDisplay">0.0009</span> USDT | Listing: 1.50 USDT
-    </div>
-
-    <div class="countdown-circle">
-      <div class="countdown-values">
-        <span id="days">00</span>d :
-        <span id="hours">00</span>h :
-        <span id="minutes">00</span>m :
-        <span id="seconds">00</span>s
-      </div>
-    </div>
-
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-text" id="progressText"></div>
-
-    <div class="wallet-connect">
-      <button id="connectBtn">Connect Wallet</button>
-      <div id="walletAddress"></div>
-    </div>
-
-    <div class="buy-section">
-      <input id="amountInput" type="number" placeholder="Amount (USDT)" /><br/>
-      <button class="buy-button" data-coin="BNB">Buy with BNB</button>
-      <button class="buy-button" data-coin="USDT">Buy with USDT</button>
-      <button class="buy-button" data-coin="ETH">Buy with ETH</button>
-      <div id="shicReceived"></div>
-    </div>
-
-    <div class="circle-supply" id="supply">Total Supply<br>2B</div>
-
-    <div class="rows">
-      <div>Presale: 1B SHIC</div>
-      <div>Liquidity: 400M SHIC</div>
-      <div>Marketing: 300M SHIC</div>
-      <div>Reserve: 200M SHIC</div>
-      <div>Team: 100M SHIC</div>
-    </div>
-
-    <div class="rows listing-platforms">
-      <div class="listing-platform">Binance</div>
-      <div class="listing-platform">MEXC</div>
-      <div class="listing-platform">LBank</div>
-      <div class="listing-platform">Gate.io</div>
-      <div class="listing-platform">Dex</div>
-      <div class="listing-platform">CEX</div>
-    </div>
-  </div>
-
-<script>
-// Addresses
-const RECEIVER_ADDRESS = "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be";
-const PRESALE_CONTRACT = "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656";
-const TOKEN_CONTRACT   = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23";
-
-const TOKEN_SYMBOL = "SHIC";
-const TOKEN_DECIMALS = 18;
-const MIN_PURCHASE = 50;
-const MAX_PURCHASE = 1000000;
-
-let collected = 600000;
-const target = 2600000;
-let price = 0.0009;
-
-function updateProgress() {
-  let percent = (collected / target) * 100;
-  if (percent >= 100) {
-    percent = 0;
-    collected = 0;
-    price += 0.0008;
-    document.getElementById("priceDisplay").textContent = price.toFixed(5);
-  }
-  document.getElementById("progressFill").style.width = percent + "%";
-  document.getElementById("progressText").textContent =
-    `$${collected.toLocaleString()} (${percent.toFixed(2)}%)`;
-}
-updateProgress();
-
-// Countdown (15 days reset)
-const cycle = 15 * 24 * 60 * 60 * 1000;
-function updateCountdown() {
-  const now = new Date().getTime();
-  const timePassed = now % cycle;
-  let distance = cycle - timePassed;
-
-  const days = Math.floor(distance / (1000*60*60*24));
-  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-  document.getElementById("days").textContent = String(days).padStart(2,"0");
-  document.getElementById("hours").textContent = String(hours).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-// Wallet connect
-let userWallet = null;
-document.getElementById("connectBtn").onclick = async () => {
-  if (window.ethereum) {
-    try {
-      const accounts = await ethereum.request({ method:'eth_requestAccounts' });
-      userWallet = accounts[0];
-      document.getElementById("walletAddress").textContent = userWallet;
-    } catch(e){ console.error(e); }
-  } else {
-    alert("Install MetaMask or TrustWallet!");
-  }
-};
-
-// Buy logic
-document.querySelectorAll(".buy-button").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const amount = parseFloat(document.getElementById("amountInput").value);
-    if (isNaN(amount) || amount < MIN_PURCHASE || amount > MAX_PURCHASE) {
-      alert(`Amount must be between ${MIN_PURCHASE} and ${MAX_PURCHASE} USD`);
-      return;
+"id": 1,
+      "name": "Presale Contract",
+      "value": "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656"
+    },
+    {
+      "id": 2,
+      "name": "Price in USDX",
+      "value": "0.0009"
+    },
+    {
+      "id": 3,
+      "name": "Title",
+      "value": "Shiba Presale"
+    },
+    {
+      "id": 4,
+      "name": "Description"
+      "value" "This is the official presale of Shibacoin, the next-generation meme token built on the BNB Smart Chain. Join early and be part of the future"
+    },
+    {
+      "id": 5,
+      "name": "Token Name",
+      "value": "Shibacoin"
+    },
+    {
+      "id": 6,
+      "name": "Token Contract",
+      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
+    },
+    {
+      "id": 7,
+      "name": "Token Symbol",
+      "value": "SHic"
+    },
+    {
+      "id": 8,
+      "name": "Token Decimal",
+      "value": "18"
+    },
+    {
+      "id": 9,
+      "name": "Token Supply",
+      "value": "2000000000"
+    },
+    {
+      "id": 10,
+      "name": "Tokens For Presale",
+      "value": "1000000000"
+    },
+    {
+      "id": 11,
+      "name": "Alert text",
+      "value": "Buy and receive your tokens immediately!"
+    },
+    {
+      "id": 12,
+      "name": "Presale End Time",
+      "value": "2025-10-10T23:59:59"
+    },
+    {
+      "id": 13,
+      "name": "Affiliate Commission %",
+      "value": "7"
+    },
+    {
+      "id": 14,
+      "name": "Owner Wallet",
+      "value": "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23"
+    },
+    {
+      "id": 15,
+      "name": "Telegram Link",
+      "value": "https://t.me/shibacoin5"
+    },
+    {
+      "id": 16,
+      "name": "Twitter Link",
+      "value": "https://"
+    },
+    {
+      "id": 17,
+      "name": "Listing Price",
+      "value": "1.50"
+    },
+    {
+      "id": 18,
+      "name": "Chain Name",
+      "value": "BNB Smart Chain"
+    },
+    {
+      "id": 19,
+      "name": "Chain ID",
+      "value": "56"
+    },
+    {
+      "id": 20,
+      "name": "Native Coin",
+      "value": "BNB"
+    },
+    {
+      "id": 21,
+      "name": "Minimum Buy in USDX",
+      "value": "50"
+    },
+    {
+      "id": 22,
+      "name": "Maximum Buy in USDX",
+      "value": "20000000"
     }
-    const received = (amount / price).toFixed(2);
-    document.getElementById("shicReceived").textContent = `${received} ${TOKEN_SYMBOL}`;
-    // Call presale contract (PRESALE_CONTRACT) and transfer to RECEIVER_ADDRESS
-  });
-});
-</script>
-</body>
-</html>
+
+  ]
