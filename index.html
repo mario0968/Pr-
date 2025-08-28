@@ -1,111 +1,295 @@
-"id": 1,
-      "name": "Presale Contract",
-      "value": "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656"
-    },
-    {
-      "id": 2,
-      "name": "Price in USDX",
-      "value": "0.0009"
-    },
-    {
-      "id": 3,
-      "name": "Title",
-      "value": "Shiba Presale"
-    },
-    {
-      "id": 4,
-      "name": "Description"
-      "value" "This is the official presale of Shibacoin, the next-generation meme token built on the BNB Smart Chain. Join early and be part of the future"
-    },
-    {
-      "id": 5,
-      "name": "Token Name",
-      "value": "Shibacoin"
-    },
-    {
-      "id": 6,
-      "name": "Token Contract",
-      "value": "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
-    },
-    {
-      "id": 7,
-      "name": "Token Symbol",
-      "value": "SHic"
-    },
-    {
-      "id": 8,
-      "name": "Token Decimal",
-      "value": "18"
-    },
-    {
-      "id": 9,
-      "name": "Token Supply",
-      "value": "2000000000"
-    },
-    {
-      "id": 10,
-      "name": "Tokens For Presale",
-      "value": "1000000000"
-    },
-    {
-      "id": 11,
-      "name": "Alert text",
-      "value": "Buy and receive your tokens immediately!"
-    },
-    {
-      "id": 12,
-      "name": "Presale End Time",
-      "value": "2025-10-10T23:59:59"
-    },
-    {
-      "id": 13,
-      "name": "Affiliate Commission %",
-      "value": "7"
-    },
-    {
-      "id": 14,
-      "name": "Owner Wallet",
-      "value": "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23"
-    },
-    {
-      "id": 15,
-      "name": "Telegram Link",
-      "value": "https://t.me/shibacoin5"
-    },
-    {
-      "id": 16,
-      "name": "Twitter Link",
-      "value": "https://"
-    },
-    {
-      "id": 17,
-      "name": "Listing Price",
-      "value": "1.50"
-    },
-    {
-      "id": 18,
-      "name": "Chain Name",
-      "value": "BNB Smart Chain"
-    },
-    {
-      "id": 19,
-      "name": "Chain ID",
-      "value": "56"
-    },
-    {
-      "id": 20,
-      "name": "Native Coin",
-      "value": "BNB"
-    },
-    {
-      "id": 21,
-      "name": "Minimum Buy in USDX",
-      "value": "50"
-    },
-    {
-      "id": 22,
-      "name": "Maximum Buy in USDX",
-      "value": "20000000"
-    }
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shibacoin Presale</title>
+<style>
+  :root{--bg:#0a0a1f;--accent:#1E90FF;--muted:#8892a6;--panel:#0f1724;--accent2:#00BFFF}
+  body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:#fff}
+  .wrap{max-width:1000px;margin:20px auto;padding:18px}
+  header{text-align:center}
+  h1{color:var(--accent2);margin:6px 0}
+  .top-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;margin:14px 0}
+  .price-card{background:var(--panel);padding:12px 18px;border-radius:12px;min-width:220px;text-align:center}
+  .countdown-circle{width:140px;height:140px;border-radius:50%;border:4px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
+  .countdown-numbers{font-weight:700;font-size:18px}
+  .progress-wrap{background:var(--panel);padding:14px;border-radius:12px;margin:18px auto;max-width:760px}
+  .progress-bar{background:#061026;border-radius:12px;height:28px;overflow:hidden}
+  .progress-fill{height:100%;width:30%;background:linear-gradient(90deg,var(--accent),#6a00ff);display:flex;align-items:center;justify-content:center;font-weight:700;transition:width .6s}
+  .center{text-align:center}
+  .buy-panel{background:var(--panel);padding:16px;border-radius:12px;max-width:520px;margin:18px auto}
+  .buy-row{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+  input,select,button{font-size:15px}
+  input[type=number]{padding:10px;border-radius:8px;border:1px solid #263044;background:transparent;color:#fff;width:160px;text-align:center}
+  select{padding:10px;border-radius:8px;border:1px solid #263044;background:transparent;color:#fff}
+  button.connect,button.buy{padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+  button.connect{background:var(--accent);color:#001;font-weight:700}
+  button.buy{background:#111827;color:var(--accent);border:1px solid var(--accent)}
+  .supply{width:160px;height:160px;border-radius:50%;border:4px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:16px auto;font-weight:700}
+  .tokenomics{max-width:520px;margin:10px auto;background:transparent;padding:6px;color:var(--muted)}
+  .listing{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+  .listing .item{background:#020617;padding:8px 12px;border-radius:8px;color:var(--accent2);font-weight:700}
+  .small{font-size:13px;color:var(--muted)}
+  a.telegram{color:var(--accent2);text-decoration:none;font-weight:700}
+  footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:640px){.top-row{flex-direction:column}}
+</style>
+<!-- libs for WalletConnect v2 + Web3Modal standalone (UI only) -->
+<script src="https://unpkg.com/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+<script src="https://unpkg.com/@walletconnect/ethereum-provider/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@web3modal/standalone@2.4.3/dist/index.umd.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Shibacoin Presale</h1>
+      <div class="small">Price: <strong id="tokenPrice">0.00098</strong> USDT &nbsp; | &nbsp; Listing: <strong>1.50</strong> USDT</div>
+    </header><div class="top-row">
+  <div class="price-card center">
+    <div class="small">Progress</div>
+    <div style="font-weight:800;font-size:20px" id="raisedText">$600,000 / $2,600,000</div>
+    <div class="small" id="raisedPct">(30%)</div>
+  </div>
 
-  ]
+  <div class="countdown-circle" aria-hidden>
+    <div style="font-size:12px;color:#9fb7df">Next reset in</div>
+    <div class="countdown-numbers" id="cdLarge">--:--:--:--</div>
+    <div class="small" style="margin-top:6px">(15‑day cycle)</div>
+  </div>
+
+  <div class="price-card center">
+    <div class="small">Total Supply</div>
+    <div style="font-size:18px;font-weight:800">2B</div>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar" aria-hidden>
+    <div class="progress-fill" id="progressFill">30%</div>
+  </div>
+  <div class="center small" id="progressSub">$600,000 collected (30%)</div>
+
+  <!-- Connect Wallet should appear below the progress area -->
+  <div style="text-align:center;margin-top:12px;">
+    <button class="connect" id="connectWalletBtn">Connect Wallet</button>
+    <div id="walletInfo" class="small" style="margin-top:8px"></div>
+  </div>
+</div>
+
+<!-- Buy card -->
+<div class="buy-panel">
+  <div style="font-weight:800;font-size:18px;margin-bottom:8px">Buy Shibacoin</div>
+  <div class="buy-row">
+    <input id="buyAmount" type="number" placeholder="Amount" min="0" />
+    <select id="buyCurrency">
+      <option value="USDT">USDT</option>
+      <option value="BNB">BNB</option>
+      <option value="ETH">ETH</option>
+    </select>
+    <button class="buy" id="calcBtn">Calculate</button>
+  </div>
+  <div style="margin-top:10px" id="calcResult">You will receive: <strong id="shicOut">0</strong> SHic</div>
+  <div style="margin-top:12px">
+    <button class="buy" id="confirmBuy">Confirm Buy (simulate)</button>
+  </div>
+  <div class="small" style="margin-top:8px">Minimum purchase: <strong id="minBuy">50</strong> USD</div>
+  <div class="small" id="calcNote" style="margin-top:4px">* Rates are simulated for demo. No on‑chain tx here.</div>
+</div>
+
+<div class="supply center">2B</div>
+
+<div class="tokenomics">
+  <div style="font-weight:800;margin-bottom:6px">Tokenomics</div>
+  <div class="small">Presale: 1B SHic</div>
+  <div class="small">Liquidity: 400M</div>
+  <div class="small">Marketing: 300M</div>
+  <div class="small">Reserve: 200M</div>
+  <div class="small">Team: 100M</div>
+</div>
+
+<div class="listing">
+  <div class="item">Binance</div>
+  <div class="item">MEXC</div>
+  <div class="item">LBank</div>
+  <div class="item">Gate.io</div>
+  <div class="item">Dex</div>
+  <div class="item">CEX</div>
+</div>
+
+<div style="text-align:center;margin-top:8px">
+  <a class="telegram" href="https://t.me/shibacoin5" target="_blank">Join Telegram</a>
+</div>
+
+<footer>
+  <div>© 2025 Shibacoin – Demo presale interface (static, no backend)</div>
+</footer>
+
+  </div><script>
+// =============================
+// CONFIG (edit to your needs)
+// =============================
+const GOAL_USD = 2_600_000;
+let raisedUsd = 600_000;       // starting amount
+const MIN_USD = 50;            // minimum buy
+// Token price stages – increments of 0.00008 per your spec
+const PRICE_STAGES = [0.00098, 0.00106, 0.00114, 0.00122, 0.00130];
+let stageIndex = 0;            // start at first stage
+// Simulated FX rates (no API):
+const FX = { USDT: 1, BNB: 500, ETH: 3000 };
+// WalletConnect / Web3Modal Project ID – replace with your real one
+const WC_PROJECT_ID = 'REPLACE_WITH_YOUR_WALLETCONNECT_PROJECT_ID';
+
+// =============================
+// DOM refs
+// =============================
+const el = {
+  tokenPrice: document.getElementById('tokenPrice'),
+  raisedText: document.getElementById('raisedText'),
+  raisedPct: document.getElementById('raisedPct'),
+  progressFill: document.getElementById('progressFill'),
+  progressSub: document.getElementById('progressSub'),
+  cdLarge: document.getElementById('cdLarge'),
+  buyAmount: document.getElementById('buyAmount'),
+  buyCurrency: document.getElementById('buyCurrency'),
+  shicOut: document.getElementById('shicOut'),
+  calcBtn: document.getElementById('calcBtn'),
+  confirmBuy: document.getElementById('confirmBuy'),
+  walletBtn: document.getElementById('connectWalletBtn'),
+  walletInfo: document.getElementById('walletInfo'),
+};
+
+// =============================
+// Helpers
+// =============================
+const fmtMoney = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
+const clamp = (n,min,max)=>Math.min(Math.max(n,min),max);
+function shortAddr(addr){return addr ? addr.slice(0,6)+'…'+addr.slice(-4) : ''}
+function setPriceFromStage(){ el.tokenPrice.textContent = PRICE_STAGES[stageIndex].toFixed(5); }
+
+// =============================
+// Progress + price stepper
+// =============================
+function refreshProgressUI(){
+  const pct = clamp((raisedUsd/GOAL_USD)*100, 0, 100);
+  el.progressFill.style.width = pct.toFixed(2)+'%';
+  el.progressFill.textContent = Math.floor(pct)+'%';
+  el.progressSub.textContent = `${fmtMoney(raisedUsd)} collected (${Math.floor(pct)}%)`;
+  el.raisedText.textContent = `${fmtMoney(raisedUsd)} / ${fmtMoney(GOAL_USD)}`;
+  el.raisedPct.textContent = `(${Math.floor(pct)}%)`;
+}
+
+function simulateRaiseTick(){
+  // every 15s, add between 1k and 5k for demo
+  const add = Math.floor(1000 + Math.random()*4000);
+  raisedUsd = Math.min(raisedUsd + add, GOAL_USD);
+  refreshProgressUI();
+  if(raisedUsd >= GOAL_USD){
+    // move to next price stage and reset progress
+    if(stageIndex < PRICE_STAGES.length - 1){
+      stageIndex++;
+      setPriceFromStage();
+    }
+    raisedUsd = 0; // reset for next round
+    refreshProgressUI();
+  }
+}
+
+// =============================
+// 15‑day rolling countdown
+// =============================
+function nextCycleEnd(now=new Date()){
+  const MS_IN_DAY = 86400000;
+  const cycle = 15*MS_IN_DAY;
+  const epoch = new Date('2025-08-01T00:00:00Z').getTime(); // anchor
+  const t = now.getTime();
+  const k = Math.floor((t - epoch)/cycle) + 1;
+  return new Date(epoch + k*cycle);
+}
+function updateCountdown(){
+  const now = new Date();
+  const end = nextCycleEnd(now);
+  let diff = Math.max(0, end - now);
+  const d = Math.floor(diff/86400000); diff -= d*86400000;
+  const h = Math.floor(diff/3600000);  diff -= h*3600000;
+  const m = Math.floor(diff/60000);    diff -= m*60000;
+  const s = Math.floor(diff/1000);
+  el.cdLarge.textContent = `${String(d).padStart(2,'0')}:${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+// =============================
+// Calculator (simulated)
+// =============================
+function calculateOut(){
+  const amount = parseFloat(el.buyAmount.value || '0');
+  const cur = el.buyCurrency.value;
+  const usd = amount * (FX[cur] || 1);
+  const price = PRICE_STAGES[stageIndex];
+  const tokens = usd / price;
+  el.shicOut.textContent = isFinite(tokens) ? Math.floor(tokens).toLocaleString() : '0';
+  return {usd, tokens};
+}
+
+// =============================
+// Wallet connect (injected + WalletConnect QR via Web3Modal standalone)
+// =============================
+let provider, signer;
+async function connectWallet(){
+  try{
+    if(window.ethereum){
+      provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send('eth_requestAccounts',[]);
+      signer = await provider.getSigner();
+      const addr = await signer.getAddress();
+      const net = await provider.getNetwork();
+      el.walletInfo.textContent = `Connected: ${shortAddr(addr)} • Chain ID ${Number(net.chainId)}`;
+      return;
+    }
+    // Fallback: WalletConnect QR using Web3Modal standalone UI
+    if(!WC_PROJECT_ID || WC_PROJECT_ID.startsWith('REPLACE_')){
+      el.walletInfo.textContent = 'Add your WalletConnect Project ID to enable QR connect.';
+      return;
+    }
+    const modal = new window.Web3Modal.Standalone({
+      projectId: WC_PROJECT_ID,
+      walletConnectVersion: 2,
+      // show common chains
+      chains: [1,56,137]
+    });
+    modal.openModal();
+    el.walletInfo.textContent = 'Open your wallet and scan the QR code.';
+  }catch(err){
+    console.error(err);
+    el.walletInfo.textContent = 'Connection failed.';
+  }
+}
+
+// =============================
+// Buy (simulated, with min check)
+// =============================
+function confirmBuy(){
+  const {usd, tokens} = calculateOut();
+  if(usd < MIN_USD){
+    alert(`Minimum purchase is $${MIN_USD}. Your amount is $${usd.toFixed(2)}.`);
+    return;
+  }
+  alert(`Simulated purchase:\nUSD: $${usd.toFixed(2)}\nTokens: ${Math.floor(tokens).toLocaleString()} SHic\nPrice: ${PRICE_STAGES[stageIndex].toFixed(5)} USDT`);
+}
+
+// =============================
+// Wire up events & start loops
+// =============================
+setPriceFromStage();
+refreshProgressUI();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+setInterval(simulateRaiseTick, 15000); // every 15s
+
+el.calcBtn.addEventListener('click', calculateOut);
+['input','change'].forEach(evt=>{
+  el.buyAmount.addEventListener(evt, calculateOut);
+  el.buyCurrency.addEventListener(evt, calculateOut);
+});
+el.confirmBuy.addEventListener('click', confirmBuy);
+el.walletBtn.addEventListener('click', connectWallet);
+</script></body>
+</html>
