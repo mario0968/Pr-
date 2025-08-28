@@ -1,84 +1,83 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Shibacoin Presale</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shiba Presale</title>
+<meta name="description" content="This is the Official presale of shibacoin the Next generation Meme token built on the BNB smart chain. Join early and be part of the future.">
 <style>
-  :root{--bg:#0a0a1f;--accent:#1E90FF;--muted:#8892a6;--panel:#0f1724;--accent2:#00BFFF}
-  body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:#fff}
-  .wrap{max-width:1000px;margin:20px auto;padding:18px}
-  header{text-align:center}
-  h1{color:var(--accent2);margin:6px 0}
-  .top-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;margin:14px 0}
-  .price-card{background:var(--panel);padding:12px 18px;border-radius:12px;min-width:220px;text-align:center}
-  .countdown-circle{width:140px;height:140px;border-radius:50%;border:4px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
-  .countdown-numbers{font-weight:700;font-size:18px}
-  .progress-wrap{background:var(--panel);padding:14px;border-radius:12px;margin:18px auto;max-width:760px}
-  .progress-bar{background:#061026;border-radius:12px;height:28px;overflow:hidden}
-  .progress-fill{height:100%;width:30%;background:linear-gradient(90deg,var(--accent),#6a00ff);display:flex;align-items:center;justify-content:center;font-weight:700;transition:width .6s}
-  .center{text-align:center}
-  .buy-panel{background:var(--panel);padding:16px;border-radius:12px;max-width:520px;margin:18px auto}
-  .buy-row{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
-  input,select,button{font-size:15px}
-  input[type=number]{padding:10px;border-radius:8px;border:1px solid #263044;background:transparent;color:#fff;width:160px;text-align:center}
-  select{padding:10px;border-radius:8px;border:1px solid #263044;background:transparent;color:#fff}
-  button.connect,button.buy{padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
-  button.connect{background:var(--accent);color:#001;font-weight:700}
-  button.buy{background:#111827;color:var(--accent);border:1px solid var(--accent)}
-  .supply{width:160px;height:160px;border-radius:50%;border:4px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:16px auto;font-weight:700}
-  .tokenomics{max-width:520px;margin:10px auto;background:transparent;padding:6px;color:var(--muted)}
-  .listing{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
-  .listing .item{background:#020617;padding:8px 12px;border-radius:8px;color:var(--accent2);font-weight:700}
-  .small{font-size:13px;color:var(--muted)}
-  a.telegram{color:var(--accent2);text-decoration:none;font-weight:700}
-  footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
-  @media(max-width:640px){.top-row{flex-direction:column}}
+body {
+  font-family: Arial, sans-serif;
+  background: #0f111a;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 20px;
+  color: #1E90FF;
+}
+.top-row {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin-top: 20px;
+}
+.price-card {
+  background: #1c1c36;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 120px;
+  color: #fff;
+}
+.small { font-size: 12px; color: #8892a6; }
+.center { text-align: center; }
+.progress-wrap { width: 90%; margin-top: 20px; }
+.progress-bar { background: #1c1c36; border-radius: 8px; overflow: hidden; height: 20px; margin-bottom: 6px; }
+.progress-fill { background: #1E90FF; height: 100%; width: 30%; text-align: center; line-height: 20px; font-weight: 800; color: #fff; }
+.connect, .buy { background: #1E90FF; border: none; padding: 8px 16px; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 800; }
+.buy-panel { background: #1c1c36; padding: 16px; border-radius: 10px; width: 90%; margin-top: 20px; }
+.buy-row { display: flex; gap: 10px; margin-bottom: 10px; }
+input, select { padding: 6px; border-radius: 6px; border: none; flex: 1; }
+.listing, .tokenomics { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.item, .token-block { background: #1c1c36; width: 80px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, box-shadow 0.3s; }
+.item:hover, .token-block:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(30, 144, 255, 0.6); }
+.total-supply-circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #1E90FF, #00BFFF); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; margin: auto; text-align: center; line-height: 1.2; color: #fff; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.countdown-circle > div { color: #fff; }
+.countdown-circle .small-text { visibility: hidden; }
+.token-info, .token-contract, .affiliate-info, .owner-wallet-info, .chain-id-info, .native-coin-info, .presale-contract-info, .buy-alert-info { margin-top:20px; text-align:center; background:#1c1c36; padding:12px; border-radius:8px; }
+.buy-alert-info { background:#1E90FF; color:#fff; font-weight:800; display:none; }
+footer { margin-top: 20px; font-size: 12px; color: #8892a6; text-align: center; padding: 12px 0; }
 </style>
-<!-- libs for WalletConnect v2 + Web3Modal standalone (UI only) -->
-<script src="https://unpkg.com/ethers@6.6.2/dist/ethers.umd.min.js"></script>
-<script src="https://unpkg.com/@walletconnect/ethereum-provider/dist/index.umd.js"></script>
-<script src="https://unpkg.com/@web3modal/standalone@2.4.3/dist/index.umd.js"></script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Shibacoin Presale</h1>
-      <div class="small">Price: <strong id="tokenPrice">0.00098</strong> USDT &nbsp; | &nbsp; Listing: <strong>1.50</strong> USDT</div>
-    </header><div class="top-row">
-  <div class="price-card center">
-    <div class="small">Progress</div>
-    <div style="font-weight:800;font-size:20px" id="raisedText">$600,000 / $2,600,000</div>
-    <div class="small" id="raisedPct">(30%)</div>
-  </div>
 
-  <div class="countdown-circle" aria-hidden>
-    <div style="font-size:12px;color:#9fb7df">Next reset in</div>
-    <div class="countdown-numbers" id="cdLarge">--:--:--:--</div>
-    <div class="small" style="margin-top:6px">(15‑day cycle)</div>
-  </div>
+<div class="header-title">Shiba Presale</div>
 
-  <div class="price-card center">
-    <div class="small">Total Supply</div>
-    <div style="font-size:18px;font-weight:800">2B</div>
-  </div>
+<div class="top-row">
+  <div class="price-card center">0.0009 USDT</div>
+  <div class="price-card center">1.50 USDT</div>
+  <div class="price-card center">$600,000 / $2,600,000</div>
 </div>
 
 <div class="progress-wrap">
   <div class="progress-bar" aria-hidden>
     <div class="progress-fill" id="progressFill">30%</div>
   </div>
-  <div class="center small" id="progressSub">$600,000 collected (30%)</div>
-
-  <!-- Connect Wallet should appear below the progress area -->
   <div style="text-align:center;margin-top:12px;">
     <button class="connect" id="connectWalletBtn">Connect Wallet</button>
     <div id="walletInfo" class="small" style="margin-top:8px"></div>
   </div>
 </div>
 
-<!-- Buy card -->
 <div class="buy-panel">
-  <div style="font-weight:800;font-size:18px;margin-bottom:8px">Buy Shibacoin</div>
   <div class="buy-row">
     <input id="buyAmount" type="number" placeholder="Amount" min="0" />
     <select id="buyCurrency">
@@ -88,26 +87,34 @@
     </select>
     <button class="buy" id="calcBtn">Calculate</button>
   </div>
-  <div style="margin-top:10px" id="calcResult">You will receive: <strong id="shicOut">0</strong> SHic</div>
   <div style="margin-top:12px">
-    <button class="buy" id="confirmBuy">Confirm Buy (simulate)</button>
+    <button class="buy" id="confirmBuy">Confirm Buy</button>
   </div>
-  <div class="small" style="margin-top:8px">Minimum purchase: <strong id="minBuy">50</strong> USD</div>
-  <div class="small" id="calcNote" style="margin-top:4px">* Rates are simulated for demo. No on‑chain tx here.</div>
 </div>
 
-<div class="supply center">2B</div>
+<div class="buy-alert-info" id="buyAlert">Buy and receive your tokens immediately</div>
 
-<div class="tokenomics">
-  <div style="font-weight:800;margin-bottom:6px">Tokenomics</div>
-  <div class="small">Presale: 1B SHic</div>
-  <div class="small">Liquidity: 400M</div>
-  <div class="small">Marketing: 300M</div>
-  <div class="small">Reserve: 200M</div>
-  <div class="small">Team: 100M</div>
+<div style="text-align:center;margin-top:20px;">
+  <div class="total-supply-circle">
+    Total Supply<br>2B
+  </div>
 </div>
 
-<div class="listing">
+<div class="countdown-circle" style="margin-top:20px;">
+  <div class="small-text">Next reset in</div>
+  <div class="countdown-numbers" id="cdLarge">--:--:--:--</div>
+  <div class="small-text">(15‑day cycle)</div>
+</div>
+
+<div class="tokenomics" style="margin-top:20px;">
+  <div class="small token-block">Presale: 1B SHic</div>
+  <div class="small token-block">Liquidity: 400M</div>
+  <div class="small token-block">Marketing: 300M</div>
+  <div class="small token-block">Reserve: 200M</div>
+  <div class="small token-block">Team: 100M</div>
+</div>
+
+<div class="listing" style="margin-top:20px;">
   <div class="item">Binance</div>
   <div class="item">MEXC</div>
   <div class="item">LBank</div>
@@ -116,180 +123,72 @@
   <div class="item">CEX</div>
 </div>
 
+<div class="token-info">
+  <div class="small"><strong>Name:</strong> Shibacoin</div>
+  <div class="small"><strong>Symbol:</strong> SHic</div>
+  <div class="small"><strong>Decimals:</strong> 18</div>
+</div>
+
+<div class="token-contract">
+  <div class="small"><strong>Contract:</strong> 0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be</div>
+</div>
+
+<div class="affiliate-info">
+  <div class="small"><strong>Affiliate:</strong> 7%</div>
+</div>
+
+<div class="owner-wallet-info">
+  <div class="small"><strong>Owner Wallet:</strong> 0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23</div>
+</div>
+
+<div class="chain-id-info">
+  <div class="small"><strong>Chain ID:</strong> 56</div>
+</div>
+
+<div class="native-coin-info">
+  <div class="small"><strong>Native Coin:</strong> BNB</div>
+  <div class="small"><strong>Minimum Buy (USD):</strong> 50</div>
+  <div class="small"><strong>Maximum Buy (USD):</strong> 20,000,000</div>
+</div>
+
+<div class="presale-contract-info">
+  <div class="small"><strong>Presale Contract:</strong> 0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656</div>
+</div>
+
 <div style="text-align:center;margin-top:8px">
   <a class="telegram" href="https://t.me/shibacoin5" target="_blank">Join Telegram</a>
 </div>
 
 <footer>
-  <div>© 2025 Shibacoin – Demo presale interface (static, no backend)</div>
+  <div>© 2025 Shibacoin – Presale interface</div>
 </footer>
 
-  </div><script>
-// =============================
-// CONFIG (edit to your needs)
-// =============================
-const GOAL_USD = 2_600_000;
-let raisedUsd = 600_000;       // starting amount
-const MIN_USD = 50;            // minimum buy
-// Token price stages – increments of 0.00008 per your spec
-const PRICE_STAGES = [0.00098, 0.00106, 0.00114, 0.00122, 0.00130];
-let stageIndex = 0;            // start at first stage
-// Simulated FX rates (no API):
-const FX = { USDT: 1, BNB: 500, ETH: 3000 };
-// WalletConnect / Web3Modal Project ID – replace with your real one
-const WC_PROJECT_ID = 'REPLACE_WITH_YOUR_WALLETCONNECT_PROJECT_ID';
+<script>
+const countdownEl = document.getElementById('cdLarge');
+let startDate = new Date();
+let cycleDays = 15;
 
-// =============================
-// DOM refs
-// =============================
-const el = {
-  tokenPrice: document.getElementById('tokenPrice'),
-  raisedText: document.getElementById('raisedText'),
-  raisedPct: document.getElementById('raisedPct'),
-  progressFill: document.getElementById('progressFill'),
-  progressSub: document.getElementById('progressSub'),
-  cdLarge: document.getElementById('cdLarge'),
-  buyAmount: document.getElementById('buyAmount'),
-  buyCurrency: document.getElementById('buyCurrency'),
-  shicOut: document.getElementById('shicOut'),
-  calcBtn: document.getElementById('calcBtn'),
-  confirmBuy: document.getElementById('confirmBuy'),
-  walletBtn: document.getElementById('connectWalletBtn'),
-  walletInfo: document.getElementById('walletInfo'),
-};
+function updateCountdown() {
+  let now = new Date();
+  let elapsed = now - startDate;
+  let cycleMs = cycleDays * 24 * 60 * 60 * 1000;
+  let remaining = cycleMs - (elapsed % cycleMs);
 
-// =============================
-// Helpers
-// =============================
-const fmtMoney = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
-const clamp = (n,min,max)=>Math.min(Math.max(n,min),max);
-function shortAddr(addr){return addr ? addr.slice(0,6)+'…'+addr.slice(-4) : ''}
-function setPriceFromStage(){ el.tokenPrice.textContent = PRICE_STAGES[stageIndex].toFixed(5); }
+  let days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
-// =============================
-// Progress + price stepper
-// =============================
-function refreshProgressUI(){
-  const pct = clamp((raisedUsd/GOAL_USD)*100, 0, 100);
-  el.progressFill.style.width = pct.toFixed(2)+'%';
-  el.progressFill.textContent = Math.floor(pct)+'%';
-  el.progressSub.textContent = `${fmtMoney(raisedUsd)} collected (${Math.floor(pct)}%)`;
-  el.raisedText.textContent = `${fmtMoney(raisedUsd)} / ${fmtMoney(GOAL_USD)}`;
-  el.raisedPct.textContent = `(${Math.floor(pct)}%)`;
+  countdownEl.textContent = 
+    String(days).padStart(2,'0') + ':' +
+    String(hours).padStart(2,'0') + ':' +
+    String(minutes).padStart(2,'0') + ':' +
+    String(seconds).padStart(2,'0');
 }
 
-function simulateRaiseTick(){
-  // every 15s, add between 1k and 5k for demo
-  const add = Math.floor(1000 + Math.random()*4000);
-  raisedUsd = Math.min(raisedUsd + add, GOAL_USD);
-  refreshProgressUI();
-  if(raisedUsd >= GOAL_USD){
-    // move to next price stage and reset progress
-    if(stageIndex < PRICE_STAGES.length - 1){
-      stageIndex++;
-      setPriceFromStage();
-    }
-    raisedUsd = 0; // reset for next round
-    refreshProgressUI();
-  }
-}
-
-// =============================
-// 15‑day rolling countdown
-// =============================
-function nextCycleEnd(now=new Date()){
-  const MS_IN_DAY = 86400000;
-  const cycle = 15*MS_IN_DAY;
-  const epoch = new Date('2025-08-01T00:00:00Z').getTime(); // anchor
-  const t = now.getTime();
-  const k = Math.floor((t - epoch)/cycle) + 1;
-  return new Date(epoch + k*cycle);
-}
-function updateCountdown(){
-  const now = new Date();
-  const end = nextCycleEnd(now);
-  let diff = Math.max(0, end - now);
-  const d = Math.floor(diff/86400000); diff -= d*86400000;
-  const h = Math.floor(diff/3600000);  diff -= h*3600000;
-  const m = Math.floor(diff/60000);    diff -= m*60000;
-  const s = Math.floor(diff/1000);
-  el.cdLarge.textContent = `${String(d).padStart(2,'0')}:${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-}
-
-// =============================
-// Calculator (simulated)
-// =============================
-function calculateOut(){
-  const amount = parseFloat(el.buyAmount.value || '0');
-  const cur = el.buyCurrency.value;
-  const usd = amount * (FX[cur] || 1);
-  const price = PRICE_STAGES[stageIndex];
-  const tokens = usd / price;
-  el.shicOut.textContent = isFinite(tokens) ? Math.floor(tokens).toLocaleString() : '0';
-  return {usd, tokens};
-}
-
-// =============================
-// Wallet connect (injected + WalletConnect QR via Web3Modal standalone)
-// =============================
-let provider, signer;
-async function connectWallet(){
-  try{
-    if(window.ethereum){
-      provider = new ethers.BrowserProvider(window.ethereum);
-      await provider.send('eth_requestAccounts',[]);
-      signer = await provider.getSigner();
-      const addr = await signer.getAddress();
-      const net = await provider.getNetwork();
-      el.walletInfo.textContent = `Connected: ${shortAddr(addr)} • Chain ID ${Number(net.chainId)}`;
-      return;
-    }
-    // Fallback: WalletConnect QR using Web3Modal standalone UI
-    if(!WC_PROJECT_ID || WC_PROJECT_ID.startsWith('REPLACE_')){
-      el.walletInfo.textContent = 'Add your WalletConnect Project ID to enable QR connect.';
-      return;
-    }
-    const modal = new window.Web3Modal.Standalone({
-      projectId: WC_PROJECT_ID,
-      walletConnectVersion: 2,
-      // show common chains
-      chains: [1,56,137]
-    });
-    modal.openModal();
-    el.walletInfo.textContent = 'Open your wallet and scan the QR code.';
-  }catch(err){
-    console.error(err);
-    el.walletInfo.textContent = 'Connection failed.';
-  }
-}
-
-// =============================
-// Buy (simulated, with min check)
-// =============================
-function confirmBuy(){
-  const {usd, tokens} = calculateOut();
-  if(usd < MIN_USD){
-    alert(`Minimum purchase is $${MIN_USD}. Your amount is $${usd.toFixed(2)}.`);
-    return;
-  }
-  alert(`Simulated purchase:\nUSD: $${usd.toFixed(2)}\nTokens: ${Math.floor(tokens).toLocaleString()} SHic\nPrice: ${PRICE_STAGES[stageIndex].toFixed(5)} USDT`);
-}
-
-// =============================
-// Wire up events & start loops
-// =============================
-setPriceFromStage();
-refreshProgressUI();
-updateCountdown();
 setInterval(updateCountdown, 1000);
-setInterval(simulateRaiseTick, 15000); // every 15s
+updateCountdown();
+</script>
 
-el.calcBtn.addEventListener('click', calculateOut);
-['input','change'].forEach(evt=>{
-  el.buyAmount.addEventListener(evt, calculateOut);
-  el.buyCurrency.addEventListener(evt, calculateOut);
-});
-el.confirmBuy.addEventListener('click', confirmBuy);
-el.walletBtn.addEventListener('click', connectWallet);
-</script></body>
+</body>
 </html>
