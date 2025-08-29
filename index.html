@@ -1,204 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shibacoin Presale</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
-body{min-height:100vh; display:flex; align-items:center; justify-content:center;
-background: linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d); animation: gradientBG 15s ease infinite; color:#fff; overflow:hidden;}
-@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%;}}
-
-.container{max-width:500px; width:90%; background:rgba(0,0,0,0.8); border-radius:20px;
-padding:40px; text-align:center; backdrop-filter: blur(10px); box-shadow:0 10px 30px rgba(0,0,0,0.5); position: relative;}
-h1{font-size:2.2rem;margin-bottom:25px;color:#fdbb2d;text-shadow:2px 2px 6px rgba(0,0,0,0.5);}
-input{margin:10px 0;padding:12px;width:80%;border-radius:12px;border:none;font-size:1rem;outline:none;transition:all 0.2s ease;}
-input:focus{transform: scale(1.02);box-shadow:0 0 15px rgba(255,255,255,0.3);}
-.status{margin-top:20px;padding:15px;border-radius:12px;font-size:1rem;background:rgba(255,255,255,0.1);transition:all 0.3s ease; word-break:break-word;}
-.loading{color:#17a2b8;}
-.success{color:#28a745;font-weight:bold;}
-.btn{background:linear-gradient(to right,#ff8a00,#da1b60);color:white;border:none;padding:15px 30px;font-size:1.2rem;border-radius:50px;cursor:pointer;margin:15px 0;width:100%;max-width:300px;transition: all 0.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.3);animation: bounce 2s infinite;}
-.btn:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.4);}
-@keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-8px);}60%{transform:translateY(-4px);}}
-.buy-btn{background:linear-gradient(to right,#00b09b,#96c93d);}
-a{color:#ffd700;text-decoration:underline;}
-
-/* Modal */
-.modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;animation:fadeIn 0.3s ease;}
-.modal-content{background:#0a0a1f;padding:30px;border-radius:15px;text-align:center;max-width:400px;width:90%;position:relative;animation:scaleUp 0.3s ease;}
-@keyframes scaleUp{from{transform:scale(0.7);opacity:0;}to{transform:scale(1);opacity:1;}}
-.closeBtn{background:#da1b60;padding:10px 20px;border:none;border-radius:50px;color:white;cursor:pointer;margin-top:15px;transition:all 0.3s ease;}
-.closeBtn:hover{transform:scale(1.05);}
-
-/* Progress bar */
-.progress-container{width:100%;background:rgba(255,255,255,0.2);border-radius:12px;margin:20px 0;height:20px;overflow:hidden;}
-.progress-bar{width:0%;height:100%;background:linear-gradient(to right,#00b09b,#96c93d);transition:width 0.5s ease;}
-</style>
+<meta charset="UTF-8" />
+<title>Connect Trust Wallet</title>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
 </head>
 <body>
+  <button id="connectBtn">Connect Trust Wallet</button>
+  <p id="status"></p>
 
-<div class="container">
-  <h1>Shibacoin Presale</h1>
-  <button class="btn" id="connectBtn">Connect Wallet</button>
-  <div id="statusMessage" class="status loading">Waiting for action...</div>
+<script>
+  const connectBtn = document.getElementById("connectBtn");
+  const status = document.getElementById("status");
 
-  <div id="purchaseSection" style="display:none;">
-    <input type="number" id="bnbAmount" placeholder="Enter BNB amount" min="0.001" step="0.001">
-    <p id="tokenEstimate">Tokens to receive: 0 SHIB</p>
-    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-    <button class="btn buy-btn" id="buyBtn">Buy Shibacoin</button>
-  </div>
-</div>
+  connectBtn.onclick = async () => {
+    if (typeof window.ethereum !== "undefined" || window.BinanceChain) {
+      const provider = new WalletConnectProvider.default({
+        rpc: {
+          56: "https://bsc-dataseed.binance.org/", // BSC mainnet
+        },
+        chainId: 56,
+        qrcode: true,
+      });
 
-<!-- Modal -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <h2 id="modalTitle">Transaction Status</h2>
-    <p id="modalMessage"></p>
-    <button class="closeBtn" id="closeModal">Close</button>
-  </div>
-</div>
+      try {
+        await provider.enable();
+        const web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        status.innerText = "Wallet connected: " + accounts[0];
 
-<!-- Confetti Canvas -->
-<canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1000;"></canvas>
-
-<script type="module">
-import { EthereumProvider } from "https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider/dist/index.min.js";
-
-const projectId = "a207a3f1767f2b982d28ccfffcae3c4f";
-const allowedAddresses = [
-  "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be",
-  "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
-  "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23"
-];
-
-const provider = await EthereumProvider.init({ projectId, chains:[56], showQrModal:true });
-
-const status = document.getElementById("statusMessage");
-const purchaseSection = document.getElementById("purchaseSection");
-const buyBtn = document.getElementById("buyBtn");
-const bnbAmountInput = document.getElementById("bnbAmount");
-const tokenEstimate = document.getElementById("tokenEstimate");
-const progressBar = document.getElementById("progressBar");
-
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalMessage = document.getElementById("modalMessage");
-const closeModal = document.getElementById("closeModal");
-
-const confettiCanvas = document.getElementById("confettiCanvas");
-const confettiCtx = confettiCanvas.getContext("2d");
-confettiCanvas.width = window.innerWidth;
-confettiCanvas.height = window.innerHeight;
-
-let confettiParticles = [];
-function createConfetti(){
-  confettiParticles=[];
-  for(let i=0;i<150;i++){ confettiParticles.push({
-    x: Math.random()*confettiCanvas.width,
-    y: Math.random()*confettiCanvas.height - confettiCanvas.height,
-    r: Math.random()*6+2,
-    d: Math.random()*20+10,
-    color: `hsl(${Math.random()*360},100%,50%)`,
-    tilt: Math.random()*10-10,
-    tiltAngleIncremental: Math.random()*0.07+0.05,
-    tiltAngle:0
-  });}
-}
-function drawConfetti(){
-  confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
-  confettiParticles.forEach(p=>{
-    confettiCtx.beginPath();
-    confettiCtx.lineWidth=p.r/2;
-    confettiCtx.strokeStyle=p.color;
-    confettiCtx.moveTo(p.x+p.tilt+p.r/4,p.y);
-    confettiCtx.lineTo(p.x+p.tilt,p.y+p.tilt+p.r/4);
-    confettiCtx.stroke();
-  });
-  updateConfetti();
-}
-function updateConfetti(){
-  confettiParticles.forEach(p=>{
-    p.tiltAngle += p.tiltAngleIncremental;
-    p.y += (Math.cos(p.d)+3+p.r/2)/2;
-    p.tilt = Math.sin(p.tiltAngle)*15;
-    if(p.y>confettiCanvas.height){p.y=-10;p.x=Math.random()*confettiCanvas.width;}
-  });
-  requestAnimationFrame(drawConfetti);
-}
-
-let walletAddress;
-const SHIB_RATE = 100000;
-const BSC_SCAN_PREFIX = "https://bscscan.com/tx/";
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-document.getElementById("connectBtn").onclick=async()=>{
-  status.textContent="Connecting to wallet...";
-  status.className="status loading";
-  try{
-    await provider.connect();
-    const accounts = await provider.request({ method:"eth_accounts" });
-    walletAddress=accounts[0];
-    if(!allowedAddresses.map(a=>a.toLowerCase()).includes(walletAddress.toLowerCase())){
-      status.textContent="This wallet is not authorized.";
-      status.className="status";
-      purchaseSection.style.display="none";
-      return;
+        provider.on("disconnect", (code, reason) => {
+          status.innerText = "Disconnected from wallet";
+        });
+      } catch (error) {
+        status.innerText = "Connection failed: " + error.message;
+      }
+    } else {
+      status.innerText = "No wallet provider detected";
     }
-    const balanceWei = await provider.request({ method:"eth_getBalance", params:[walletAddress,"latest"] });
-    const balanceBNB = parseInt(balanceWei,16)/1e18;
-    status.innerHTML=`Wallet connected: ${walletAddress}<br>BNB Balance: ${balanceBNB.toFixed(5)}`;
-    status.className="status success";
-    purchaseSection.style.display="block";
-  }catch(err){status.textContent="Error: "+err.message;status.className="status";}
-};
-
-bnbAmountInput.addEventListener("input",()=>{
-  const bnb=parseFloat(bnbAmountInput.value)||0;
-  const tokens=bnb*SHIB_RATE;
-  tokenEstimate.textContent=`Tokens to receive: ${tokens.toLocaleString()} SHIB`;
-});
-
-buyBtn.onclick=async()=>{
-  const bnb=parseFloat(bnbAmountInput.value);
-  if(!bnb||bnb<=0)return alert("Please enter a valid BNB amount.");
-  status.textContent="Processing transaction...";
-  status.className="status loading";
-  progressBar.style.width="0%";
-  progressBar.style.transition="none";
-  setTimeout(()=>{progressBar.style.transition="width 2s ease"; progressBar.style.width="70%";},100);
-
-  try{
-    const contractAddress="0xYourShibacoinContractAddress";
-    const tx={to:contractAddress,value:"0x"+(bnb*1e18).toString(16)};
-    const txHash = await provider.request({method:"eth_sendTransaction",params:[tx]});
-    progressBar.style.width="100%";
-    setTimeout(()=>{
-      modalTitle.textContent="Transaction Successful!";
-      modalMessage.innerHTML=`Transaction sent!<br><a href="${BSC_SCAN_PREFIX}${txHash}" target="_blank">View on BSCScan</a>`;
-      modal.style.display="flex";
-      status.textContent="Transaction sent successfully!";
-      status.className="status success";
-
-      createConfetti();
-      drawConfetti();
-      setTimeout(()=>{confettiParticles=[]; confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);},5000);
-
-      progressBar.style.width="0%";
-    },500);
-  }catch(err){
-    modalTitle.textContent="Transaction Failed!";
-    modalMessage.textContent=err.message;
-    modal.style.display="flex";
-    status.textContent="Transaction error: "+err.message;
-    status.className="status";
-    progressBar.style.width="0%";
-  }
-};
-
-closeModal.onclick=()=>{modal.style.display="none";}
-window.onclick=(e)=>{if(e.target==modal)modal.style.display="none";}
+  };
 </script>
 </body>
 </html>
