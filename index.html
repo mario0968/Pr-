@@ -1,45 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Connect Trust Wallet</title>
-<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShibaCoin Presale</title>
+  <script src="https://unpkg.com/@walletconnect/client@2/dist/index.umd.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a0a1f;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 { color: #1E90FF; }
+    button {
+      background: #1E90FF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    input {
+      padding: 10px;
+      width: 200px;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .box {
+      background: #11182e;
+      padding: 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    p span { color: #1E90FF; font-weight: bold; }
+    .receivers { text-align: left; margin: 15px auto; display: inline-block; }
+  </style>
 </head>
 <body>
+  <h1>ShibaCoin Presale</h1>
   <button id="connectBtn">Connect Trust Wallet</button>
-  <p id="status"></p>
+  <p id="walletAddress"></p>
 
-<script>
-  const connectBtn = document.getElementById("connectBtn");
-  const status = document.getElementById("status");
+  <div class="box">
+    <h2>Buy ShibaCoin</h2>
+    <p>Price: <b>1 SHIBA = 0.0009 USDT</b></p>
+    <input type="number" id="usdtAmount" placeholder="Enter USDT, BNB or ETH amount">
+    <p>You Receive: <span id="shibaAmount">0</span> SHIBA</p>
+    <p>Send your payment to these addresses (each gets 33.33%):</p>
+    <div class="receivers" id="receiverList"></div>
+    <button id="buyBtn">Buy Now</button>
+  </div>
 
-  connectBtn.onclick = async () => {
-    if (typeof window.ethereum !== "undefined" || window.BinanceChain) {
-      const provider = new WalletConnectProvider.default({
-        rpc: {
-          56: "https://bsc-dataseed.binance.org/", // BSC mainnet
-        },
-        chainId: 56,
-        qrcode: true,
-      });
+  <script>
+    const connectBtn = document.getElementById("connectBtn");
+    const walletAddress = document.getElementById("walletAddress");
+    const usdtInput = document.getElementById("usdtAmount");
+    const shibaOutput = document.getElementById("shibaAmount");
+    const receiverList = document.getElementById("receiverList");
+    const buyBtn = document.getElementById("buyBtn");
 
-      try {
-        await provider.enable();
-        const web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        status.innerText = "Wallet connected: " + accounts[0];
+    const projectId = "a207a3f1767f2b982d28ccfffcae3c4f";
+    const RECEIVERS = [
+      "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
+      "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
+      "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
+    ];
+    const PRICE_USDT = 0.0009; // 1 SHIBA = 0.0009 USDT
+    let provider;
 
-        provider.on("disconnect", (code, reason) => {
-          status.innerText = "Disconnected from wallet";
-        });
-      } catch (error) {
-        status.innerText = "Connection failed: " + error.message;
-      }
-    } else {
-      status.innerText = "No wallet provider detected";
+    // Montre lis adrès yo
+    function updateReceiverList(amount) {
+      const share = (amount / 3).toFixed(6);
+      receiverList.innerHTML = RECEIVERS.map(addr => `${addr} → ${share} USDT/BNB/ETH`).join("<br>");
     }
-  };
-</script>
+
+    // Kalkile ShibaCoin
+    usdtInput.addEventListener("input", () => {
+      const amount = parseFloat(usdtInput.value) || 0;
+      const tokens = Math.floor(amount / PRICE_USDT);
+      shibaOutput.innerText = tokens.toLocaleString();
+      updateReceiverList(amount);
+    });
+
+    // Konekte ak Trust Wallet
+    connectBtn.addEventListener("click", async () => {
+      try {
+        provider = new window.WalletConnectProvider.default({
+          projectId: projectId,
+          chains: [56],
+          metadata: {
+            name: "Presale",
+            description: "ShibaCoin Presale DApp",
+            url: window.location.href,
+            icons: ["https://trustwallet.com/assets/images/favicon.png"]
+          }
+        });
+
+        await provider.enable();
+
+        const uri = provider.connector.uri;
+        window.location.href = "trustwallet://wc?uri=" + encodeURIComponent(uri);
+
+        const accounts = provider.accounts;
+        if (accounts && accounts.length > 0) {
+          walletAddress.innerText = "Wallet: " + accounts[0];
+        }
+      } catch (error) {
+        console.error("Connection failed:", error);
+      }
+    });
+
+    // Bouton Buy Now
+    buyBtn.addEventListener("click", () => {
+      const amount = parseFloat(usdtInput.value) || 0;
+      if (amount <= 0) {
+        alert("Enter a valid amount to buy SHIBA");
+        return;
+      }
+      const share = (amount / 3).toFixed(6);
+      alert(`Send ${share} USDT / BNB / ETH to each of these addresses using Trust Wallet:\n\n${RECEIVERS.join("\n")}`);
+    });
+  </script>
 </body>
 </html>
