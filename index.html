@@ -1,451 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shiba Presale</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WalletConnect v2 Demo</title>
 <style>
-body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background: #0f111a; 
-    color: #fff; 
-    margin: 0; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    padding: 20px;
-}
-.header-title { 
-    font-size: 32px; 
-    font-weight: 800; 
-    margin-top: 20px; 
-    color: #1E90FF; 
+  body {
+    font-family: Arial, sans-serif;
+    background: #0a0a1f;
+    color: #f1f1f1;
     text-align: center;
-    text-shadow: 0 2px 10px rgba(30, 144, 255, 0.5);
-}
-.price-row { 
-    display: flex; 
-    gap: 20px; 
-    margin-top: 20px; 
-    flex-wrap: wrap; 
-    justify-content: center;
-}
-.price-card { 
-    padding: 20px 30px; 
-    border-radius: 16px; 
-    text-align: center; 
-    font-weight: 800; 
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    min-width: 180px;
-}
-.price-card:hover { 
-    transform: translateY(-6px); 
-    box-shadow: 0 8px 25px rgba(30, 144, 255, 0.5);
-}
-.countdown-circle { 
-    margin: 30px auto; 
-    width: 220px; 
-    height: 220px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    position: relative; 
-    font-weight: 800;
-    background: rgba(30, 144, 255, 0.1);
-    border: 3px solid #1E90FF;
-    box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
-}
-.total-supply-circle { 
-    width: 160px; 
-    height: 160px; 
-    border-radius: 50%; 
-    background: linear-gradient(135deg, #1E90FF, #00BFFF); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 20px; 
-    font-weight: 800; 
-    margin-top: 30px; 
-    text-align: center; 
-    line-height: 1.3; 
-    color: #fff;
-    flex-direction: column;
-    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4);
-}
-.progress-wrap { 
-    width: 90%; 
-    max-width: 500px; 
-    margin: 20px auto;
-}
-.progress-bar { 
-    background: #1c1c36; 
-    border-radius: 10px; 
-    height: 25px; 
-    overflow: hidden;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-.progress-fill { 
-    background: linear-gradient(90deg, #1E90FF, #00BFFF);
-    height: 100%; 
-    text-align: center; 
-    line-height: 25px; 
-    color: #fff; 
-    width: 30%; 
-    transition: width 1s ease-out;
-    font-weight: bold;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-.buy-panel { 
-    background: #1c1c36; 
-    padding: 25px; 
-    border-radius: 15px; 
-    width: 90%; 
-    max-width: 450px; 
-    margin-top: 30px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-}
-.buy-row { 
-    display: flex; 
-    gap: 12px;
-}
-input, select { 
-    padding: 12px; 
-    border-radius: 8px; 
-    border: none; 
-    flex: 1;
-    background: #2a2a4a;
-    color: white;
-    font-size: 16px;
-}
-input:focus, select:focus {
-    outline: 2px solid #1E90FF;
-}
-.connect { 
-    background: linear-gradient(to right, #1E90FF, #00BFFF);
-    border: none; 
-    padding: 14px; 
-    color: #fff; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-weight: 800;
-    font-size: 16px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 10px rgba(30, 144, 255, 0.4);
-}
-.connect:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(30, 144, 255, 0.5);
-}
-.buy-alert { 
-    display: none; 
-    background: rgba(30, 144, 255, 0.2); 
-    color: #fff; 
-    text-align: center; 
-    font-weight: 800; 
-    padding: 12px; 
-    border-radius: 8px;
-    border: 1px solid #1E90FF;
-}
-.tokenomics, .listing { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 15px; 
-    margin-top: 30px;
-}
-.token-block, .item { 
-    background: linear-gradient(135deg, #1c1c36, #2a2a4a);
-    width: 120px; 
-    height: 50px; 
-    border-radius: 8px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
+    padding: 50px;
+  }
+  button {
+    padding: 10px 16px;
+    margin: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: 600;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s;
-}
-.token-block:hover, .item:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 6px 15px rgba(30, 144, 255, 0.6);
-}
-footer { 
-    margin-top: 30px; 
-    font-size: 14px; 
-    color: #8892a6; 
-    text-align: center; 
-    padding: 15px 0;
-}
-a.telegram { 
+  }
+  #connectWallet {
+    background: #1e90ff;
+    color: #fff;
+  }
+  .link-btn {
+    background: #32cd32;
+    color: #fff;
+    text-decoration: none;
     display: inline-block;
-    background: #1E90FF;
-    color: white;
-    text-decoration: none; 
-    font-weight: 800; 
-    padding: 12px 25px;
-    border-radius: 8px;
-    margin-top: 15px;
-    transition: all 0.3s;
-}
-a.telegram:hover {
-    background: #00BFFF;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4);
-}
-.small { 
-    font-size: 14px; 
-    color: #1E90FF; 
-    margin-top: 10px; 
-    text-align: center;
-    word-break: break-all;
-}
-.status {
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 14px;
-    display: none;
-}
-.status.success {
-    background: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-    border: 1px solid #2ecc71;
-    display: block;
-}
-.status.error {
-    background: rgba(231, 76, 60, 0.2);
-    color: #e74c3c;
-    border: 1px solid #e74c3c;
-    display: block;
-}
+  }
 </style>
 </head>
 <body>
+  <h2>Connect Wallet with WalletConnect v2</h2>
+  <button id="connectWallet">Connect Wallet</button>
+  <p id="status">Wallet not connected</p>
 
-<div class="header-title">Shiba Presale</div>
-
-<div class="price-row">
-  <div class="price-card" style="background: linear-gradient(135deg,#1E90FF,#00BFFF); font-size:20px;">
-    Presale Price<br><span style="font-size:26px;">0.0009 USDT</span>
+  <!-- Bouton pou lyen yo -->
+  <div>
+    <a class="link-btn" href="https://shibacoin5.netlify.app" target="_blank">Open Netlify</a>
+    <a class="link-btn" href="https://pr-psi-five.vercel.app" target="_blank">Open Vercel</a>
+    <a class="link-btn" href="https://github.com/" target="_blank">Open GitHub</a>
   </div>
-  <div class="price-card" style="background: linear-gradient(135deg,#FF7F50,#FF6347); font-size:20px;">
-    Listing Price<br><span style="font-size:26px;">1.50 USDT</span>
-  </div>
-</div>
 
-<div class="countdown-circle" id="cdLarge">
-  <div id="cdText" style="position:absolute; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:18px; font-weight:800; flex-direction:column;"></div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
+  <script>
+    const connectBtn = document.getElementById('connectWallet');
+    const status = document.getElementById('status');
 
-<div class="progress-wrap">
-  <div class="progress-bar">
-    <div class="progress-fill" id="progressFill">$780,000 / $2,600,000</div>
-  </div>
-</div>
+    let provider;
+    let web3;
 
-<div class="buy-panel">
-  <div class="buy-row">
-    <input id="buyAmount" type="number" placeholder="Amount" min="0"/>
-    <select id="buyCurrency">
-      <option value="USDT">USDT</option>
-      <option value="BNB">BNB</option>
-      <option value="ETH">ETH</option>
-    </select>
-  </div>
-  <button class="connect" id="connectWalletBtn">Connect Wallet</button>
-  <div id="walletInfo" class="small"></div>
-  <div id="connectionStatus" class="status"></div>
-  <div class="buy-alert" id="buyAlert"></div>
-</div>
+    connectBtn.onclick = async () => {
+      if (!provider) {
+        provider = new WalletConnectProvider.default({
+          projectId: "a207a3f1767f2b982d28ccfffcae3c4f", // ID ou a
+          chains: [56], // BNB Smart Chain
+          showQrModal: true,
+        });
 
-<div class="total-supply-circle">
-  <div>Total Supply</div>
-  <div style="font-size:24px; margin-top:5px;">2B</div>
-</div>
-
-<div class="tokenomics">
-  <div class="token-block">Presale: 1B</div>
-  <div class="token-block">Liquidity: 400M</div>
-  <div class="token-block">Marketing: 300M</div>
-  <div class="token-block">Reserve: 200M</div>
-  <div class="token-block">Team: 100M</div>
-</div>
-
-<div class="listing">
-  <div class="item">Binance</div>
-  <div class="item">MEXC</div>
-  <div class="item">LBank</div>
-  <div class="item">Gate.io</div>
-</div>
-
-<div style="margin-top:30px; text-align:center;">
-  <a class="telegram" href="https://t.me/shibacoin5" target="_blank">Join Telegram</a>
-</div>
-
-<footer>© 2025 Shibacoin – Presale</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/web3@1.8.3/dist/web3.min.js"></script>
-<script>
-// === Constants ===
-const priceUSDT = 0.0009;
-const priceBNB = 0.0009;
-const priceETH = 0.0009;
-const totalGoal = 2600000;
-let currentAmount = 780000;
-
-let web3;
-let userAccount = null;
-
-const connectWalletBtn = document.getElementById('connectWalletBtn');
-const walletInfo = document.getElementById('walletInfo');
-const buyAmount = document.getElementById('buyAmount');
-const buyCurrency = document.getElementById('buyCurrency');
-const buyAlert = document.getElementById('buyAlert');
-const progressFill = document.getElementById('progressFill');
-const cdText = document.getElementById('cdText');
-const connectionStatus = document.getElementById('connectionStatus');
-
-// === Detect if MetaMask is installed ===
-function isMetaMaskInstalled() {
-    return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
-}
-
-// === Detect if Trust Wallet is installed ===
-function isTrustWalletInstalled() {
-    return typeof window.ethereum !== 'undefined' && window.ethereum.isTrust;
-}
-
-// === Update connection status ===
-function updateStatus(message, isSuccess) {
-    connectionStatus.textContent = message;
-    connectionStatus.className = isSuccess ? 'status success' : 'status error';
-}
-
-// === Connect Wallet Function ===
-async function connectWallet() {
-    if (typeof window.ethereum !== 'undefined') {
         try {
-            // Request account access
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            userAccount = accounts[0];
-            
-            // Create Web3 instance
-            web3 = new Web3(window.ethereum);
-            
-            // Update UI
-            walletInfo.textContent = `Connected: ${userAccount.substring(0, 6)}...${userAccount.substring(userAccount.length - 4)}`;
-            updateStatus('Wallet connected successfully!', true);
-            
-            // Set up event listeners for account changes
-            window.ethereum.on('accountsChanged', (accounts) => {
-                if (accounts.length === 0) {
-                    updateStatus('Wallet disconnected.', false);
-                    walletInfo.textContent = '';
-                } else {
-                    userAccount = accounts[0];
-                    walletInfo.textContent = `Connected: ${userAccount.substring(0, 6)}...${userAccount.substring(userAccount.length - 4)}`;
-                    updateStatus('Account changed successfully!', true);
-                }
-            });
-            
-            // Set up event listeners for chain changes
-            window.ethereum.on('chainChanged', (chainId) => {
-                window.location.reload();
-            });
-            
-        } catch (error) {
-            console.error("Connection error:", error);
-            updateStatus('Connection failed: ' + error.message, false);
+          await provider.enable();
+          web3 = new Web3(provider);
+          const accounts = await web3.eth.getAccounts();
+          status.innerText = `Wallet connected: ${accounts[0]}`;
+
+          provider.on("disconnect", (code, reason) => {
+            status.innerText = "Wallet disconnected";
+            provider = null;
+          });
+        } catch (e) {
+          status.innerText = "Connection rejected or failed";
+          provider = null;
         }
-    } else {
-        updateStatus('Please install MetaMask or Trust Wallet!', false);
-    }
-}
-
-// === Token Calculation ===
-function calculateTokens() {
-    const amount = parseFloat(buyAmount.value);
-    if (!amount || amount <= 0) { 
-        buyAlert.style.display = 'none'; 
-        return; 
-    }
-    
-    let price = priceUSDT;
-    if (buyCurrency.value === 'BNB') price = priceBNB;
-    if (buyCurrency.value === 'ETH') price = priceETH;
-    
-    const tokens = amount / price;
-    buyAlert.style.display = 'block';
-    buyAlert.textContent = `You will receive ${tokens.toLocaleString()} SHIC tokens`;
-
-    // Update progress bar
-    currentAmount += amount;
-    if (currentAmount > totalGoal) currentAmount = totalGoal;
-    const percent = (currentAmount / totalGoal) * 100;
-    progressFill.style.width = percent + "%";
-    progressFill.textContent = `$${currentAmount.toLocaleString()} / $${totalGoal.toLocaleString()}`;
-}
-
-// === Countdown Timer ===
-let startDate = new Date();
-let cycleDays = 15;
-
-function updateCountdown() {
-    const now = new Date();
-    const elapsed = now - startDate;
-    const cycleMs = cycleDays * 24 * 60 * 60 * 1000;
-    const remaining = cycleMs - (elapsed % cycleMs);
-    
-    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-    
-    cdText.innerHTML = `
-        <div>
-            <span style="color:#1E90FF">${String(days).padStart(2, '0')}d</span> : 
-            <span style="color:#00BFFF">${String(hours).padStart(2, '0')}h</span> : 
-            <span style="color:#32CD32">${String(minutes).padStart(2, '0')}m</span> : 
-            <span style="color:#FF6347">${String(seconds).padStart(2, '0')}s</span>
-        </div>
-        <div style="font-size:14px; margin-top:10px;">Until Next Round</div>
-    `;
-}
-
-// === Initialize the page ===
-function init() {
-    // Set up event listeners
-    connectWalletBtn.addEventListener('click', connectWallet);
-    buyAmount.addEventListener('input', calculateTokens);
-    buyCurrency.addEventListener('change', calculateTokens);
-    
-    // Start countdown timer
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-    
-    // Check if wallet is already connected
-    if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.request({ method: 'eth_accounts' })
-            .then(accounts => {
-                if (accounts.length > 0) {
-                    userAccount = accounts[0];
-                    web3 = new Web3(window.ethereum);
-                    walletInfo.textContent = `Connected: ${userAccount.substring(0, 6)}...${userAccount.substring(userAccount.length - 4)}`;
-                    updateStatus('Wallet already connected!', true);
-                }
-            });
-    }
-}
-
-// Start initialization when page loads
-window.addEventListener('load', init);
-</script>
+      }
+    };
+  </script>
 </body>
 </html>
