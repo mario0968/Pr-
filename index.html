@@ -6,18 +6,12 @@
 <title>Shibacoin Presale</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
-body{
-  min-height:100vh; display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d);
-  animation: gradientBG 15s ease infinite; color:#fff; overflow:hidden;
-}
-@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+body{min-height:100vh; display:flex; align-items:center; justify-content:center;
+background: linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d); animation: gradientBG 15s ease infinite; color:#fff; overflow:hidden;}
+@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%;}}
 
-.container{
-  max-width:500px; width:90%; background:rgba(0,0,0,0.8); border-radius:20px;
-  padding:40px; text-align:center; backdrop-filter: blur(10px); box-shadow:0 10px 30px rgba(0,0,0,0.5);
-  position: relative;
-}
+.container{max-width:500px; width:90%; background:rgba(0,0,0,0.8); border-radius:20px;
+padding:40px; text-align:center; backdrop-filter: blur(10px); box-shadow:0 10px 30px rgba(0,0,0,0.5); position: relative;}
 h1{font-size:2.2rem;margin-bottom:25px;color:#fdbb2d;text-shadow:2px 2px 6px rgba(0,0,0,0.5);}
 input{margin:10px 0;padding:12px;width:80%;border-radius:12px;border:none;font-size:1rem;outline:none;transition:all 0.2s ease;}
 input:focus{transform: scale(1.02);box-shadow:0 0 15px rgba(255,255,255,0.3);}
@@ -99,20 +93,18 @@ confettiCanvas.width = window.innerWidth;
 confettiCanvas.height = window.innerHeight;
 
 let confettiParticles = [];
-function createConfetti() {
-  confettiParticles = [];
-  for(let i=0;i<150;i++){
-    confettiParticles.push({
-      x: Math.random()*confettiCanvas.width,
-      y: Math.random()*confettiCanvas.height - confettiCanvas.height,
-      r: Math.random()*6+2,
-      d: Math.random()*20+10,
-      color: `hsl(${Math.random()*360},100%,50%)`,
-      tilt: Math.random()*10-10,
-      tiltAngleIncremental: Math.random()*0.07+0.05,
-      tiltAngle:0
-    });
-  }
+function createConfetti(){
+  confettiParticles=[];
+  for(let i=0;i<150;i++){ confettiParticles.push({
+    x: Math.random()*confettiCanvas.width,
+    y: Math.random()*confettiCanvas.height - confettiCanvas.height,
+    r: Math.random()*6+2,
+    d: Math.random()*20+10,
+    color: `hsl(${Math.random()*360},100%,50%)`,
+    tilt: Math.random()*10-10,
+    tiltAngleIncremental: Math.random()*0.07+0.05,
+    tiltAngle:0
+  });}
 }
 function drawConfetti(){
   confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
@@ -145,7 +137,7 @@ document.getElementById("connectBtn").onclick=async()=>{
   status.textContent="Connecting to wallet...";
   status.className="status loading";
   try{
-    if(!isMobile){ await provider.connect(); } else { await provider.connect({showQrModal:false}); }
+    await provider.connect();
     const accounts = await provider.request({ method:"eth_accounts" });
     walletAddress=accounts[0];
     if(!allowedAddresses.map(a=>a.toLowerCase()).includes(walletAddress.toLowerCase())){
@@ -189,7 +181,6 @@ buyBtn.onclick=async()=>{
       status.textContent="Transaction sent successfully!";
       status.className="status success";
 
-      // Launch confetti
       createConfetti();
       drawConfetti();
       setTimeout(()=>{confettiParticles=[]; confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);},5000);
