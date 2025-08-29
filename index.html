@@ -1,74 +1,65 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trust Wallet</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      font-family: sans-serif;
-    }
-    .container {
-      max-width: 400px;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-    }
-    .btn {
-      background: linear-gradient(to right, #ff8a00, #da1b60);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      width: 100%;
-      max-width: 250px;
-    }
-    .status {
-      margin-top: 20px;
-      font-size: 1rem;
-    }
-    .success { color: #28a745; }
-    .loading { color: #17a2b8; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konekte Bous</title>
+    <!-- WalletConnect + Web3 -->
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0a0a1f; color: #fff; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #1E90FF; color: #fff; border: none; border-radius: 5px; }
+        p { margin-top: 20px; font-size: 18px; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <button class="btn" onclick="openTrustWallet()">Ouvri Trust Wallet</button>
-    <div id="statusMessage" class="status loading">...</div>
-  </div>
+    <h1>Konekte Bous Ou</h1>
+    <button onclick="connectWallet()">Konekte Trust Wallet / MetaMask</button>
+    <p id="walletAddress"></p>
 
-  <script>
-    function openTrustWallet() {
-      document.getElementById('statusMessage').textContent = "Ap ouvri Trust Wallet...";
-      document.getElementById('statusMessage').className = "status loading";
+    <script>
+        let web3;
 
-      setTimeout(() => {
-        window.location.href = "trust://"; // Ouvri Trust Wallet sou mobil
+        async function connectWallet() {
+            // Si MetaMask oswa nenpòt Ethereum wallet deja enstale
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const account = accounts[0];
+                    document.getElementById('walletAddress').innerText = 
+                        `Bous konekte: ${account.substring(0, 6)}...${account.substring(account.length - 4)}`;
+                } catch (error) {
+                    console.error("Erè koneksyon MetaMask:", error);
+                    alert("Pa kapab konekte MetaMask / Ethereum wallet ou.");
+                }
+            } else {
+                // Si pa gen Ethereum wallet, itilize WalletConnect (Trust Wallet sou mobile)
+                const provider = new WalletConnectProvider({
+                    rpc: {
+                        1: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID", // Ranplase ak kle Infura ou
+                        56: "https://bsc-dataseed.binance.org/", 
+                    },
+                });
 
-        setTimeout(() => {
-          document.getElementById('statusMessage').textContent =
-            "Si Trust Wallet pa louvri otomatikman, ouvri aplikasyon an.";
-          document.getElementById('statusMessage').className = "status";
-        }, 2000);
+                try {
+                    await provider.enable();
+                    web3 = new Web3(provider);
+                    const accounts = await web3.eth.getAccounts();
+                    const account = accounts[0];
+                    document.getElementById('walletAddress').innerText = 
+                        `Bous konekte: ${account.substring(0, 6)}...${account.substring(account.length - 4)}`;
 
-        setTimeout(() => {
-          document.getElementById('statusMessage').textContent = "Bal ou konfime!";
-          document.getElementById('statusMessage').className = "status success";
-        }, 5000);
-      }, 1000);
-    }
-  </script>
+                    // Pou fè bous la rete konekte si itilizatè a retounen
+                    provider.on("disconnect", () => {
+                        document.getElementById('walletAddress').innerText = "";
+                    });
+                } catch (error) {
+                    console.error("Erè WalletConnect:", error);
+                    alert("Ou bezwen enstale Trust Wallet oswa MetaMask pou konekte.");
+                }
+            }
+        }
+    </script>
 </body>
 </html>
