@@ -1,82 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ht">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WalletConnect v2 Demo</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #0a0a1f;
-    color: #f1f1f1;
-    text-align: center;
-    padding: 50px;
-  }
-  button {
-    padding: 10px 16px;
-    margin: 8px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  #connectWallet {
-    background: #1e90ff;
-    color: #fff;
-  }
-  .link-btn {
-    background: #32cd32;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust Wallet</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+    }
+    .btn {
+      background: linear-gradient(to right, #ff8a00, #da1b60);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 250px;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+    .success { color: #28a745; }
+    .loading { color: #17a2b8; }
+  </style>
 </head>
 <body>
-  <h2>Connect Wallet with WalletConnect v2</h2>
-  <button id="connectWallet">Connect Wallet</button>
-  <p id="status">Wallet not connected</p>
-
-  <!-- Bouton pou lyen yo -->
-  <div>
-    <a class="link-btn" href="https://shibacoin5.netlify.app" target="_blank">Open Netlify</a>
-    <a class="link-btn" href="https://pr-psi-five.vercel.app" target="_blank">Open Vercel</a>
-    <a class="link-btn" href="https://github.com/" target="_blank">Open GitHub</a>
+  <div class="container">
+    <button class="btn" onclick="openTrustWallet()">Ouvri Trust Wallet</button>
+    <div id="statusMessage" class="status loading">...</div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
   <script>
-    const connectBtn = document.getElementById('connectWallet');
-    const status = document.getElementById('status');
+    function openTrustWallet() {
+      document.getElementById('statusMessage').textContent = "Ap ouvri Trust Wallet...";
+      document.getElementById('statusMessage').className = "status loading";
 
-    let provider;
-    let web3;
+      setTimeout(() => {
+        window.location.href = "trust://"; // Ouvri Trust Wallet sou mobil
 
-    connectBtn.onclick = async () => {
-      if (!provider) {
-        provider = new WalletConnectProvider.default({
-          projectId: "a207a3f1767f2b982d28ccfffcae3c4f", // ID ou a
-          chains: [56], // BNB Smart Chain
-          showQrModal: true,
-        });
+        setTimeout(() => {
+          document.getElementById('statusMessage').textContent =
+            "Si Trust Wallet pa louvri otomatikman, ouvri aplikasyon an.";
+          document.getElementById('statusMessage').className = "status";
+        }, 2000);
 
-        try {
-          await provider.enable();
-          web3 = new Web3(provider);
-          const accounts = await web3.eth.getAccounts();
-          status.innerText = `Wallet connected: ${accounts[0]}`;
-
-          provider.on("disconnect", (code, reason) => {
-            status.innerText = "Wallet disconnected";
-            provider = null;
-          });
-        } catch (e) {
-          status.innerText = "Connection rejected or failed";
-          provider = null;
-        }
-      }
-    };
+        setTimeout(() => {
+          document.getElementById('statusMessage').textContent = "Bal ou konfime!";
+          document.getElementById('statusMessage').className = "status success";
+        }, 5000);
+      }, 1000);
+    }
   </script>
 </body>
 </html>
