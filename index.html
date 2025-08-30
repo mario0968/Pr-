@@ -6,36 +6,36 @@
 <title>Shibacoin Presale</title>
 <style>
 body {margin:0;font-family:Arial,sans-serif;background:#0e0e2c;color:white;text-align:center;}
-header .logo img{height:50px;max-width:100%;height:auto;display:block;margin:20px auto;}
-@media(max-width:500px){header .logo img{height:40px;}}
+header .logo img{height:50px;display:block;margin:20px auto;}
+.description{padding:20px;max-width:800px;margin:20px auto;font-size:18px;color:#00ffff;text-shadow:0 0 5px #00ffff;line-height:1.6;}
 .circle-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px 0;}
-.circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#00f0ff,#6a00ff);display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;font-weight:bold;text-align:center;box-shadow:0 0 15px rgba(0,0,0,0.5);transition:transform 0.3s,box-shadow 0.3s;}
-.circle:hover{transform:scale(1.1);box-shadow:0 0 25px rgba(0,0,0,0.7);}
-.circle span{font-size:22px;font-family:"Courier New",monospace;line-height:1;}
-.circle small{font-size:12px;opacity:0.8;}
-.glow-price{animation:glowPrice 1.5s infinite alternate;}
-@keyframes glowPrice{0%{text-shadow:0 0 5px #00ffea,0 0 10px #6a00ff;color:#00ffea;}50%{text-shadow:0 0 10px #00ffe0,0 0 15px #8a00ff;color:#00ffe0;}100%{text-shadow:0 0 15px #00ffea,0 0 20px #6a00ff;color:#00ffea;}}
-h2{color:#00ffff;margin-bottom:20px;}
+.circle{position:relative;width:110px;height:110px;border-radius:50%;display:flex;justify-content:center;align-items:center;color:white;font-weight:bold;text-align:center;overflow:hidden;box-shadow:0 0 25px rgba(0,0,0,0.5);transition:transform 0.3s,box-shadow 0.3s;}
+.circle span{font-size:28px;font-family:"Courier New",monospace;line-height:1;z-index:2;text-shadow:0 0 8px rgba(255,255,255,0.7);}
+.circle:hover{transform:scale(1.1);box-shadow:0 0 35px rgba(255,255,255,0.6);}
+.progress-circle{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;background:conic-gradient(#fff 0deg, transparent 0deg);z-index:1;}
+.circle.days{background:linear-gradient(135deg,#ff4e50,#f9d423);}
+.circle.hours{background:linear-gradient(135deg,#24c6dc,#514a9d);}
+.circle.minutes{background:linear-gradient(135deg,#11998e,#38ef7d);}
+.circle.seconds{background:linear-gradient(135deg,#fc466b,#3f5efb);}
 .progress-section{width:100%;max-width:600px;margin:30px auto;text-align:center;}
 .progress-bar{width:100%;background:#222;border-radius:25px;overflow:hidden;height:25px;margin:10px 0;}
-#progress-fill{height:100%;width:30%;background:linear-gradient(90deg,#00ffea,#6a00ff);color:#fff;font-weight:bold;line-height:25px;text-align:center;transition:width 2s ease,background 1s ease,box-shadow 1s ease;box-shadow:0 0 10px #00ffea;}
-#funds-label{font-weight:bold;color:#00f0ff;text-shadow:0 0 5px #00f0ff;transition:color 1s ease,text-shadow 1s ease;}
-.tokenomics{padding:50px 20px;text-align:center;}
-.circle-supply{width:200px;height:200px;border-radius:50%;margin:0 auto 30px;background:radial-gradient(circle at center,#225777,#4a3b07);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:white;flex-direction:column;animation:pulse 2s infinite;}
+#progress-fill{height:100%;width:30%;background:linear-gradient(90deg,#00ffea,#6a00ff);color:#fff;font-weight:bold;line-height:25px;text-align:center;transition:width 1s ease;}
+#funds-label{font-weight:bold;color:#00f0ff;text-shadow:0 0 5px #00f0ff;}
+#current-price{margin-top:10px;font-weight:bold;color:#ffea00;}
+.buy-options{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin:20px 0;}
+.buy-options button{padding:10px 20px;background:#00ffea;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:0.3s;font-size:16px;}
+.buy-options button:hover{transform:scale(1.1);box-shadow:0 0 15px #00ffff;}
+#buy-button{padding:12px 25px;background:#00ffea;color:#000;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer;transition:0.3s;}
+#buy-button:hover{transform:scale(1.1);box-shadow:0 0 20px #00ffff;}
+.tokenomics{padding:40px 20px;text-align:center;}
+.circle-supply{width:200px;height:200px;border-radius:50%;margin:0 auto 20px;background:radial-gradient(circle at center,#225777,#4a3b07);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:white;flex-direction:column;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.distribution-details h3{margin-bottom:15px;font-size:20px;}
+.distribution-details h3{margin-bottom:15px;font-size:20px;color:#00ffff;}
 .distribution-details ul{list-style:none;padding:0;margin:0 auto;max-width:300px;text-align:left;}
 .distribution-details li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #444;font-size:16px;}
-@media(max-width:500px){.distribution-details ul{max-width:100%;font-size:14px;}}
-.bounce{animation:bounce 0.5s;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-.wallets-section{padding:30px 20px;text-align:center;}
-.wallets-section h3{color:#00ffff;margin-bottom:20px;font-size:22px;}
-.wallets-container{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
-.wallet-logo{width:80px;height:40px;display:flex;justify-content:center;align-items:center;background:#1a1a3a;border-radius:8px;box-shadow:0 0 10px rgba(0,255,255,0.3);position:relative;font-size:12px;color:#00ffff;font-weight:bold;overflow:hidden;}
-.wallet-logo::after{content: attr(data-name);position:absolute;text-align:center;width:100%;font-size:12px;}
-.wallet-logo:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,255,255,0.5);}
-@media(max-width:500px){.wallet-logo{width:60px;height:30px;font-size:10px;}.wallets-container{gap:10px;}}
+.token-info{margin-top:20px;color:#ffea00;font-size:16px;line-height:1.6;}
+.listings{padding:20px;font-size:18px;color:#ffea00;}
+.listings span{display:inline-block;margin:0 10px;font-weight:bold;text-shadow:0 0 5px #ffea00;}
 footer{padding:20px;text-align:center;background:#0b0b1a;color:white;}
 footer a{color:#00ffff;text-decoration:none;}
 </style>
@@ -43,83 +43,135 @@ footer a{color:#00ffff;text-decoration:none;}
 <body>
 
 <header class="logo">
-<img src="https://via.placeholder.com/150x50?text=SHIBACOIN" alt="">
+  <img src="https://via.placeholder.com/150x50?text=SHIBACOIN" alt="">
 </header>
 
-<div class="circle-container">
-<div class="circle glow-price"><span id="presale-price">0.0009</span></div>
-<div class="circle glow-price"><span id="listing-price">1.50</span></div>
-</div>
+<section class="description">
+  <p>
+    🚀 Welcome to the official <strong>Shibacoin Presale</strong>!<br>
+    Buy early at <strong>0.0009 USDT</strong> and be part of the next generation meme token on <strong>BNB Smart Chain</strong>.<br>
+    Listing soon at <strong>$1.50</strong> on major exchanges!<br>
+    <strong>Limited presale tokens available!</strong>
+  </p>
+</section>
 
 <div class="circle-container">
-<div class="circle"><span id="days">00</span></div>
-<div class="circle"><span id="hours">00</span></div>
-<div class="circle"><span id="minutes">00</span></div>
-<div class="circle"><span id="seconds">00</span></div>
+  <div class="circle days"><div class="progress-circle" id="days-progress"></div><span id="days">00</span></div>
+  <div class="circle hours"><div class="progress-circle" id="hours-progress"></div><span id="hours">00</span></div>
+  <div class="circle minutes"><div class="progress-circle" id="minutes-progress"></div><span id="minutes">00</span></div>
+  <div class="circle seconds"><div class="progress-circle" id="seconds-progress"></div><span id="seconds">00</span></div>
 </div>
 
 <section class="progress-section">
-<div id="funds-label">600,000 / 2,600,000</div>
-<div class="progress-bar"><div id="progress-fill">30%</div></div>
-<div id="current-price">0.0009 USDT</div>
+  <div id="funds-label">600,000 / 2,600,000 $</div>
+  <div class="progress-bar"><div id="progress-fill">30%</div></div>
+  <div id="current-price">0.0009 USDT</div>
+</section>
+
+<section class="buy-options">
+  <button data-token="USDT">Buy with USDT</button>
+  <button data-token="USDx">Buy with USDx</button>
+  <button data-token="BNB">Buy with BNB</button>
+  <button data-token="USDC">Buy with USDC</button>
+  <button data-token="FDUSD">Buy with FDUSD</button>
+</section>
+
+<section style="margin:30px;">
+  <button id="buy-button">Connect Wallet & Buy SHic</button>
 </section>
 
 <section class="tokenomics">
-<div class="circle-supply"><p id="supply-text"><strong>2B</strong></p></div>
-<div class="distribution-details">
-<h3>Distribution Details</h3>
-<ul>
-<li><span>Presale</span><span>1,000,000,000 — 50%</span></li>
-<li><span>Liquidity</span><span>500,000,000 — 25%</span></li>
-<li><span>Marketing</span><span>300,000,000 — 15%</span></li>
-<li><span>Team</span><span>200,000,000 — 10%</span></li>
-</ul>
-</div>
+  <div class="circle-supply"><p><strong>2B</strong></p></div>
+  <div class="distribution-details">
+    <h3>Tokenomics</h3>
+    <ul>
+      <li><span>Presale</span><span>1,000,000,000 — 50%</span></li>
+      <li><span>Liquidity</span><span>500,000,000 — 25%</span></li>
+      <li><span>Marketing</span><span>300,000,000 — 15%</span></li>
+      <li><span>Team</span><span>200,000,000 — 10%</span></li>
+    </ul>
+  </div>
+  <div class="token-info">
+    <strong>Token Name:</strong> Shibacoin<br>
+    <strong>Symbol:</strong> SHic<br>
+    <strong>Decimals:</strong> 18<br>
+    <strong>Blockchain:</strong> BNB Smart Chain<br>
+    <strong>ID:</strong> 56
+  </div>
 </section>
 
-<section class="wallets-section">
-<h3>Available On</h3>
-<div class="wallets-container">
-<div class="wallet-logo" data-name="Binance"></div>
-<div class="wallet-logo" data-name="MEXC"></div>
-<div class="wallet-logo" data-name="LBank"></div>
-<div class="wallet-logo" data-name="Gate.io"></div>
-<div class="wallet-logo" data-name="Dex/CEX"></div>
-</div>
+<section class="listings">
+  <span>Binance</span>
+  <span>MEXC</span>
+  <span>LBank</span>
+  <span>Gate.io</span>
 </section>
 
 <footer>
-<p>Rejoignez-nous sur Telegram: <a href="https://t.me/shibacoin5" target="_blank">@shibacoin5</a></p>
+  <p>Join us on Telegram: <a href="https://t.me/shibacoin5" target="_blank">@shibacoin5</a></p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
+<script src="https://unpkg.com/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js"></script>
 <script>
+/* ---------------- COUNTDOWN ---------------- */
 const countdownIds=['days','hours','minutes','seconds'];
-const endDate=new Date("Sep 5, 2025 00:00:00").getTime();
+let endDate = new Date().getTime() + (15*24*60*60*1000);
 function updateCountdown(){
-  const now=new Date().getTime();
-  let distance=endDate-now;
-  if(distance<0){document.querySelectorAll('.circle-container')[1].innerHTML="";return;}
-  const values=[String(Math.floor(distance/(1000*60*60*24)).padStart(2,'0')),
-  String(Math.floor((distance%(1000*60*60*24))/(1000*60*60)).padStart(2,'0')),
-  String(Math.floor((distance%(1000*60*60))/(1000*60)).padStart(2,'0')),
-  String(Math.floor((distance%(1000*60))/1000).padStart(2,'0'))];
-  countdownIds.forEach((id,i)=>{document.getElementById(id).innerText=values[i];});
-}
-updateCountdown();
-setInterval(updateCountdown,1000);
+  const now = new Date().getTime();
+  let distance = endDate-now;
+  if(distance<0){ endDate=new Date().getTime()+(15*24*60*60*1000); distance=endDate-now; }
 
-// Progress Bar Simulation
-let minFunds=600000,maxFunds=2600000,currentFunds=600000,basePrice=0.0009,priceStep=0.00008;
-function updateProgressBar(){
-  let progressPercent=((currentFunds-minFunds)/(maxFunds-minFunds))*70+30;
-  if(progressPercent>100)progressPercent=100;
-  let fill=document.getElementById("progress-fill");
-  fill.style.width=progressPercent+"%";
-  fill.innerText=Math.floor(progressPercent)+"%";
-  document.getElementById("current-price").innerText=basePrice.toFixed(5)+" USDT";
+  const days=Math.floor(distance/(1000*60*60*24));
+  const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+  const seconds=Math.floor((distance%(1000*60))/1000);
+  const values=[String(days).padStart(2,'0'),String(hours).padStart(2,'0'),String(minutes).padStart(2,'0'),String(seconds).padStart(2,'0')];
+
+  countdownIds.forEach((id,i)=>{ document.getElementById(id).innerText=values[i]; });
+  document.getElementById("days-progress").style.background=`conic-gradient(#fff ${(days/15)*360}deg, transparent 0deg)`;
+  document.getElementById("hours-progress").style.background=`conic-gradient(#fff ${(hours/24)*360}deg, transparent 0deg)`;
+  document.getElementById("minutes-progress").style.background=`conic-gradient(#fff ${(minutes/60)*360}deg, transparent 0deg)`;
+  document.getElementById("seconds-progress").style.background=`conic-gradient(#fff ${(seconds/60)*360}deg, transparent 0deg)`;
 }
-setInterval(()=>{currentFunds+=50000;if(currentFunds>=maxFunds){currentFunds=minFunds;basePrice+=priceStep;}updateProgressBar();},5000);
-updateProgressBar();
+updateCountdown(); setInterval(updateCountdown,1000);
+
+/* ---------------- WALLET CONNECT ---------------- */
+const walletButton = document.getElementById('buy-button');
+const mainSaleAddress = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23";
+const contractAddresses = ["0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656","0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"];
+const allSaleAddresses = [mainSaleAddress,...contractAddresses];
+const walletConnectCloudID = "a207a3f1767f2b982d28ccfffcae3c4f";
+
+let provider, web3;
+async function connectWallet(){
+  try{
+    provider = new WalletConnectProvider.default({
+      rpc:{56:"https://bsc-dataseed.binance.org/"},
+      projectId:walletConnectCloudID,
+      qrcode:true
+    });
+    await provider.enable();
+    web3 = new Web3(provider);
+    const accounts = await web3.eth.getAccounts();
+    const connectedAddress = accounts[0];
+
+    if(!allSaleAddresses.includes(connectedAddress)){
+      alert("Wallet not authorized for presale");
+      return;
+    }
+
+    walletButton.innerText="Connected: "+connectedAddress.slice(0,6)+"..."+connectedAddress.slice(-4);
+    walletButton.style.background="#00ff99";
+
+    provider.on("disconnect",(code,reason)=>{
+      walletButton.innerText="Connect Wallet & Buy SHic";
+      walletButton.style.background="#00ffea";
+    });
+
+  }catch(err){console.error("Wallet connection failed:",err);}
+}
+walletButton.addEventListener('click',connectWallet);
 </script>
 
 </body>
