@@ -22,9 +22,6 @@ header .logo img{height:50px;display:block;margin:20px auto;}
 #progress-fill{height:100%;width:30%;background:linear-gradient(90deg,#00ffea,#6a00ff);color:#fff;font-weight:bold;line-height:25px;text-align:center;transition:width 1s ease;}
 #funds-label{font-weight:bold;color:#00f0ff;text-shadow:0 0 5px #00f0ff;}
 #current-price{margin-top:10px;font-weight:bold;color:#ffea00;}
-.buy-options{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin:20px 0;}
-.buy-options button{padding:10px 20px;background:#00ffea;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:0.3s;font-size:16px;}
-.buy-options button:hover{transform:scale(1.1);box-shadow:0 0 15px #00ffff;}
 #buy-button{padding:12px 25px;background:#00ffea;color:#000;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer;transition:0.3s;}
 #buy-button:hover{transform:scale(1.1);box-shadow:0 0 20px #00ffff;}
 .tokenomics{padding:40px 20px;text-align:center;}
@@ -33,11 +30,15 @@ header .logo img{height:50px;display:block;margin:20px auto;}
 .distribution-details h3{margin-bottom:15px;font-size:20px;color:#00ffff;}
 .distribution-details ul{list-style:none;padding:0;margin:0 auto;max-width:300px;text-align:left;}
 .distribution-details li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #444;font-size:16px;}
-.token-info{margin-top:20px;color:#ffea00;font-size:16px;line-height:1.6;}
 .listings{padding:20px;font-size:18px;color:#ffea00;}
 .listings span{display:inline-block;margin:0 10px;font-weight:bold;text-shadow:0 0 5px #ffea00;}
 footer{padding:20px;text-align:center;background:#0b0b1a;color:white;}
 footer a{color:#00ffff;text-decoration:none;}
+.buy-options-circle{margin:40px auto;position:relative;width:120px;height:120px;}
+.buy-options-circle #main-token{width:120px;height:120px;border-radius:50%;background:#00ffea;color:#000;display:flex;justify-content:center;align-items:center;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 0 20px #00ffff;transition:0.3s;}
+.buy-options-circle .other-tokens{position:absolute;top:0;left:0;width:120px;height:120px;display:flex;justify-content:center;align-items:center;pointer-events:none;opacity:0;transition:0.3s;}
+.buy-options-circle .other-tokens button{padding:8px 12px;border:none;border-radius:8px;cursor:pointer;background:#00ffea;color:#000;font-weight:bold;transition:0.3s;}
+.buy-options-circle .other-tokens button:hover{transform:scale(1.1);box-shadow:0 0 10px #00ffff;}
 </style>
 </head>
 <body>
@@ -68,12 +69,14 @@ footer a{color:#00ffff;text-decoration:none;}
   <div id="current-price">0.0009 USDT</div>
 </section>
 
-<section class="buy-options">
-  <button data-token="USDT">Buy with USDT</button>
-  <button data-token="USDx">Buy with USDx</button>
-  <button data-token="BNB">Buy with BNB</button>
-  <button data-token="USDC">Buy with USDC</button>
-  <button data-token="FDUSD">Buy with FDUSD</button>
+<section class="buy-options-circle">
+  <div id="main-token">BNB</div>
+  <div class="other-tokens">
+    <div style="position:absolute;top:-60px;width:100%;text-align:center;"><button>USDT</button></div>
+    <div style="position:absolute;right:-60px;top:0;"><button>USDx</button></div>
+    <div style="position:absolute;bottom:-60px;width:100%;text-align:center;"><button>USDC</button></div>
+    <div style="position:absolute;left:-60px;top:0;"><button>FDUSD</button></div>
+  </div>
 </section>
 
 <section style="margin:30px;">
@@ -91,12 +94,15 @@ footer a{color:#00ffff;text-decoration:none;}
       <li><span>Team</span><span>200,000,000 — 10%</span></li>
     </ul>
   </div>
-  <div class="token-info">
-    <strong>Token Name:</strong> Shibacoin<br>
-    <strong>Symbol:</strong> SHic<br>
-    <strong>Decimals:</strong> 18<br>
-    <strong>Blockchain:</strong> BNB Smart Chain<br>
-    <strong>ID:</strong> 56
+  <div style="display:none;" id="technical-info">
+    <span id="token-name">Shibacoin</span>
+    <span id="token-symbol">SHic</span>
+    <span id="token-decimals">18</span>
+    <span id="blockchain">BNB Smart Chain</span>
+    <span id="walletconnect-id">a207a3f1767f2b982d28ccfffcae3c4f</span>
+    <span id="main-sale-address">0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23</span>
+    <span id="contract-address-1">0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656</span>
+    <span id="contract-address-2">0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be</span>
   </div>
 </section>
 
@@ -111,9 +117,10 @@ footer a{color:#00ffff;text-decoration:none;}
   <p>Join us on Telegram: <a href="https://t.me/shibacoin5" target="_blank">@shibacoin5</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.7.8/dist/umd/index.min.js"></script>
-<script>
+<script type="module">
+import WalletConnectProvider from "https://unpkg.com/@walletconnect/web3-provider@2.15.4/dist/esm/index.min.js";
+import Web3 from "https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js";
+
 /* ---------------- COUNTDOWN ---------------- */
 const countdownIds=['days','hours','minutes','seconds'];
 let endDate = new Date().getTime() + (15*24*60*60*1000);
@@ -121,13 +128,11 @@ function updateCountdown(){
   const now = new Date().getTime();
   let distance = endDate-now;
   if(distance<0){ endDate=new Date().getTime()+(15*24*60*60*1000); distance=endDate-now; }
-
   const days=Math.floor(distance/(1000*60*60*24));
   const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
   const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
   const seconds=Math.floor((distance%(1000*60))/1000);
   const values=[String(days).padStart(2,'0'),String(hours).padStart(2,'0'),String(minutes).padStart(2,'0'),String(seconds).padStart(2,'0')];
-
   countdownIds.forEach((id,i)=>{ document.getElementById(id).innerText=values[i]; });
   document.getElementById("days-progress").style.background=`conic-gradient(#fff ${(days/15)*360}deg, transparent 0deg)`;
   document.getElementById("hours-progress").style.background=`conic-gradient(#fff ${(hours/24)*360}deg, transparent 0deg)`;
@@ -136,42 +141,48 @@ function updateCountdown(){
 }
 updateCountdown(); setInterval(updateCountdown,1000);
 
-/* ---------------- WALLET CONNECT ---------------- */
+/* ---------------- WALLETCONNECT V2 ---------------- */
 const walletButton = document.getElementById('buy-button');
-const mainSaleAddress = "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23";
-const contractAddresses = ["0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656","0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"];
-const allSaleAddresses = [mainSaleAddress,...contractAddresses];
+const allSaleAddresses = [
+  "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
+  "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
+  "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
+];
 const walletConnectCloudID = "a207a3f1767f2b982d28ccfffcae3c4f";
-
 let provider, web3;
+
 async function connectWallet(){
   try{
     provider = new WalletConnectProvider.default({
-      rpc:{56:"https://bsc-dataseed.binance.org/"},
-      projectId:walletConnectCloudID,
-      qrcode:true
+      projectId: walletConnectCloudID,
+      chains: [56],
+      showQrModal: true
     });
     await provider.enable();
     web3 = new Web3(provider);
     const accounts = await web3.eth.getAccounts();
     const connectedAddress = accounts[0];
-
     if(!allSaleAddresses.includes(connectedAddress)){
       alert("Wallet not authorized for presale");
       return;
     }
-
     walletButton.innerText="Connected: "+connectedAddress.slice(0,6)+"..."+connectedAddress.slice(-4);
     walletButton.style.background="#00ff99";
-
     provider.on("disconnect",(code,reason)=>{
       walletButton.innerText="Connect Wallet & Buy SHic";
       walletButton.style.background="#00ffea";
     });
-
-  }catch(err){console.error("Wallet connection failed:",err);}
+  }catch(err){console.error(err);}
 }
 walletButton.addEventListener('click',connectWallet);
+
+/* ---------------- BUY CIRCLE ---------------- */
+const mainToken = document.getElementById('main-token');
+const otherTokens = document.querySelector('.other-tokens');
+mainToken.addEventListener('click',()=>{ 
+  otherTokens.style.opacity = otherTokens.style.opacity==='1'?'0':'1'; 
+  otherTokens.style.pointerEvents = otherTokens.style.pointerEvents==='auto'?'none':'auto';
+});
 </script>
 
 </body>
