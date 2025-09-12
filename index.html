@@ -1,154 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shibacoin Presale</title>
-<style>
-body {margin:0;font-family:Arial,sans-serif;background:#0e0e2c;color:white;text-align:center;}
-header .logo img{height:50px;display:block;margin:20px auto;}
-.description{padding:20px;max-width:800px;margin:20px auto;font-size:18px;color:#00ffff;text-shadow:0 0 5px #00ffff;line-height:1.6;}
-.circle-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px 0;}
-.circle{position:relative;width:110px;height:110px;border-radius:50%;display:flex;justify-content:center;align-items:center;color:white;font-weight:bold;text-align:center;overflow:hidden;box-shadow:0 0 25px rgba(0,0,0,0.5);transition:transform 0.3s,box-shadow 0.3s;}
-.circle span{font-size:28px;font-family:"Courier New",monospace;line-height:1;z-index:2;text-shadow:0 0 8px rgba(255,255,255,0.7);}
-.circle:hover{transform:scale(1.1);box-shadow:0 0 35px rgba(255,255,255,0.6);}
-.progress-circle{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;background:conic-gradient(#fff 0deg, transparent 0deg);z-index:1;}
-.circle.days{background:linear-gradient(135deg,#ff4e50,#f9d423);}
-.circle.hours{background:linear-gradient(135deg,#24c6dc,#514a9d);}
-.circle.minutes{background:linear-gradient(135deg,#11998e,#38ef7d);}
-.circle.seconds{background:linear-gradient(135deg,#fc466b,#3f5efb);}
-.progress-section{width:100%;max-width:600px;margin:30px auto;text-align:center;}
-.progress-bar{width:100%;background:#222;border-radius:25px;overflow:hidden;height:25px;margin:10px 0;}
-#progress-fill{height:100%;width:30%;background:linear-gradient(90deg,#00ffea,#6a00ff);color:#fff;font-weight:bold;line-height:25px;text-align:center;transition:width 1s ease;}
-#funds-label{font-weight:bold;color:#00f0ff;text-shadow:0 0 5px #00f0ff;}
-#current-price{margin-top:10px;font-weight:bold;color:#ffea00;}
-#buy-button{padding:12px 25px;background:#00ffea;color:#000;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer;transition:0.3s;}
-#buy-button:hover{transform:scale(1.1);box-shadow:0 0 20px #00ffff;}
-.tokenomics{padding:40px 20px;text-align:center;}
-.circle-supply{width:200px;height:200px;border-radius:50%;margin:0 auto 20px;background:radial-gradient(circle at center,#225777,#4a3b07);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:white;flex-direction:column;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.distribution-details h3{margin-bottom:15px;font-size:20px;color:#00ffff;}
-.distribution-details ul{list-style:none;padding:0;margin:0 auto;max-width:300px;text-align:left;}
-.distribution-details li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #444;font-size:16px;}
-.listings{padding:20px;font-size:18px;color:#ffea00;}
-.listings span{display:inline-block;margin:0 10px;font-weight:bold;text-shadow:0 0 5px #ffea00;}
-footer{padding:20px;text-align:center;background:#0b0b1a;color:white;}
-footer a{color:#00ffff;text-decoration:none;}
-.buy-options-circle{margin:40px auto;position:relative;width:120px;height:120px;}
-.buy-options-circle #main-token{width:120px;height:120px;border-radius:50%;background:#00ffea;color:#000;display:flex;justify-content:center;align-items:center;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 0 20px #00ffff;transition:0.3s;}
-.buy-options-circle .other-tokens{position:absolute;top:0;left:0;width:120px;height:120px;display:flex;justify-content:center;align-items:center;pointer-events:none;opacity:0;transition:0.3s;}
-.buy-options-circle .other-tokens button{padding:8px 12px;border:none;border-radius:8px;cursor:pointer;background:#00ffea;color:#000;font-weight:bold;transition:0.3s;}
-.buy-options-circle .other-tokens button:hover{transform:scale(1.1);box-shadow:0 0 10px #00ffff;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShibaX Presale</title>
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --card: #fff;
+      --text: #111;
+      --accent: #222;
+      --max-width: 900px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 18px auto;
+      padding: 18px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      padding: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto 12px auto;
+    }
+    .caption {
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--accent);
+      margin: 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0b0b; --card: #0f0f10; --text: #e8e8e8; --accent: #fff; }
+    }
+  </style>
 </head>
 <body>
+  <main class="wrap">
+    <section class="card">
+      <img src="https://i.ibb.co/yFSZxN2D/IMG-20250911-WA0092.jpg" alt="ShibaX image 1" />
+      <p class="caption">ShibaX: The #1 Meme Coin for 2025. If you missed Shiba, don’t miss this one! Join the presale now.</p>
+    </section>
 
-<header class="logo">
-  <img src="https://via.placeholder.com/150x50?text=SHIBACOIN" alt="">
-</header>
+    <section class="card">
+      <img src="https://i.ibb.co/BHSkRp0V/IMG-20250911-WA0198.jpg" alt="ShibaX image 2" />
+      <p class="caption">While others sleep, ShibaX is making moves! Get in early before it’s too late.</p>
+    </section>
 
-<section class="description">
-  <p>
-    🚀 Welcome to the official <strong>Shibacoin Presale</strong>!<br>
-    Buy early at <strong>0.0009 USDT</strong> and be part of the next generation meme token on <strong>BNB Smart Chain</strong>.<br>
-    Listing soon at <strong>$1.50</strong> on major exchanges!<br>
-    <strong>Limited presale tokens available!</strong>
-  </p>
-</section>
+    <section class="card">
+      <img src="https://i.ibb.co/KpkfG7qn/IMG-20250911-WA0094.jpg" alt="ShibaX image 3" />
+      <p class="caption">Even Trump would invest if he saw this! ShibaX is leading the meme coin revolution.</p>
+    </section>
 
-<div class="circle-container">
-  <div class="circle days"><div class="progress-circle" id="days-progress"></div><span id="days">00</span></div>
-  <div class="circle hours"><div class="progress-circle" id="hours-progress"></div><span id="hours">00</span></div>
-  <div class="circle minutes"><div class="progress-circle" id="minutes-progress"></div><span id="minutes">00</span></div>
-  <div class="circle seconds"><div class="progress-circle" id="seconds-progress"></div><span id="seconds">00</span></div>
-</div>
-
-<section class="progress-section">
-  <div id="funds-label">600,000 / 2,600,000 $</div>
-  <div class="progress-bar"><div id="progress-fill">30%</div></div>
-  <div id="current-price">0.0009 USDT</div>
-</section>
-
-<section class="buy-options-circle">
-  <div id="main-token">BNB</div>
-  <div class="other-tokens">
-    <div style="position:absolute;top:-60px;width:100%;text-align:center;"><button>USDT</button></div>
-    <div style="position:absolute;right:-60px;top:0;"><button>USDx</button></div>
-    <div style="position:absolute;bottom:-60px;width:100%;text-align:center;"><button>USDC</button></div>
-    <div style="position:absolute;left:-60px;top:0;"><button>FDUSD</button></div>
-  </div>
-</section>
-
-<section style="margin:30px;">
-  <button id="buy-button">Connect Wallet & Buy SHic</button>
-</section>
-
-<section class="tokenomics">
-  <div class="circle-supply"><p><strong>2B</strong></p></div>
-  <div class="distribution-details">
-    <h3>Tokenomics</h3>
-    <ul>
-      <li><span>Presale</span><span>1,000,000,000 — 50%</span></li>
-      <li><span>Liquidity</span><span>500,000,000 — 25%</span></li>
-      <li><span>Marketing</span><span>300,000,000 — 15%</span></li>
-      <li><span>Team</span><span>200,000,000 — 10%</span></li>
-    </ul>
-  </div>
-  <div style="display:none;" id="technical-info">
-    <span id="token-name">Shibacoin</span>
-    <span id="token-symbol">SHic</span>
-    <span id="token-decimals">18</span>
-    <span id="blockchain">BNB Smart Chain</span>
-    <span id="walletconnect-id">a207a3f1767f2b982d28ccfffcae3c4f</span>
-    <span id="main-sale-address">0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23</span>
-    <span id="contract-address-1">0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656</span>
-    <span id="contract-address-2">0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be</span>
-  </div>
-</section>
-
-<section class="listings">
-  <span>Binance</span>
-  <span>MEXC</span>
-  <span>LBank</span>
-  <span>Gate.io</span>
-</section>
-
-<footer>
-  <p>Join us on Telegram: <a href="https://t.me/shibacoin5" target="_blank">@shibacoin5</a></p>
-</footer>
-
-<script type="module">
-import WalletConnectProvider from "https://unpkg.com/@walletconnect/web3-provider@2.15.4/dist/esm/index.min.js";
-import Web3 from "https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js";
-
-/* ---------------- COUNTDOWN ---------------- */
-const countdownIds=['days','hours','minutes','seconds'];
-let endDate = new Date().getTime() + (15*24*60*60*1000);
-function updateCountdown(){
-  const now = new Date().getTime();
-  let distance = endDate-now;
-  if(distance<0){ endDate=new Date().getTime()+(15*24*60*60*1000); distance=endDate-now; }
-  const days=Math.floor(distance/(1000*60*60*24));
-  const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-  const seconds=Math.floor((distance%(1000*60))/1000);
-  const values=[String(days).padStart(2,'0'),String(hours).padStart(2,'0'),String(minutes).padStart(2,'0'),String(seconds).padStart(2,'0')];
-  countdownIds.forEach((id,i)=>{ document.getElementById(id).innerText=values[i]; });
-  document.getElementById("days-progress").style.background=`conic-gradient(#fff ${(days/15)*360}deg, transparent 0deg)`;
-  document.getElementById("hours-progress").style.background=`conic-gradient(#fff ${(hours/24)*360}deg, transparent 0deg)`;
-  document.getElementById("minutes-progress").style.background=`conic-gradient(#fff ${(minutes/60)*360}deg, transparent 0deg)`;
-  document.getElementById("seconds-progress").style.background=`conic-gradient(#fff ${(seconds/60)*360}deg, transparent 0deg)`;
-}
-updateCountdown(); setInterval(updateCountdown,1000);
-
-/* ---------------- WALLETCONNECT & PRESALE ---------------- */
-const walletButton = document.getElementById('buy-button');
-const allSaleAddresses = [
-  "0x6C0fe22C0683945ADD381E4d4Aa6d70ecbbC2f23",
-  "0x90cbC2Fb6b85DF8c2fc0B2e29B258a611dD656",
-  "0x84093967b0120D5Df3bBD65474Ff851Bdd5318Be"
-];
-const walletConnectCloudID = "a207a3f1767f2b982d28ccfffcae3c4f";
-let provider, user;
-
-const presaleABI = [{"inputs":[{"internalType":"address","name":"cOwner","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"totalSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":true,"inputs":[],"name":"_decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":
+    <section class="card">
+      <img src="https://i.ibb.co/2Y7NKjJp/IMG-20250911-WA0024.jpg" alt="ShibaX image 4" />
+      <p class="caption">The biggest meme coin project of 2025 is already here. Get in early and enjoy the gains!</p>
+    </section>
+  </main>
+</body>
+</html>
