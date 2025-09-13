@@ -53,149 +53,214 @@
     <p>Backed by a passionate and engaged community, ShibaX is more than just a token — it's a movement. Join now and be part of the revolution.</p>
   </div>
 <!DOCTYPE html>
-<html lang="
-<!DOCTYPE html>
-<html lang="ht">
+<html lang=">
+  <!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shibax Launchpad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: url('background-image.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      padding: 50px 0;
-    }
-    .step {
-      display: flex;
-      align-items: center;
-      margin-bottom: 50px;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-    .step:hover {
-      transform: scale(1.05);
-    }
-    .step-number {
-      background: #ffcc00;
-      color: #000;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin-right: 20px;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-    }
-    .step-content {
-      flex: 1;
-    }
-    .step-title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: #ffcc00;
-    }
-    .step-description {
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-    .step-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    .step-list li {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-    .button {
-      background: transparent;
-      border: 2px solid #ffcc00;
-      color: #ffcc00;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .button:hover {
-      background: #ffcc00;
-      color: #000;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shibax Presale Timeline</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 50px;
+  }
+
+  /* Vertical timeline line */
+  .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #000;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  .step {
+    position: relative;
+    padding: 20px;
+    margin: 80px 0;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    border: 4px solid #000;
+    z-index: 2;
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Image/Icon for each step */
+  .step img {
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  /* Branches */
+  .step-title::before,
+  .step-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: #000;
+  }
+  .step-title::before { left: -40px; }
+  .step-title::after { right: -40px; }
+
+  .step-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  ul li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  /* Sparkles for open step */
+  .open li::before {
+    content: "✨";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* Locks for closed steps */
+  .locked li::before {
+    content: "🔒";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #555;
+  }
+
+  /* Step colors */
+  .step1 { background-color: #ffc500; color: black; border: none; }
+  .step1 .step-number { background-color: black; color: #ffc500; border: none; }
+
+  .step2 { background-color: #00bcd4; color: white; }
+  .step2 .step-number { background-color: white; color: #00bcd4; }
+
+  .step3 { background-color: #4caf50; color: white; }
+  .step3 .step-number { background-color: white; color: #4caf50; }
+
+  .step4 { background-color: #f44336; color: white; }
+  .step4 .step-number { background-color: white; color: #f44336; }
+
+</style>
 </head>
 <body>
-
   <div class="container">
+
     <!-- Step 1 -->
-    <div class="step">
+    <div class="step step1 open">
+      <img src="https://img.icons8.com/emoji/48/000000/party-popper.png" alt="Step 1 icon">
       <div class="step-number">1</div>
-      <div class="step-content">
-        <div class="step-title">🔒 Let the Meme Games Begin</div>
-        <div class="step-description">Memes assemble! The presale is live, let the degen games begin</div>
-        <ul class="step-list">
-          <li>✨ Launch website & whitepaper</li>
-          <li>✨ Smart-contract audit with Solid/Coinsult</li>
-          <li>✨ Start presale SHIBAX with USD1, BNB, ETH</li>
-          <li>✨ Airdrop for WLFI holders</li>
-          <li>✨ Build core community</li>
-        </ul>
-        <button class="button">Join the Presale</button>
-      </div>
+      <div class="step-title">Let the Meme Games Begin</div>
+      <div class="step-description">Memes assemble! The presale is live, let the degen games begin</div>
+      <ul>
+        <li>Launch website & whitepaper</li>
+        <li>Smart-contract audit with Solid/Coinsult</li>
+        <li>Start presale SHIBAX with USD1, BNB, ETH</li>
+        <li>Airdrop for early supporters</li>
+        <li>Build core community</li>
+      </ul>
     </div>
 
     <!-- Step 2 -->
-    <div class="step">
+    <div class="step step2 locked">
+      <img src="https://img.icons8.com/emoji/48/000000/rocket.png" alt="Step 2 icon">
       <div class="step-number">2</div>
-      <div class="step-content">
-        <div class="step-title">🔒 Expansion & Development</div>
-        <div class="step-description">Develop new features and expand the Shibax ecosystem</div>
-        <button class="button">Learn More</button>
-      </div>
+      <div class="step-title">Meme Expansion 🔒</div>
+      <div class="step-description">Shibax takes over the memeverse!</div>
+      <ul>
+        <li>List token on major platforms</li>
+        <li>Expand meme campaigns</li>
+        <li>Integrate with wallets & DEXs</li>
+        <li>Increase community engagement</li>
+      </ul>
     </div>
 
     <!-- Step 3 -->
-    <div class="step">
+    <div class="step step3 locked">
+      <img src="https://img.icons8.com/emoji/48/000000/money-bag.png" alt="Step 3 icon">
       <div class="step-number">3</div>
-      <div class="step-content">
-        <div class="step-title">🔒 Meme Reputation System</div>
-        <div class="step-description">Build a reputation system for memes to increase value and trust in Shibax</div>
-        <button class="button">Discover More</button>
-      </div>
+      <div class="step-title">Shibax Ecosystem Power 🔒</div>
+      <div class="step-description">Utilities coming to life.</div>
+      <ul>
+        <li>Launch staking platform</li>
+        <li>Shibax swap goes live</li>
+        <li>Partnerships with influencers</li>
+        <li>More rewards for holders</li>
+      </ul>
     </div>
 
     <!-- Step 4 -->
-    <div class="step">
+    <div class="step step4 locked">
+      <img src="https://img.icons8.com/emoji/48/000000/globe-showing-americas.png" alt="Step 4 icon">
       <div class="step-number">4</div>
-      <div class="step-content">
-        <div class="step-title">🔒 Meme World Domination</div>
-        <div class="step-description">Meme domination unlocked: more chains, smarter memes, and global takeoff</div>
-        <ul class="step-list">
-          <li>🔒 Use SHIBAX in WLFI's DeFi lending ecosystem to borrow or earn interest</li>
-          <li>🔒 AI meme presales</li>
-          <li>🔒 Meme reputation system</li>
-        </ul>
-        <button class="button">Get Involved</button>
-      </div>
+      <div class="step-title">Meme World Domination 🔒</div>
+      <div class="step-description">Meme domination unlocked: more chains, smarter memes, and global takeover</div>
+      <ul>
+        <li>Use SHIBAX in lending ecosystem</li>
+        <li>AI meme presales</li>
+        <li>Meme reputation system</li>
+      </ul>
     </div>
-  </div>
 
+  </div>
 </body>
 </html>
