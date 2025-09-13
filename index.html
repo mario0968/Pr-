@@ -593,134 +593,127 @@ i<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shibax Swipe Sections</title>
+<title>Shibax Stacked Cards</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #000;
-    overflow-x: hidden;
-    color: white;
-  }
-
-  .slider-container {
+    font-family: Arial, sans-serif;
+    background: #000;
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 60px 0;
-    perspective: 1000px;
-    scroll-behavior: smooth;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
   }
 
-  .slider-container::-webkit-scrollbar {
-    display: none;
+  .card-stack {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
   }
 
   .feature-card {
-    flex: 0 0 80%;
-    margin: 0 10%;
-    scroll-snap-align: center;
-    background-color: #111;
-    color: white;
-    padding: 30px 20px;
-    border-radius: 15px;
-    border: 3px solid #FFD700;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* nwa */
+    border: 3px solid #FFD700; /* tras jòn */
+    border-radius: 50%; /* fè yo sik */
+    padding: 25px 20px;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    position: relative;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
-    transform-style: preserve-3d;
-    opacity: 0; /* kòmanse envizib */
-    transform: translateY(50px); /* kòmanse pi ba */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    cursor: pointer;
+    transform: translateY(50px) rotateX(10deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .feature-card.visible {
     opacity: 1;
-    transform: translateY(0);
+    z-index: 10;
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
   }
 
   .feature-card h3 {
     color: #FFD700;
-    margin-bottom: 15px;
-    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 20px;
   }
 
   .feature-card p {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.4;
   }
 
-  .feature-icon {
-    width: 60px;
-    height: 60px;
+  .feature-card .feature-icon {
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
-  }
-
-  .feature-card:hover {
-    transform: scale(1.05) rotateY(5deg) rotateX(3deg);
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
   }
 </style>
 </head>
 <body>
 
-<div class="slider-container" id="slider">
-  <!-- Liquidity -->
-  <div class="feature-card">
+<div class="card-stack" id="stack">
+  <div class="feature-card visible">
     <h3>Liquidity</h3>
     <p>Ensures that a project's liquidity is automatically locked for a fixed period, preventing rug pulls and building investor trust from day one.</p>
   </div>
-
-  <!-- Staking -->
   <div class="feature-card">
     <h3>Staking</h3>
     <p>Stake tokens to earn rewards, unlock exclusive launchpad access, and participate in DAO voting. The more you stake, the more power you hold.</p>
   </div>
-
-  <!-- DAO Voting -->
   <div class="feature-card">
     <img src="your-coin-icon.png" alt="Shibax Coin" class="feature-icon">
     <h3>DAO Voting</h3>
     <p>Projects seeking to launch on the <strong>Shibax</strong> platform must obtain community approval.</p>
   </div>
-
-  <!-- Security -->
   <div class="feature-card">
-    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/frog-face_1f438.png" alt="pepe" class="feature-icon" style="position:absolute; top:-20px; left:-10px;">
-    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/penguin_1f427.png" alt="penguin" class="feature-icon" style="position:absolute; top:-20px; right:-10px;">
+    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/frog-face_1f438.png" alt="pepe" class="feature-icon" style="position:absolute; top:-15px; left:-15px;">
+    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/penguin_1f427.png" alt="penguin" class="feature-icon" style="position:absolute; top:-15px; right:-15px;">
     <p>A unified KYC layer that ensures all launchpad participants and projects are verified, secure, and compliant — protecting the platform from fraud while maintaining SHIBAX SECURITY LAYER.</p>
   </div>
 </div>
 
 <script>
-  const slider = document.getElementById('slider');
-  const cards = slider.querySelectorAll('.feature-card');
+  const cards = document.querySelectorAll('.feature-card');
+  let current = 0;
 
-  function applyParallax() {
-    const sliderRect = slider.getBoundingClientRect();
-    cards.forEach(card => {
-      const cardRect = card.getBoundingClientRect();
-      const centerOffset = (cardRect.left + cardRect.width / 2) - (window.innerWidth / 2);
-      const rotateY = centerOffset * 0.03;
-      const scale = 1 - Math.abs(centerOffset) / window.innerWidth * 0.1;
-      card.style.transform = `scale(${scale}) rotateY(${rotateY}deg)`;
-    });
+  function showNextCard() {
+    if(current < cards.length - 1){
+      cards[current].style.transform = 'translateY(-20px) rotateX(-10deg) scale(0.95)';
+      cards[current].classList.remove('visible');
+
+      current++;
+      cards[current].classList.add('visible');
+    }
   }
 
-  function animateOnLoad() {
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add('visible');
-      }, index * 200); // chak kat parèt ak ti delè
-    });
-  }
+  cards.forEach(card => {
+    card.addEventListener('click', showNextCard);
+  });
 
-  slider.addEventListener('scroll', applyParallax);
-  window.addEventListener('resize', applyParallax);
-  window.addEventListener('load', animateOnLoad);
+  let startX = 0;
+  const stack = document.getElementById('stack');
 
-  applyParallax();
+  stack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  stack.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if(startX - endX > 50){
+      showNextCard();
+    }
+  });
 </script>
 
 </body>
