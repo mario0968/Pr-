@@ -52,152 +52,132 @@
     <h2>Strong & Growing Community</h2>
     <p>Backed by a passionate and engaged community, ShibaX is more than just a token — it's a movement. Join now and be part of the revolution.</p>
   </div>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Three Separate Sections</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shibax Presale</title>
   <style>
-    /* Section 2 CSS */
-    #section2 {
+    body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #f7f7f7;
-      padding: 40px 20px;
-      color: #333;
+      background: #fff;
+      padding: 30px;
+      color: #000;
     }
-    #section2 .container {
+    .step-container {
       max-width: 500px;
-      margin: 0 auto;
+      margin: 40px auto;
+      background: #ffcc00;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
     }
-    #section2 .step-circle {
+    .step-number {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #ffcc00;
       width: 50px;
       height: 50px;
-      background: #000;
       border-radius: 50%;
-      color: #ffd500;
-      font-weight: 900;
       font-size: 1.5rem;
+      font-weight: bold;
       line-height: 50px;
       text-align: center;
-      margin: 0 auto 20px;
     }
-    #section2 .box {
-      border: 2px solid #000;
+    .step-header {
+      background: #ffd500;
+      padding: 8px 15px;
       border-radius: 25px;
-      background: #fff;
-      padding: 25px 30px;
-      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
-    }
-    #section2 .box-header {
+      font-weight: bold;
       display: inline-block;
-      background: #fff;
-      border: 2px solid #000;
-      border-radius: 20px;
-      padding: 6px 18px;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      cursor: default;
-      box-shadow: 1px 1px 3px #ccc;
+      margin-bottom: 20px;
+      border: 1px solid #000;
     }
-    #section2 .box p {
-      font-weight: 700;
-      font-size: 1.1rem;
+    .step-content p {
+      font-weight: bold;
       margin-bottom: 20px;
     }
-    #section2 ul {
+    .step-list {
       list-style: none;
       padding-left: 0;
     }
-    #section2 ul li {
-      display: flex;
-      align-items: center;
-      color: #999;
-      font-size: 1rem;
+    .step-list li {
       margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
     }
-    #section2 ul li .lock-icon {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      margin-right: 10px;
-      fill: #bbb;
+    .step-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #000;
     }
-    #section2 * { box-sizing: border-box; }
   </style>
 </head>
 <body>
 
-  <!-- SECTION 1 -->
-  <div id="section1" style="padding:20px;">
-    <div style="background:#f9d800; border-radius:15px; padding:20px; max-width:400px; margin:auto; font-family: 'Comic Sans MS', cursive, sans-serif; color:#000;">
-      <div style="text-align:center; font-weight:900; font-size:1.5rem; margin-bottom:10px;">
-        <span style="background:#000; color:#f9d800; border-radius:50%; padding:10px 15px; font-weight:bold;">1</span>
-      </div>
-      <div style="background:#000; color:#f9d800; border-radius:25px; padding:10px 15px; font-weight:bold; font-size:1rem; text-align:center; margin-bottom:15px;">
-        Let the Meme Games Begin
-      </div>
-      <p style="font-weight:700; font-size:1.1rem; margin-bottom:15px;">
-        Memes assemble! The presale is live, let the degen games begin
-      </p>
-      <ul style="list-style:none; padding-left:0; font-weight:600; font-size:1rem; line-height:1.6;">
-        <li>✨ Launch website & whitepaper</li>
-        <li>✨ Smart-contract audit with Solid/Coinsult</li>
-        <li>✨ Start presale Shibax with USD1, ETH, BNB</li>
-        <li>✨ Airdrop for $WLFI holders</li>
-        <li>✨ Build core community</li>
+  <!-- STEP 1 -->
+  <div class="step-container">
+    <div class="step-number">1</div>
+    <div class="step-header">Let the Meme Games Begin</div>
+    <div class="step-content">
+      <p>Memes assemble! The presale is live, let the degen games begin</p>
+      <ul class="step-list">
+        <li>Launch website     whitepaper</li>
+        <li>Smart-contract audit with Solid/Coinsult</li>
+        <li>Start presale Shibax with USD1, BNB, ETH</li>
+        <li>Airdrop forWLFI holders</li>
+        <li>Build core community</li>
       </ul>
     </div>
   </div>
 
-  <!-- SECTION 2 -->
-  <div id="section2">
-    <div class="container">
-      <div class="step-circle">2</div>
-      <div class="box">
-        <div class="box-header">Serious Platform, Serious Funny</div>
-        <p>From chaos to clarity: the meme factory gets real, with voting and transparency</p>
-        <ul>
-          <li>
-            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
-            DAO voting for project selection
-          </li>
-          <li>
-            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
-            Transparency dashboard
-          </li>
-          <li>
-            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
-            Vesting &amp; claim portal
-          </li>
-          <li>
-            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
-            Liquidity auto-lock
-          </li>
-        </ul>
-      </div>
+  <!-- STEP 2 -->
+  <div class="step-container">
+    <div class="step-number">2</div>
+    <div class="step-header">Serious Platform, Serious Funny</div>
+    <div class="step-content">
+      <p>From chaos to clarity: the meme factory gets real, with voting and transparency</p>
+      <ul class="step-list">
+        <li>DAO voting for project selection</li>
+        <li>Transparency dashboard</li>
+        <li>Vesting & claim portal</li>
+        <li>Liquidity auto-lock</li>
+      </ul>
     </div>
   </div>
 
-  <!-- SECTION 3 -->
-  <div id="section3" style="padding:20px;">
-    <div style="max-width: 400px; margin: auto; font-family: Arial, sans-serif;">
-      <div style="text-align: center; font-weight: 900; font-size: 2rem; color: #f7b500; background: #000; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 20px auto;">
-        3
-      </div>
-      <div style="border: 2px solid #000; border-radius: 20px; padding: 20px; text-align: center; background: #fff;">
-        <div style="font-weight: 700; margin-bottom: 10px;">Where Memes Become Legends</div>
-        <p style="font-weight: 600; margin-bottom: 20px;">Unite the memers. Let contests and staking forge a new meme elite</p>
-        <ul style="list-style: none; padding: 0; color: #bbb; font-weight: 600;">
-          <li style="margin-bottom: 8px;">🔒 Multi-chain presales</li>
-          <li style="margin-bottom: 8px;">🔒 Stake-to-earn rewards</li>
-          <li>🔒 Referral & gamification</li>
-        </ul>
-      </div>
+  <!-- STEP 3 -->
+  <div class="step-container">
+    <div class="step-number">3</div>
+    <div class="step-header">Where Memes Become Legends</div>
+    <div class="step-content">
+      <p>Meme domination unlocked: more chains, smarter memes, and global takeoff</p>
+      <ul class="step-list">
+        <li>Use Shibax in WLFI's DeFi lending ecosystem to borrow or earn interest</li>
+        <li>AI meme presales</li>
+        <li>Meme reputation system</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-container">
+    <div class="step-number">4</div>
+    <div class="step-header">Meme World Domination</div>
+    <div class="step-content">
+      <p>From chaos to clarity: the meme factory gets real, with voting and transparency</p>
+      <ul class="step-list">
+        <li>DAO voting for project selection</li>
+        <li>Transparency dashboard</li>
+        <li>Vesting & claim portal</li>
+        <li>Liquidity auto-lock</li>
+      </ul>
     </div>
   </div>
 
