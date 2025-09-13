@@ -60,358 +60,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shibax Presale</title>
+  <title>Three Separate Sections</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #121212;
-      color: #fff;
-    }
-    section {
+    /* Section 2 CSS */
+    #section2 {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #f7f7f7;
       padding: 40px 20px;
+      color: #333;
     }
+    #section2 .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #section2 .step-circle {
+      width: 50px;
+      height: 50px;
+      background: #000;
+      border-radius: 50%;
+      color: #ffd500;
+      font-weight: 900;
+      font-size: 1.5rem;
+      line-height: 50px;
+      text-align: center;
+      margin: 0 auto 20px;
+    }
+    #section2 .box {
+      border: 2px solid #000;
+      border-radius: 25px;
+      background: #fff;
+      padding: 25px 30px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+    }
+    #section2 .box-header {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      cursor: default;
+      box-shadow: 1px 1px 3px #ccc;
+    }
+    #section2 .box p {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    #section2 ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #section2 ul li {
+      display: flex;
+      align-items: center;
+      color: #999;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    #section2 ul li .lock-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      fill: #bbb;
+    }
+    #section2 * { box-sizing: border-box; }
   </style>
 </head>
 <body>
 
-<!-- Roadmap Section -->
-<section>
-  <style>
-    .roadmap-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .roadmap-step {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 40px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      position: relative;
-      color: black;
-    }
-    .roadmap-step::before {
-      content: '';
-      position: absolute;
-      top: 0; bottom: -40px; left: 50%;
-      width: 4px;
-      background: black;
-      transform: translateX(-50%);
-      z-index: -1;
-    }
-    .roadmap-step:last-child::before {
-      display: none;
-    }
-    .step-number {
-      background: black;
-      color: yellow;
-      font-weight: bold;
-      font-size: 24px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 50px;
-      margin: 0 auto 15px auto;
-      box-shadow: 0 0 8px #f8c300;
-    }
-    .step-title {
-      background: #fff;
-      border: 2px solid black;
-      border-radius: 25px;
-      display: inline-block;
-      padding: 6px 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      font-size: 14px;
-      text-align: center;
-      color: black;
-    }
-    .step-content {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-    .step-list {
-      list-style: none;
-      padding-left: 0;
-      color: #888;
-    }
-    .step-list li {
-      margin: 8px 0;
-      position: relative;
-      padding-left: 25px;
-    }
-    .step-list li::before {
-      content: "🔒";
-      position: absolute;
-      left: 0;
-    }
-  </style>
-
-  <div class="roadmap-container">
-    <div class="roadmap-step">
-      <div class="step-number">3</div>
-      <div class="step-title">Serious Platform, Serious Funny</div>
-      <div class="step-content">From chaos to clarity: the meme factory gets real, with voting and transparency</div>
-      <ul class="step-list">
-        <li>DAO voting for project selection</li>
-        <li>Transparency dashboard</li>
-        <li>Vesting & claim portal</li>
-        <li>Liquidity auto-lock</li>
-      </ul>
-    </div>
-
-    <div class="roadmap-step">
-      <div class="step-number">4</div>
-      <div class="step-title">Meme World Domination</div>
-      <div class="step-content">Meme domination unlocked: more chains, smarter memes, and global takeoff</div>
-      <ul class="step-list">
-        <li>Use Shibax in DeFi lending ecosystem to borrow or earn interest</li>
-        <li>AI meme presales</li>
-        <li>Meme reputation system</li>
+  <!-- SECTION 1 -->
+  <div id="section1" style="padding:20px;">
+    <div style="background:#f9d800; border-radius:15px; padding:20px; max-width:400px; margin:auto; font-family: 'Comic Sans MS', cursive, sans-serif; color:#000;">
+      <div style="text-align:center; font-weight:900; font-size:1.5rem; margin-bottom:10px;">
+        <span style="background:#000; color:#f9d800; border-radius:50%; padding:10px 15px; font-weight:bold;">1</span>
+      </div>
+      <div style="background:#000; color:#f9d800; border-radius:25px; padding:10px 15px; font-weight:bold; font-size:1rem; text-align:center; margin-bottom:15px;">
+        Let the Meme Games Begin
+      </div>
+      <p style="font-weight:700; font-size:1.1rem; margin-bottom:15px;">
+        Memes assemble! The presale is live, let the degen games begin
+      </p>
+      <ul style="list-style:none; padding-left:0; font-weight:600; font-size:1rem; line-height:1.6;">
+        <li>✨ Launch website & whitepaper</li>
+        <li>✨ Smart-contract audit with Solid/Coinsult</li>
+        <li>✨ Start presale Shibax with USD1, ETH, BNB</li>
+        <li>✨ Airdrop for $WLFI holders</li>
+        <li>✨ Build core community</li>
       </ul>
     </div>
   </div>
-</section>
 
-<!-- Presale Info Section -->
-<section>
-  <style>
-    .presale-box {
-      background: #f8c300;
-      border-radius: 20px;
-      width: 320px;
-      padding: 25px 30px;
-      box-shadow: 0 0 15px rgba(248, 195, 0, 0.6);
-      color: #222;
-      margin: 0 auto;
-    }
-    .presale-title {
-      background: #222;
-      color: #f8c300;
-      font-weight: 900;
-      font-size: 1.1rem;
-      padding: 8px 15px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .presale-text {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-    .presale-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    .presale-list li {
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .presale-list li::before {
-      content: "✨";
-      margin-right: 10px;
-    }
-  </style>
-
-  <div class="presale-box">
-    <div class="presale-title">Let the Meme Games Begin</div>
-    <div class="presale-text">
-      Memes assemble! The presale is live, let the degen games begin
-    </div>
-    <ul class="presale-list">
-      <li>Launch website whitepaper</li>
-      <li>Smart-contract audit with Solid/Coinsult</li>
-      <li>Start presale Shibax with USD1, BNB, ETH</li>
-      <li>Airdrop for WLFI holders</li>
-      <li>Build core community</li>
-    </ul>
-  </div>
-</section>
-
-<!-- How to Buy Section -->
-<section>
-  <style>
-    .buy-container {
-      width: 320px;
-      margin: 0 auto;
-    }
-    .buy-container h2 {
-      font-size: 2rem;
-      color: #f8c300;
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-    .step-box {
-      background: #222;
-      border: 3px solid #f8c300;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 15px;
-      color: #f8c300;
-      font-weight: 900;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      box-shadow: 0 0 10px #f8c300;
-    }
-    .step-text {
-      background: #111;
-      color: #ddd;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 10px;
-      padding: 15px 20px;
-      margin-top: 10px;
-      text-transform: none;
-    }
-  </style>
-
-  <div class="buy-container">
-    <h2>How to Buy</h2>
-    <div class="step-box">First:</div>
-    <div class="step-text">
-      Connect your Web3 wallet like a true citizen of financial liberty.
-    </div>
-    <div class="step-box">Second:</div>
-    <div class="step-text">
-      Choose how many tokens to buy. No need to be a billionaire – all you need is love for financial freedom!
-    </div>
-    <div class="step-box">Third:</div>
-    <div class="step-text">
-      Approve the transaction in your wallet. Don’t worry, you’re not selling the country, just buying meme-powered influence.
+  <!-- SECTION 2 -->
+  <div id="section2">
+    <div class="container">
+      <div class="step-circle">2</div>
+      <div class="box">
+        <div class="box-header">Serious Platform, Serious Funny</div>
+        <p>From chaos to clarity: the meme factory gets real, with voting and transparency</p>
+        <ul>
+          <li>
+            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
+            DAO voting for project selection
+          </li>
+          <li>
+            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
+            Transparency dashboard
+          </li>
+          <li>
+            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
+            Vesting &amp; claim portal
+          </li>
+          <li>
+            <svg class="lock-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 10v-2a6 6 0 0 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0v-2a4 4 0 0 1 8 0v2H8z"/></svg>
+            Liquidity auto-lock
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- Final Presale Message -->
-<section>
-  <style>
-    .final-box {
-      background: #222;
-      border: 4px solid #f8c300;
-      border-radius: 20px;
-      width: 320px;
-      padding: 25px 30px;
-      box-shadow: 0 0 15px rgba(248, 195, 0, 0.6);
-      color: #fff;
-      margin: 0 auto;
-    }
-    .final-title {
-      color: #f8c300;
-      font-weight: 900;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-    .final-text {
-      font-weight: 600;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-  </style>
-
-  <div class="final-box">
-    <div class="final-title">FINAL:</div>
-    <div class="final-text">
-      Once the presale ends, you’ll be able to claim your tokens. <br><br>
-      “It’s gonna be YUGE!”
+  <!-- SECTION 3 -->
+  <div id="section3" style="padding:20px;">
+    <div style="max-width: 400px; margin: auto; font-family: Arial, sans-serif;">
+      <div style="text-align: center; font-weight: 900; font-size: 2rem; color: #f7b500; background: #000; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 20px auto;">
+        3
+      </div>
+      <div style="border: 2px solid #000; border-radius: 20px; padding: 20px; text-align: center; background: #fff;">
+        <div style="font-weight: 700; margin-bottom: 10px;">Where Memes Become Legends</div>
+        <p style="font-weight: 600; margin-bottom: 20px;">Unite the memers. Let contests and staking forge a new meme elite</p>
+        <ul style="list-style: none; padding: 0; color: #bbb; font-weight: 600;">
+          <li style="margin-bottom: 8px;">🔒 Multi-chain presales</li>
+          <li style="margin-bottom: 8px;">🔒 Stake-to-earn rewards</li>
+          <li>🔒 Referral & gamification</li>
+        </ul>
+      </div>
     </div>
   </div>
-</section>
-
-<!-- Disclaimer -->
-<section>
-  <style>
-    .brand {
-      font-weight: 900;
-      font-size: 2rem;
-    }
-    .brand span {
-      color: #f8c300;
-    }
-    .disclaimer-links a {
-      color: #fff;
-      text-decoration: underline;
-      display: block;
-      margin: 10px 0;
-      font-weight: 600;
-    }
-    .disclaimer-text {
-      max-width: 400px;
-      margin: 20px auto 0 auto;
-      font-weight: 600;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-  </style>
-
-  <div class="brand">Liberlaunch <span>Shibax</span></div>
-  <div class="disclaimer-links">
-    <a href="#">Terms of Service</a>
-    <a href="#">Cookies</a>
-    <a href="#">Privacy Policy</a>
-  </div>
-  <p class="disclaimer-text">
-    Token is a speculative meme coin asset fueled by the hilarious vibes and community spirit of Liberlaunch Shibax. The cryptocurrency market carries the risk that you could lose all your capital. Nothing on this website is financial advice.
-  </p>
-</section>
-
-<!-- Ready to Launch Section -->
-<section>
-  <style>
-    .launch-section {
-      background: #f9d800;
-      color: #000;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .launch-section h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #000;
-      text-shadow: 2px 2px #fff;
-      margin-bottom: 20px;
-    }
-    .launch-section p {
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      font-weight: 600;
-    }
-    .tags {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .tag {
-      border: 2px solid #000;
-      border-radius: 50px;
-      padding: 8px 30px;
-      font-weight: 900;
-      font-size: 1rem;
-      background: #fff200;
-      box-shadow: 1px 1px 4px #aaa;
-    }
-  </style>
-
-  <div class="launch-section">
-    <h1>Ready to Launch with Shibax? 🚀</h1>
-    <p>Join the revolution where memes meet meaning. No rugs, no fear — just real degens, real support, and real launches.</p>
-    <div class="tags">
-      <div class="tag">Safe</div>
-      <div class="tag">Backed by Community</div>
-      <div class="tag">Viral</div>
-    </div>
-  </div>
-</section>
 
 </body>
 </html>
