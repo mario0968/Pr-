@@ -383,8 +383,8 @@ i<!DOCTYPE html>
 <style>
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f5f7; /* limyè gri */
-    color: #1a1a1a;
+    background-color: #000; /* Nwa background */
+    color: #fff;
     margin: 0;
     padding: 0;
   }
@@ -398,18 +398,17 @@ i<!DOCTYPE html>
   .faq-title {
     text-align: center;
     font-size: 36px;
-    color: #ff4500; /* zoranj Liberlaunch style */
+    color: #FFD700; /* Jòn tit tankou Liberlauch */
     margin-bottom: 40px;
     font-weight: bold;
   }
 
   .faq-item {
-    background-color: #ffffff;
+    background-color: #111; /* Nwa fonse pou chak FAQ */
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     overflow: hidden;
-    border-left: 6px solid #ff4500;
+    border-left: 6px solid #FFD700; /* Tras jòn */
   }
 
   .faq-question {
@@ -424,29 +423,32 @@ i<!DOCTYPE html>
   }
 
   .faq-question:hover {
-    background-color: #fff2ee;
+    background-color: #222;
   }
 
-  .faq-number {
+  /* Ti v ak animasyon */
+  .faq-check {
     display: inline-block;
-    background-color: #ff4500;
-    color: #fff;
-    font-weight: bold;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
+    color: #FFD700; /* Ti v jòn tankou tras */
+    font-size: 22px;
     margin-right: 15px;
-    font-size: 18px;
     flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* Lè FAQ ouvè, ti v parèt */
+  .faq-item.open .faq-check {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   .faq-answer {
     padding: 0 25px;
     font-size: 16px;
     line-height: 1.6;
-    color: #555;
+    color: #ccc;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.4s ease;
@@ -460,6 +462,7 @@ i<!DOCTYPE html>
   .arrow {
     font-size: 18px;
     transition: transform 0.3s ease;
+    color: #FFD700; /* Arrow jòn menm jan ak tras */
   }
 
   .arrow.rotate {
@@ -467,7 +470,7 @@ i<!DOCTYPE html>
   }
 
   a {
-    color: #ff4500;
+    color: #FFD700;
     text-decoration: none;
   }
   a:hover {
@@ -476,44 +479,17 @@ i<!DOCTYPE html>
 
   /* Responsive */
   @media (max-width: 768px) {
-    .faq-title {
-      font-size: 28px;
-    }
-    .faq-question {
-      font-size: 18px;
-      padding: 15px 20px;
-    }
-    .faq-number {
-      width: 35px;
-      height: 35px;
-      line-height: 35px;
-      font-size: 16px;
-    }
-    .faq-answer {
-      font-size: 15px;
-    }
+    .faq-title { font-size: 28px; }
+    .faq-question { font-size: 18px; padding: 15px 20px; }
+    .faq-check { font-size: 20px; }
+    .faq-answer { font-size: 15px; }
   }
 
   @media (max-width: 480px) {
-    .faq-title {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-    .faq-question {
-      font-size: 16px;
-      padding: 12px 15px;
-    }
-    .faq-number {
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      font-size: 14px;
-      margin-right: 10px;
-    }
-    .faq-answer {
-      font-size: 14px;
-      padding: 10px 15px 15px 15px;
-    }
+    .faq-title { font-size: 24px; margin-bottom: 30px; }
+    .faq-question { font-size: 16px; padding: 12px 15px; }
+    .faq-check { font-size: 18px; margin-right: 10px; }
+    .faq-answer { font-size: 14px; padding: 10px 15px 15px 15px; }
   }
 </style>
 </head>
@@ -524,7 +500,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">1</span>What is Shibax?</div>
+      <div><span class="faq-check">✔</span>What is Shibax?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -534,7 +510,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">2</span>How can I buy Shibax?</div>
+      <div><span class="faq-check">✔</span>How can I buy Shibax?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -549,7 +525,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">3</span>Does Shibax offer staking or rewards?</div>
+      <div><span class="faq-check">✔</span>Does Shibax offer staking or rewards?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -559,7 +535,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">4</span>Is Shibax secure?</div>
+      <div><span class="faq-check">✔</span>Is Shibax secure?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -569,7 +545,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">5</span>What are the future plans for Shibax?</div>
+      <div><span class="faq-check">✔</span>What are the future plans for Shibax?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -585,7 +561,7 @@ i<!DOCTYPE html>
 
   <div class="faq-item">
     <div class="faq-question">
-      <div><span class="faq-number">6</span>Where can I get more information or support?</div>
+      <div><span class="faq-check">✔</span>Where can I get more information or support?</div>
       <div class="arrow">&#9654;</div>
     </div>
     <div class="faq-answer">
@@ -599,10 +575,13 @@ i<!DOCTYPE html>
   const questions = document.querySelectorAll('.faq-question');
   questions.forEach(q => {
     q.addEventListener('click', () => {
+      const faqItem = q.parentElement;
       const answer = q.nextElementSibling;
       const arrow = q.querySelector('.arrow');
+
       answer.classList.toggle('open');
       arrow.classList.toggle('rotate');
+      faqItem.classList.toggle('open'); // Aktive animasyon ti v
     });
   });
 </script>
