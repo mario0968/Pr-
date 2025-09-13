@@ -588,3 +588,125 @@ i<!DOCTYPE html>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shibax Stacked Cards Peek</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .card-stack {
+    position: relative;
+    width: 300px;
+    height: 400px;
+  }
+
+  .feature-card {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border: 3px solid #FFD700;
+    border-radius: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0.8;
+  }
+
+  .feature-card h3 {
+    color: #FFD700;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .feature-card.active {
+    opacity: 1;
+    z-index: 10;
+    transform: translateY(0);
+  }
+
+  /* Mete chak kat ak yon ti desann pou yo parèt nan lòd */
+  .feature-card:nth-child(1) { top: 0; }
+  .feature-card:nth-child(2) { top: 40px; }
+  .feature-card:nth-child(3) { top: 80px; }
+  .feature-card:nth-child(4) { top: 120px; }
+</style>
+</head>
+<body>
+
+<div class="card-stack" id="stack">
+  <div class="feature-card active">
+    <h3>Liquidity</h3>
+    <p>Ensures that a project's liquidity is automatically locked for a fixed period, preventing rug pulls and building investor trust from day one.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Staking</h3>
+    <p>Stake tokens to earn rewards, unlock exclusive launchpad access, and participate in DAO voting. The more you stake, the more power you hold.</p>
+  </div>
+  <div class="feature-card">
+    <img src="your-coin-icon.png" alt="Shibax Coin" class="feature-icon">
+    <h3>DAO Voting</h3>
+    <p>Projects seeking to launch on the <strong>Shibax</strong> platform must obtain community approval.</p>
+  </div>
+  <div class="feature-card">
+    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/frog-face_1f438.png" alt="pepe" class="feature-icon" style="position:absolute; top:-15px; left:-15px;">
+    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/penguin_1f427.png" alt="penguin" class="feature-icon" style="position:absolute; top:-15px; right:-15px;">
+    <p>A unified KYC layer that ensures all launchpad participants and projects are verified, secure, and compliant — protecting the platform from fraud while maintaining SHIBAX SECURITY LAYER.</p>
+  </div>
+</div>
+
+<script>
+  const cards = document.querySelectorAll('.feature-card');
+  let current = 0;
+
+  function showNextCard() {
+    if (current < cards.length - 1) {
+      cards[current].classList.remove('active');
+      current++;
+      cards[current].classList.add('active');
+    }
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', showNextCard);
+  });
+
+  let startX = 0;
+  const stack = document.getElementById('stack');
+
+  stack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  stack.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      showNextCard();
+    }
+  });
+</script>
+
+</body>
+</html>
