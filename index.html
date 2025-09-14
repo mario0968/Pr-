@@ -1,6 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f9f9f9;
+    }
+
+    .timeline {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+    }
+
+    /* Liy vètikal */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: #000;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .timeline-step {
+      border-radius: 20px;
+      border: 3px solid #000;
+      padding: 35px 25px 25px;
+      position: relative;
+      margin-bottom: 80px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      z-index: 1;
+    }
+
+    .step-number {
+      background: #000;
+      color: #FFC800;
+      font-weight: bold;
+      font-size: 24px;
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      text-align: center;
+      border-radius: 50%;
+      border: 4px solid #FFC800;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .step-title {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 12px;
+      padding: 6px 14px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .step-content ul {
+      list-style: none;
+      padding: 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .step-content li {
+      margin: 8px 0;
+    }
+
+    /* Koulè */
+    .step1 {
+      background: #FFC800;
+      color: #000;
+    }
+
+    .step2, .step3, .step4 {
+      background: #FFFFFF;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="timeline">
+
+    <!-- Etap 1 -->
+    <div class="timeline-step step1">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h4 class="step-title">Let the Meme Games Begin</h4>
+        <ul>
+          <li>BNB</li>
+          <li>ETH</li>
+          <li>USD1</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Etap 2 -->
+    <div class="timeline-step step2">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h4 class="step-title">The Meme Wars</h4>
+        <ul>
+          <li>BNB</li>
+          <li>ETH</li>
+          <li>USD1</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Etap 3 -->
+    <div class="timeline-step step3">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h4 class="step-title">Where Memes Become Legends</h4>
+        <ul>
+          <li>BNB</li>
+          <li>ETH</li>
+          <li>USD1</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Etap 4 -->
+    <div class="timeline-step step4">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h4 class="step-title">Meme World Domination</h4>
+        <ul>
+          <li>BNB</li>
+          <li>ETH</li>
+          <li>USD1</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shibax FAQ</title>
