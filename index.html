@@ -588,3 +588,251 @@ i<!DOCTYPE html>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shibax Sections</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- Liquidity Card --- */
+    .liquidity-card {
+      background: #f7de1b;
+      color: #000;
+      width: 300px;
+      padding: 20px;
+      border-radius: 12px;
+      transform: rotate(-3deg);
+      box-shadow: 4px 4px 0px #000;
+      border: 3px solid #000;
+      margin: 20px auto;
+    }
+    .liquidity-content p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .liquidity-content strong {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* --- Staking Box --- */
+    .staking-box {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      border: 3px solid #f7de1b;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 340px;
+      margin: 20px auto;
+      position: relative;
+      box-shadow: 4px 4px 0 #000;
+    }
+    .staking-icon {
+      position: absolute;
+      top: -25px;
+      left: -25px;
+      width: 50px;
+      height: 50px;
+    }
+    .staking-icon img {
+      width: 100%;
+      border-radius: 50%;
+      border: 2px solid #f7de1b;
+      background: #fff;
+    }
+    .staking-box p {
+      font-size: 15px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    .staking-label {
+      color: #f7de1b;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* --- DAO Voting Card --- */
+    .dao-voting-card {
+      background-color: #1a1a1a;
+      border: 5px solid #f7de1b;
+      border-radius: 10px;
+      color: white;
+      width: 280px;
+      padding: 20px;
+      box-shadow: 5px 5px 0 #000;
+      transform: rotate(-3deg);
+      position: relative;
+      margin: 20px auto;
+    }
+    .dao-icon {
+      position: absolute;
+      top: -25px;
+      left: -25px;
+      width: 50px;
+      height: 50px;
+    }
+    .dao-icon img {
+      width: 100%;
+      height: auto;
+    }
+    .dao-text p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .dao-label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #f7de1b;
+    }
+
+    /* --- Security Card --- */
+    .security-card {
+      background-color: #f7de1b;
+      border-radius: 16px;
+      border: 3px solid #000;
+      padding: 20px;
+      transform: rotate(-2deg);
+      box-shadow: 4px 4px 0 #000;
+      position: relative;
+      max-width: 320px;
+      margin: 30px auto;
+    }
+    .card-icons .icon-left {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 40px;
+    }
+    .card-icons .icon-right {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 40px;
+    }
+    .card-content h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px #000;
+    }
+    .card-content p {
+      font-size: 14px;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    /* --- Swiper --- */
+    .swiper {
+      width: 100%;
+      height: 100%;
+      padding: 40px 0;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Swiper Wrapper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+
+      <!-- Liquidity -->
+      <div class="swiper-slide">
+        <div class="liquidity-card">
+          <div class="liquidity-content">
+            <p>
+              Ensures that a project’s liquidity is automatically locked for a fixed period,
+              preventing rug pulls and building investor trust from day one.
+            </p>
+            <strong>Liquidity</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staking -->
+      <div class="swiper-slide">
+        <div class="staking-box">
+          <div class="staking-icon">
+            <img src="https://via.placeholder.com/50" alt="Mascot Icon" />
+          </div>
+          <p>
+            Stake tokens to earn rewards, unlock exclusive launchpad access, and participate in DAO voting.  
+            The more you stake, the more power you hold.
+          </p>
+          <span class="staking-label">Staking</span>
+        </div>
+      </div>
+
+      <!-- DAO Voting -->
+      <div class="swiper-slide">
+        <div class="dao-voting-card">
+          <div class="dao-icon">
+            <img src="https://via.placeholder.com/50" alt="DAO Icon" />
+          </div>
+          <div class="dao-text">
+            <p>Projects seeking to launch on the platform must obtain community approval.</p>
+            <span class="dao-label">DAO Voting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="swiper-slide">
+        <div class="security-card">
+          <div class="card-icons">
+            <img src="https://via.placeholder.com/40" alt="Icon 1" class="icon-left">
+            <img src="https://via.placeholder.com/40" alt="Icon 2" class="icon-right">
+          </div>
+          <div class="card-content">
+            <h3>🛡️ Security Layer</h3>
+            <p>
+              A unified KYC layer that ensures all launchpad participants and projects are verified, secure, 
+              and compliant — protecting the platform from fraud while maintaining transparency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Swiper Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+
+</body>
+</html>
