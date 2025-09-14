@@ -712,3 +712,101 @@
   btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.1)');
   btn.addEventListener('mouseleave', () => btn.style.transform = 'scale(1)');
 </script>
+<footer class="shibax-footer">
+  <h3 class="logo">
+    <span class="white">Shiba</span><span class="yellow">X</span>
+  </h3>
+
+  <div class="links">
+    <a href="/terms">Terms of Service</a>
+    <a href="/cookies">Cookies</a>
+    <a href="/privacy">Privacy Policy</a>
+  </div>
+
+  <p class="disclaimer">
+    $ShibaX Token is a speculative meme coin asset fueled by community energy, freedom-first ideals, and decentralized ambition. 
+    The cryptocurrency market carries risk — including the loss of all capital. 
+    Nothing on this website constitutes financial advice.
+  </p>
+</footer>
+
+<style>
+/* Footer Base */
+.shibax-footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+/* Logo ak glow hover */
+.shibax-footer .logo {
+  font-size: 20px;
+  margin-bottom: 15px;
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.shibax-footer .logo:hover {
+  text-shadow: 0 0 10px #fedd00, 0 0 20px #fedd00;
+}
+
+.shibax-footer .logo .yellow {
+  color: #fedd00;
+}
+
+.shibax-footer .logo .white {
+  color: #fff;
+}
+
+/* Lyen ak animasyon glise */
+.shibax-footer .links {
+  margin-top: 15px;
+  line-height: 2;
+}
+
+.shibax-footer .links a {
+  color: #fff;
+  text-decoration: underline;
+  margin: 0 10px;
+  display: inline-block;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.shibax-footer .links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #fedd00;
+  transition: width 0.3s;
+}
+
+.shibax-footer .links a:hover {
+  color: #fedd00;
+  transform: translateY(-2px);
+}
+
+.shibax-footer .links a:hover::after {
+  width: 100%;
+}
+
+/* Disclaimer */
+.shibax-footer .disclaimer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .shibax-footer .links a {
+    display: block;
+    margin: 5px 0;
+  }
+}
+</style>
