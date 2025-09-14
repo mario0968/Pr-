@@ -3,6 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Buy - Shibax</title>
+  <style>
+    body {
+      background-color: #111;
+      font-family: 'Arial Black', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .step-box {
+      background-color: #111;
+      color: #fff;
+      border: 3px solid #FFD700;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .step-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .step-box h2 {
+      color: #FFD700;
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .step-box p {
+      font-size: 15px;
+      line-height: 1.5;
+      margin: 0 0 15px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #FFD700;
+      color: #111;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 600px) {
+      .step-box {
+        padding: 15px;
+      }
+
+      .step-box h2 {
+        font-size: 20px;
+      }
+
+      .step-box p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="step-box">
+    <h2>FIRST:</h2>
+    <p>Elon Musk doesn’t use paper wallets. Neither should you. Connect your Web3 wallet like a true citizen of meme liberty.</p>
+    <a href="#" class="buy-btn">Buy Now</a>
+  </div>
+
+  <div class="step-box">
+    <h2>SECOND:</h2>
+    <p>Choose how many Shibax tokens to buy. No need to be a billionaire – all you need is love for financial freedom!</p>
+    <a href="#" class="buy-btn">Buy Now</a>
+  </div>
+
+  <div class="step-box">
+    <h2>THIRD:</h2>
+    <p>Approve the transaction in your wallet. Don’t worry, you’re not selling the country, just buying meme-powered influence.</p>
+    <a href="#" class="buy-btn">Buy Now</a>
+  </div>
+
+  <div class="step-box">
+    <h2>FINAL:</h2>
+    <p>Once the presale ends, you’ll be able to claim your $SHIBAX tokens. And as Elon would say: “It’s gonna be YUGE!”</p>
+    <a href="#" class="buy-btn">Buy Now</a>
+  </div>
+
+  <script>
+    const boxes = document.querySelectorAll('.step-box');
+
+    window.addEventListener('scroll', () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+        if(boxTop < triggerBottom){
+          box.classList.add('visible');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap</title>
   <style>
     body {
