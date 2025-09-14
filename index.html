@@ -588,3 +588,142 @@ i<!DOCTYPE html>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shibax Sections</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- Cards --- */
+    .card {
+      width: 300px;
+      height: 300px;
+      border-radius: 16px;
+      background: #f7de1b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;
+      position: relative;
+      box-shadow: 4px 4px 0 #000;
+      border: 3px solid #000;
+      text-align: center;
+      padding: 20px;
+      color: #000;
+    }
+
+    .card.dark {
+      background: #1a1a1a;
+      color: #fff;
+      border: 3px solid #f7de1b;
+    }
+
+    .emoji {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* --- Swiper --- */
+    .swiper {
+      width: 100%;
+      height: 100%;
+      padding: 40px 0;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+
+      <!-- Liquidity -->
+      <div class="swiper-slide">
+        <div class="card">
+          <div class="emoji">💧</div>
+          <p>Ensures liquidity is automatically locked, preventing rug pulls and building investor trust.</p>
+          <h3>Liquidity</h3>
+        </div>
+      </div>
+
+      <!-- Staking -->
+      <div class="swiper-slide">
+        <div class="card dark">
+          <div class="emoji">🔥</div>
+          <p>Stake tokens to earn rewards, unlock exclusive launchpad access, and participate in DAO voting.</p>
+          <h3>Staking</h3>
+        </div>
+      </div>
+
+      <!-- DAO Voting -->
+      <div class="swiper-slide">
+        <div class="card dark">
+          <div class="emoji">🗳️</div>
+          <p>Projects seeking to launch on the platform must obtain community approval.</p>
+          <h3>DAO Voting</h3>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="swiper-slide">
+        <div class="card">
+          <div class="emoji">🔒</div>
+          <p>A unified KYC layer ensures all participants and projects are verified, secure, and compliant.</p>
+          <h3>Security Layer</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+
+</body>
+</html>
