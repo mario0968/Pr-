@@ -1,6 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ShibaX WhatsApp Style</title>
+<style>
+  body {
+    background-color: #0a0a0a;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .chat-container {
+    background: #111;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    padding: 15px;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .message-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .message-row.left {
+    justify-content: flex-start;
+  }
+  .message-row.right {
+    justify-content: flex-end;
+  }
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #ffcc00;
+    object-fit: cover;
+  }
+  .bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0;
+    word-wrap: break-word;
+  }
+  .bubble.left {
+    background: #2a2a2a;
+    border: 1px solid #ffcc00;
+    color: #ffcc00;
+  }
+  .bubble.right {
+    background: #ffcc00;
+    color: #000;
+  }
+  .typing {
+    border-right: .1em solid #ffcc00;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .description {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 12px;
+    border-radius: 10px;
+    background: #222;
+    border: 1px solid #ffcc00;
+    color: #ffcc00;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid #ffcc00;
+    width: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="chat-container" id="chat">
+  <!-- messages will appear here -->
+</div>
+
+<div class="description" id="desc">
+  shibax is growing fast and the media is following the project with great interest. don’t miss the opportunity to invest in a project with great potential and a solid community. trust shibax because the last 5 days have shown our ability to raise over 1 million dollars!
+</div>
+
+<script>
+const messages = [
+  { text: "there is a lot of media talking about shibax.", side: "left", avatar: "https://i.ibb.co/bjDMjDPr/IMG-20250914-WA0187.jpg" },
+  { text: "in 5 days we raised over 1 million dollars.", side: "right", avatar: "https://i.ibb.co/wNXWFF6d/Screenshot-2025-09-14-22-33-47-442-com-google-android-youtube.jpg" },
+  { text: "shibax is growing fast and the media is following with great interest.", side: "left", avatar: "https://i.ibb.co/hFHvdQXw/Screenshot-2025-09-14-22-34-58-896-com-google-android-youtube.jpg" },
+  { text: "don’t miss the opportunity to invest in a solid community!", side: "right", avatar: "https://i.ibb.co/j9yD56qr/Screenshot-2025-09-14-22-34-04-896-com-google-android-youtube.jpg" }
+];
+
+let chatBox = document.getElementById("chat");
+let i = 0;
+
+function typeMessage(msg, side, avatarUrl, callback) {
+  let row = document.createElement("div");
+  row.classList.add("message-row", side);
+
+  let avatar = document.createElement("img");
+  avatar.src = avatarUrl;
+  avatar.classList.add("avatar");
+
+  let bubble = document.createElement("div");
+  bubble.classList.add("bubble", side, "typing");
+
+  if (side === "left") {
+    row.appendChild(avatar);
+    row.appendChild(bubble);
+  } else {
+    row.appendChild(bubble);
+    row.appendChild(avatar);
+  }
+
+  chatBox.appendChild(row);
+
+  let j = 0;
+  let interval = setInterval(() => {
+    bubble.textContent = msg.slice(0, j++);
+    if (j > msg.length) {
+      clearInterval(interval);
+      bubble.classList.remove("typing");
+      bubble.style.opacity = 1;
+      if (callback) callback();
+    }
+  }, 50);
+}
+
+function showNextMessage() {
+  if (i < messages.length) {
+    let { text, side, avatar } = messages[i++];
+    typeMessage(text, side, avatar, () => {
+      setTimeout(showNextMessage, 500);
+    });
+  } else {
+    // show description typing
+    let desc = document.getElementById("desc");
+    let fullText = desc.textContent.trim();
+    desc.textContent = "";
+    let k = 0;
+    let typingDesc = setInterval(() => {
+      desc.textContent = fullText.slice(0, k++);
+      desc.style.width = "100%";
+      if (k > fullText.length) {
+        clearInterval(typingDesc);
+        desc.style.borderRight = "none";
+      }
+    }, 40);
+  }
+}
+
+showNextMessage();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShibaX Description Page</title>
