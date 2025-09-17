@@ -642,7 +642,51 @@
 </style>
 </head>
 <body>
+<!-- Disclaimer Overlay -->
+<div id="disclaimerOverlay" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+">
+  <div style="
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0;
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    overflow: hidden;
+  ">
+    <!-- Imaj Disclaimer -->
+    <img src="https://i.ibb.co/n80kTdXS/IMG-20250917-WA0092.jpg" 
+         alt="Disclaimer Image" 
+         style="width: 100%; height: auto; display: block;" />
 
+    <!-- Bouton Fèmen -->
+    <button onclick="document.getElementById('disclaimerOverlay').style.display='none'" style="
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #000000cc;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: center;
+    ">×</button>
+  </div>
+</div>
 <div class="faq-container">
   <div class="faq-title">Shibax FAQ</div>
 
