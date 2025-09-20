@@ -409,65 +409,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Breaking News Compact</title>
+  <title>Breaking News Continuous</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Bar fiks, konpakte nan tèt paj la */
+    body {
+      margin: 0;
+      padding-top: 50px; /* wotè bar la pou pa kouvri kontni */
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    /* Bar fiks nan tèt */
     .breaking-bar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 40px; /* pi konpakte */
+      height: 50px;
       background-color: #cc0000;
       border-top: 3px solid #990000;
       border-bottom: 3px solid #990000;
       z-index: 9999;
-      overflow: hidden;
       display: flex;
       align-items: center;
       padding-left: 10px;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    /* Label “BREAKING” */
+    /* Label BREAKING */
     .breaking-label {
       font-weight: bold;
-      font-size: 16px; /* pi piti */
+      font-size: 16px;
       color: #fff;
       background-color: #ff0000;
-      padding: 4px 8px;
+      padding: 5px 10px;
       margin-right: 10px;
       text-transform: uppercase;
       flex-shrink: 0;
     }
 
-    /* Scroll container pou tèks */
+    /* Scroll container ak smooth continuous loop */
     .scroll-container {
-      display: inline-block;
+      display: flex;
+      flex-wrap: nowrap;
       white-space: nowrap;
-      animation: scroll-left 49s linear infinite; /* Lis & dous */
+      animation: scroll-continuous 49s linear infinite;
     }
 
-    @keyframes scroll-left {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* Tèks ki ap scroll */
     .breaking-text {
       font-weight: bold;
-      font-size: 15px; /* konpakte */
+      font-size: 15px;
       color: #ffffff;
       display: inline-block;
-      padding-right: 50px; /* ti espas nan fen scroll */
+      margin-right: 50px; /* espas ant repete tèks la */
     }
 
-    /* Pou pa kouvri kontni paj la */
-    body {
-      padding-top: 40px; /* egal ak wotè bar la */
-      margin: 0;
+    @keyframes scroll-continuous {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Kontni paj */
+    .content {
+      padding: 20px;
     }
   </style>
 </head>
@@ -476,16 +481,19 @@
   <div class="breaking-bar">
     <div class="breaking-label">BREAKING</div>
     <div class="scroll-container">
+      <!-- Duplication tèks la pou loop smooth -->
+      <div class="breaking-text">
+        🚀 ShibaX listed at $1.9 — Early investors seize the opportunity! | 🔥 Join the freedom finance revolution now! | 🌍 Together we rise!
+      </div>
       <div class="breaking-text">
         🚀 ShibaX listed at $1.9 — Early investors seize the opportunity! | 🔥 Join the freedom finance revolution now! | 🌍 Together we rise!
       </div>
     </div>
   </div>
 
-  <!-- Egzanp kontni paj -->
-  <div style="padding: 20px;">
+  <div class="content">
     <h1>Welcome to ShibaX Presale</h1>
-    <p>The breaking news bar is compact, fixed at the top, and the message scrolls smoothly without leaving a big trace on the page.</p>
+    <p>The breaking news bar scrolls continuously without stopping. The “head” appears once, and the text loops smoothly forever.</p>
   </div>
 
 </body>
