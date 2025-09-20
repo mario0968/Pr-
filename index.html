@@ -405,7 +405,91 @@
     </div>
 
   </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breaking News Compact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Bar fiks, konpakte nan tèt paj la */
+    .breaking-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px; /* pi konpakte */
+      background-color: #cc0000;
+      border-top: 3px solid #990000;
+      border-bottom: 3px solid #990000;
+      z-index: 9999;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
+    /* Label “BREAKING” */
+    .breaking-label {
+      font-weight: bold;
+      font-size: 16px; /* pi piti */
+      color: #fff;
+      background-color: #ff0000;
+      padding: 4px 8px;
+      margin-right: 10px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* Scroll container pou tèks */
+    .scroll-container {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-left 49s linear infinite; /* Lis & dous */
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Tèks ki ap scroll */
+    .breaking-text {
+      font-weight: bold;
+      font-size: 15px; /* konpakte */
+      color: #ffffff;
+      display: inline-block;
+      padding-right: 50px; /* ti espas nan fen scroll */
+    }
+
+    /* Pou pa kouvri kontni paj la */
+    body {
+      padding-top: 40px; /* egal ak wotè bar la */
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="breaking-bar">
+    <div class="breaking-label">BREAKING</div>
+    <div class="scroll-container">
+      <div class="breaking-text">
+        🚀 ShibaX listed at $1.9 — Early investors seize the opportunity! | 🔥 Join the freedom finance revolution now! | 🌍 Together we rise!
+      </div>
+    </div>
+  </div>
+
+  <!-- Egzanp kontni paj -->
+  <div style="padding: 20px;">
+    <h1>Welcome to ShibaX Presale</h1>
+    <p>The breaking news bar is compact, fixed at the top, and the message scrolls smoothly without leaving a big trace on the page.</p>
+  </div>
+
+</body>
+</html>
 </body>
 </html>
 <section style="background-color:#1b212c; color:#f4b500; font-family:sans-serif; padding:40px 20px;">
