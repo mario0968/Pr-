@@ -158,47 +158,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Breaking News</title>
+  <title>Breaking News TV Style Overlay</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Bar an tèt paj la, fixed men pa deranje layout */
     .breaking-bar {
+      position: fixed;  /* rete sou tèt paj la */
+      top: 0;
+      left: 0;
       width: 100%;
+      z-index: 9999; /* toujou anlè tout lòt eleman */
+      background-color: #cc0000; /* wouj tipik TV news */
+      border-top: 4px solid #990000;
+      border-bottom: 4px solid #990000;
       overflow: hidden;
-      background: linear-gradient(to right, #ffcc00, #fff6cc);
-      padding: 10px 0;
-      border-top: 2px solid #e6b800;
-      border-bottom: 2px solid #e6b800;
+      padding: 12px 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
-      position: relative;
     }
 
-    .breaking-text {
+    /* Scroll container pou tèks */
+    .scroll-container {
       display: inline-block;
       white-space: nowrap;
-      font-weight: bold;
-      font-size: 17px;
-      color: #1a1a1a;
-      animation: scroll-left 60s linear infinite;
-      padding-left: 100%;
+      animation: scroll-left 60s linear infinite; /* lis & dous */
     }
 
     @keyframes scroll-left {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Tèks anndan */
+    .breaking-text {
+      font-weight: bold;
+      font-size: 18px;
+      color: #ffffff;
+      text-transform: uppercase;
+      padding-right: 100%;
+      display: inline-block;
+    }
+
+    /* Pou pa fè bar la kouvri kontni paj la */
+    body {
+      padding-top: 50px; /* ajiste selon wotè bar la */
     }
   </style>
 </head>
 <body>
 
   <div class="breaking-bar">
-    <div class="breaking-text">
-      🚀 ShibaX listed at $1.9 — Great opportunity for early investors! | 🔥 Join the freedom finance revolution! | 💰 Smart investing starts with ShibaX. | 🌍 Together we rise.
+    <div class="scroll-container">
+      <div class="breaking-text">
+        ⚡ BREAKING: ShibaX listed at $1.9 — Early investors seize the opportunity! | 🔥 Join the freedom finance revolution now! | 🌍 Together we rise!
+      </div>
     </div>
+  </div>
+
+  <!-- Egzanp kontni paj pou teste -->
+  <div style="padding: 20px;">
+    <h1>Welcome to ShibaX Presale</h1>
+    <p>Here is your main content. The breaking news bar is fixed at the top and does not disturb the layout.</p>
   </div>
 
 </body>
