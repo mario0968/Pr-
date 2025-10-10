@@ -2,43 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scal
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Presale Page</title>
-  <style>
-    /* Reset baz */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Body ak background */
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('background.jpg'); /* mete imaj background ou la */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      min-height: 100vh;
-    }
-
-    /* Main container */
-    .main-container {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      max-width: 800px;
-      margin: 100px auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      text-align: center;
-    }
-  </style>
+  <title>Protected Resilient Layout</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="main-container">
-    <h1>Welcome to the Presale</h1>
-    <p>Secure and stable layout with background preserved.</p>
+  <!-- Background ki toujou prezève -->
+  <div class="background"></div>
+
+  <!-- Wrapper prensipal pou kenbe layout la -->
+  <div class="wrapper">
+    <!-- Kontni prensipal -->
+    <div class="main-container" id="main-container">
+      <h1>Welcome to My Site</h1>
+      <p>Layout and background are fully protected.</p>
+    </div>
   </div>
+
+  <!-- JavaScript pou verifye e restore layout si eleman efase -->
+  <script>
+    const containerId = 'main-container';
+    const wrapper = document.querySelector('.wrapper');
+
+    function ensureContainer() {
+      let container = document.getElementById(containerId);
+      if (!container) {
+        container = document.createElement('div');
+        container.id = containerId;
+        container.className = 'main-container';
+        container.innerHTML = `
+          <h1>Welcome to My Site</h1>
+          <p>Layout and background are fully protected.</p>
+        `;
+        wrapper.appendChild(container);
+      }
+    }
+
+    // Verifye chak 1 segonn si eleman an toujou egziste
+    setInterval(ensureContainer, 1000);
+  </script>
 </body>
 </html>
 
