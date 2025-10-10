@@ -3,44 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protected Resilient Layout</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- Background ki toujou prezève -->
-  <div class="background"></div>
-
-  <!-- Wrapper prensipal pou layout la -->
-  <div class="wrapper">
-    <!-- Kontni sekrè ki pa montre -->
-    <div class="main-container hidden" id="main-container">
-      <h1>Welcome to My Site</h1>
-      <p>Layout and background are fully protected.</p>
-    </div>
-  </div>
-
-  <!-- JavaScript pou restore layout si nenpòt eleman efase -->
-  <script>
-    const wrapper = document.querySelector('.wrapper');
-    const containerId = 'main-container';
-
-    function ensureLayout() {
-      // Si main-container pa egziste, kreye li ankò (pa afiche li)
-      if (!document.getElementById(containerId)) {
-        const hiddenContainer = document.createElement('div');
-        hiddenContainer.id = containerId;
-        hiddenContainer.className = 'main-container hidden';
-        hiddenContainer.innerHTML = `
-          <h1>Welcome to My Site</h1>
-          <p>Layout and background are fully protected.</p>
-        `;
-        wrapper.appendChild(hiddenContainer);
-      }
+  <title>Resilient Presale Layout</title>
+  <style>
+    /* Reset debaz pou tout navigatè */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    // Verifye chak 1 segonn
-    setInterval(ensureLayout, 1000);
-  </script>
+    /* Body ak background sekirize */
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Wrapper prensipal layout lan */
+    .layout-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* Header, Main, Footer pou kenbe fòm lan stab */
+    .header, .main-content, .footer {
+      flex: 1; /* pran espas ki nesesè pou layout la */
+      width: 100%;
+    }
+
+    /* Main-content fleksib, ou ka ajoute/retire nenpòt bagay ladan */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    /* Eleman kache pou pwoteje layout/background */
+    .layout-protect {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- Layout prensipal -->
+  <div class="layout-wrapper">
+    <header class="header"></header>
+    <main class="main-content">
+      <!-- Ou menm ka retire oswa ajoute eleman san kraze layout la -->
+    </main>
+    <footer class="footer"></footer>
+  </div>
+
+  <!-- Eleman kache pou pwoteje layout/background -->
+  <div class="layout-protect">
+    <h1>Welcome to my site</h1>
+    <p>Layout and background are fully protected.</p>
+  </div>
 </body>
 </html>
 
