@@ -49,15 +49,18 @@
 
     /* Eleman kache pou pwoteje layout/background */
     .layout-protect {
+      display: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
       position: absolute;
       left: -9999px;
       top: -9999px;
       width: 1px;
-      height: 1px;
       overflow: hidden;
     }
 
-    /* Opsyonèl: fè layout toujou konplètman responsif */
+    /* Opsyonèl: responsif pou ekran piti */
     @media (max-width: 768px) {
       .header, .main-content, .footer {
         padding: 5px;
