@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resilient Presale Layout</title>
   <style>
-    /* Reset debaz pou tout navigatè */
+    /* Reset debaz */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Body ak background sekirize */
+    /* Body ak background */
     body {
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
@@ -22,25 +22,29 @@
       flex-direction: column;
     }
 
-    /* Wrapper prensipal layout lan */
+    /* Wrapper prensipal layout la */
     .layout-wrapper {
+      width: 100%;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      width: 100%;
     }
 
-    /* Header, Main, Footer pou kenbe fòm lan stab */
-    .header, .main-content, .footer {
-      flex: 1; /* pran espas ki nesesè pou layout la */
-      width: 100%;
+    /* Header ak Footer: pran gwosè natirèl */
+    .header, .footer {
+      height: auto;
+      padding: 10px;
+      background: rgba(255,255,255,0.1); /* opsyonèl pou wè zòn yo */
     }
 
-    /* Main-content fleksib, ou ka ajoute/retire nenpòt bagay ladan */
+    /* Main adapte otomatikman selon kontni */
     .main-content {
+      flex: 0 0 auto; /* pa pran espas vid */
+      width: 100%;
+      padding: 10px;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     /* Eleman kache pou pwoteje layout/background */
@@ -52,25 +56,33 @@
       height: 1px;
       overflow: hidden;
     }
+
+    /* Opsyonèl: fè layout toujou konplètman responsif */
+    @media (max-width: 768px) {
+      .header, .main-content, .footer {
+        padding: 5px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Layout prensipal -->
   <div class="layout-wrapper">
     <header class="header"></header>
     <main class="main-content">
-      <!-- Ou menm ka retire oswa ajoute eleman san kraze layout la -->
+      <!-- Ou ka mete oswa retire eleman lib -->
+      <p>Nouvo kontni ka ale isit la san kraze layout.</p>
     </main>
     <footer class="footer"></footer>
   </div>
 
-  <!-- Eleman kache pou pwoteje layout/background -->
   <div class="layout-protect">
     <h1>Welcome to my site</h1>
     <p>Layout and background are fully protected.</p>
   </div>
 </body>
 </html>
+
+
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; background: transparent;">
   <img src="https://i.ibb.co/b5NP3XmV/IMG-20251002-WA0164-2.jpg" alt="IMG-1" style="max-width: 100%; height: auto; border: none;">
